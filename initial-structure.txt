@@ -1,0 +1,3 @@
+-- to create the frontend of the application 
+-- to create the architecture 
+-- to build the connection to metamask
