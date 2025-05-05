@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Live Network Analyzer</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/build/sha256.min.js"></script>
   <style>
     body {
       background-color: #003049;
@@ -70,8 +71,31 @@
       document.getElementById('output').innerHTML = html;
     }
 
-    setInterval(fetchBots, 3000);
-    fetchBots();
+    async function solvePoW() {
+        const { challenge, difficulty } = await fetch('/api/pow-challenge').then(r => r.json());
+        const prefix = '0'.repeat(difficulty);
+        let nonce = 0, hash = '';
+      
+        while (true) {
+          hash = await digestMessage(challenge + nonce);
+          if (hash.startsWith(prefix)) {
+            console.log(`✔️ Solved PoW: Nonce=${nonce}, Hash=${hash}`);
+            fetchBots();
+            break;
+          }
+          nonce++;
+        }
+      
+      }
+      
+      function digestMessage(message) {
+        return sha256(message); // returns hex-encoded SHA-256 hash
+      }
+      
+      
+      solvePoW();
+
+    
   </script>
 </body>
 </html>
