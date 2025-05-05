@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, jsonify, render_template
 from threading import Thread
 from collections import defaultdict
@@ -6,17 +5,25 @@ import time
 import re
 from scapy.all import sniff, IP, TCP, Raw
 from botprofile import generate_bot_profile
+from js_threshhold_logic import generate_challenge, pow_routes
 
 app = Flask(__name__)
-stats = defaultdict(lambda: {"count": 0, "last_seen": 0, "rate": 0, "user_agent": "", "ttl": 0, "tcp_flags": ""})
-
+pow_routes(app)
+stats = defaultdict(lambda: {
+    "count": 0,
+    "last_seen": 0,
+    "rate": 0,
+    "user_agent": "",
+    "ttl": 0,
+    "tcp_flags": "",
+})
 def process_packet(packet):
     if IP in packet:
         ip = packet[IP].src
         ttl = packet[IP].ttl
         flags = packet[TCP].flags if TCP in packet else ""
         user_agent = ""
-
+      
         if Raw in packet:
             try:
                 payload = packet[Raw].load.decode(errors="ignore")
@@ -44,6 +51,7 @@ def sniffer():
 
 sniffer_thread = Thread(target=sniffer, daemon=True)
 sniffer_thread.start()
+
 
 @app.route("/")
 def index():
