@@ -110,13 +110,32 @@ def analyze_request():
     # Get client IP
     client_ip = request.remote_addr
     
+    
     # Get request timestamp
     request_time = time.time()
     
     # Extract useful request information
     user_agent = request.headers.get('User-Agent', '')
+    print("User-Agent")
+    print(user_agent)
+    print("User-Agent")
     referrer = request.headers.get('Referer', '')
     endpoint = request.path
+    
+    if request.headers.get('X-Forwarded-For'):
+            # X-Forwarded-For can contain multiple IPs - the leftmost is typically the client
+        forwarded_ips = request.headers.get('X-Forwarded-For').split(',')
+        client_ip = forwarded_ips[0].strip()
+    elif request.headers.get('X-Real-IP'):
+        client_ip = request.headers.get('X-Real-IP')
+        
+     # Debug print to see all request information
+    print(f"==== REQUEST INFO ====")
+    print(f"Original remote_addr: {request.remote_addr}")
+    print(f"Detected client_ip: {client_ip}")
+    print(f"Headers: {dict(request.headers)}")
+    print(f"==== END REQUEST INFO ====")
+    
     
     # Try to get TTL value (may require additional privileges)
     ttl = get_ttl_value(client_ip)
@@ -194,6 +213,7 @@ def get_analysis():
 @app.route('/api/start-analyzer', methods=['GET'])
 def start_analyzer_endpoint():
     # Check if PoW has been verified from session
+    
     client_ip = request.remote_addr
     session_id = request.cookies.get('session_id', client_ip)
     
@@ -315,14 +335,10 @@ def traffic_protected(f):
     def decorated_function(*args, **kwargs):
         client_ip = request.remote_addr
         results = analyze_traffic(client_ip)
-        print("results")
-        print(results)
-        print("results")
         if client_ip in results and results[client_ip]["is_suspicious"]:
             # Log suspicious activity
             logger.warning(f"Blocked suspicious request from {client_ip}")
-            return results
-        # return jsonify({"error": "Access denied due to suspicious activity"}), 403
+            return jsonify({"error": "Access denied due to suspicious activity"}), 403
         
         return f(*args, **kwargs)
     return decorated_function
