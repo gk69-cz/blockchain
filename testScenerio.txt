@@ -1,0 +1,206 @@
+# Kali Linux Testing Scenarios for Traffic Analyzer
+
+This guide provides practical testing scenarios to validate your Flask traffic analyzer using Kali Linux tools. The scenarios are designed to trigger each detection mechanism in your application.
+
+## Test Environment Setup
+
+- **Server**: Flask application running on `http://192.168.23.144:8080`
+- **Attacker**: Kali Linux machine on the same network
+- **Verification Method**: Check generated JSON files and `/analysis` endpoint after each test
+
+## Test 1: High Request Rate Detection
+
+**Goal**: Trigger the `high_request_rate` flag
+
+### Using Apache Benchmark
+```bash
+# Install if needed
+sudo apt-get install apache2-utils
+
+# Send 100 requests with 10 concurrent connections
+ab -n 100 -c 10 http://192.168.23.144:8080/
+
+# For a more aggressive test
+ab -n 200 -c 20 http://192.168.23.144:8080/
+```
+
+### Using hping3 for HTTP Flooding
+```bash
+# Install if needed
+sudo apt-get install hping3
+
+# Send HTTP GET requests rapidly
+hping3 -S -p 8080 --flood 192.168.23.144
+```
+
+### Verification
+1. Check server logs for suspicious activity warnings
+2. Visit `http://192.168.23.144:8080/analysis` in a browser
+3. Look for your IP with `"high_request_rate": true`
+
+## Test 2: Suspicious User Agent Detection
+
+**Goal**: Trigger the `suspicious_user_agent` flag
+
+### Using curl with modified User-Agent
+```bash
+# Empty user agent
+curl -A "" http://192.168.23.144:8080/
+
+# Known bot pattern
+curl -A "Googlebot/2.1 (+http://www.google.com/bot.html)" http://192.168.23.144:8080/
+
+# Security tool pattern
+curl -A "Nikto/2.1.6" http://192.168.23.144:8080/
+
+# Scripting tool pattern
+curl -A "Python-urllib/3.8" http://192.168.23.144:8080/
+```
+
+### Verification
+Visit `http://192.168.23.144:8080/analyze_me` after each request to see if the `suspicious_user_agent` flag is triggered.
+
+## Test 3: Missing Headers Detection
+
+**Goal**: Trigger the `missing_headers` flag
+
+```bash
+# Request without standard headers
+curl -H "User-Agent:" -H "Referer:" http://192.168.23.144:8080/
+```
+
+### Verification
+Visit `http://192.168.23.144:8080/analyze_me` to check if the `missing_headers` flag is `true`.
+
+## Test 4: Unusual Traffic Distribution
+
+**Goal**: Trigger the `unusual_traffic_distribution` flag
+
+```bash
+# Script to access multiple random endpoints
+for i in {1..10}; do
+  curl http://192.168.23.144:8080/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+done
+```
+
+### Verification
+Check `http://192.168.23.144:8080/analysis` to see if `unusual_traffic_distribution` is triggered after accessing many random endpoints.
+
+## Test 5: Error Response Rate Detection
+
+**Goal**: Trigger the `error_response_rate` flag
+
+```bash
+# Generate multiple 404 errors
+for i in {1..10}; do
+  curl http://192.168.23.144:8080/nonexistent_path_$i
+done
+```
+
+### Verification
+Check the analysis JSON to see if there's a high count of 404 responses.
+
+## Test 6: TTL Obfuscation Detection
+
+**Goal**: Trigger the `ttl_obfuscation` flag
+
+```bash
+# Install if needed
+sudo apt-get install hping3
+
+# Send packets with suspicious TTL values
+sudo hping3 -S -p 8080 -t 1 192.168.23.144
+sudo hping3 -S -p 8080 -t 255 192.168.23.144
+```
+
+### Verification
+Check if the `ttl_obfuscation` flag is triggered in the analysis data.
+
+## Test 7: Sudden Traffic Spike Detection
+
+**Goal**: Trigger the `sudden_traffic_spike` flag
+
+```bash
+# Bash script to create traffic spikes
+for i in {1..20}; do
+  curl http://192.168.23.144:8080/
+  # Very short pause between requests
+  sleep 0.1
+done
+```
+
+### Verification
+Check the analysis data for `sudden_traffic_spike: true`.
+
+## Test 8: Port Scanning Detection
+
+**Goal**: Test if your system can detect basic port scans
+
+```bash
+# Basic Nmap scan
+sudo nmap -sS 192.168.23.144 -p 8080
+
+# More stealthy scan
+sudo nmap -sS -T2 192.168.23.144 -p 8000-9000
+```
+
+### Verification
+Check if the scanner's IP shows up in your suspicious list.
+
+## Test 9: Protected Route Access
+
+**Goal**: Test if protected routes actually block suspicious IPs
+
+1. First, perform actions to mark your IP as suspicious (e.g., high request rate test)
+2. Then try to access a protected route:
+```bash
+curl http://192.168.23.144:8080/protected
+```
+
+### Verification
+You should receive a 403 Forbidden response if your IP has been correctly marked as suspicious.
+
+## Test 10: Comprehensive Test Sequence
+
+For a full system test, run these commands in sequence:
+
+```bash
+# 1. Basic recon
+curl http://192.168.23.144:8080/
+
+# 2. Suspicious user agent
+curl -A "Nikto/2.1.6" http://192.168.23.144:8080/
+
+# 3. Missing headers
+curl -H "User-Agent:" -H "Referer:" http://192.168.23.144:8080/
+
+# 4. Random endpoints
+for i in {1..10}; do
+  curl http://192.168.23.144:8080/random_path_$i
+done
+
+# 5. Request flood
+for i in {1..50}; do
+  curl http://192.168.23.144:8080/ &
+done
+
+# 6. Check if we're blocked
+curl http://192.168.23.144:8080/protected
+```
+
+### Result Verification
+
+After performing these tests, visit:
+- `http://192.168.23.144:8080/analysis` - To see all analyzed IPs
+- `http://192.168.23.144:8080/analyze_me` - To see your own IP analysis
+- Check server logs and generated JSON files
+
+Look for these indicators in the JSON output:
+- `high_request_rate: true`
+- `sudden_traffic_spike: true`
+- `unusual_traffic_distribution: true`
+- `missing_headers: true`
+- `suspicious_user_agent: true`
+- `ttl_obfuscation: true`
+- `error_response_rate: true`
+- `is_suspicious: true` (summary flag)
