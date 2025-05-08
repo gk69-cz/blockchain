@@ -111,23 +111,18 @@ def analyze_traffic(ip):
     Analyze collected traffic statistics and generate security report
     If IP is provided, analyze only that IP, otherwise analyze all IPs
     """
-    print(ip)
     results = {}
     current_time = time.time()
     logger.info(f"Traffic analysis Started for {ip}")
     with data_lock:
         ips_to_analyze = [ip] if ip else ip_stats.keys()
         logger.info(f"data_lock started{ip}")
-        print(ips_to_analyze)
-        print(ip_stats)
+        
         for ip in ips_to_analyze:
             if ip not in ip_stats:
                 continue
-            
-            
-            
+
             data = ip_stats[ip]
-        
             # Skip IPs not seen in the analysis window
             if current_time - data["last_seen"] > ANALYSIS_WINDOW:
                 continue
@@ -159,6 +154,7 @@ def analyze_traffic(ip):
                 for pattern in SUSPICIOUS_UA_PATTERNS:
                     if re.search(pattern, ua, re.I):
                         has_suspicious_ua = True
+                        logger.warning(f"Suspicious ua found for {ip}")
                         break
             logger.info(f"Suspicious ua Check completed for {ip}")
             # Create the results structure with security indicators
@@ -194,7 +190,7 @@ def analyze_traffic(ip):
             # Add summary flags
             results[ip]["is_suspicious"] = any(results[ip]["traffic_indicators"].values()) or \
                                          any(results[ip]["packet_indicators"].values())
-    if(results !={}):
+    if(results !={} and time_window >50 ):
         generate_bot_profile(ip,results);
     
     return results
@@ -232,7 +228,7 @@ def pow_routes(app):
 
         difficulty = challenge_store.get(challenge)
         if not difficulty:
-            return jsonify({'status': 'invalid challenge'}), 400
+            return jsonify({'status': 'Invalid challenge'}), 400
 
         test_hash = hashlib.sha256((challenge + nonce).encode()).hexdigest()
         if test_hash.startswith('0' * difficulty):
