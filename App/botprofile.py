@@ -1,48 +1,31 @@
 # bot_profile.py
 from uuid import uuid4
 import random
+from collections import defaultdict, deque
 
 def generate_bot_profile(ip, data):
-    return {
+    meta = data[ip]["metadata"]
+    packet = data[ip].get("packet_indicators", {})
+    traffic = data[ip].get("traffic_indicators", {})
+
+    bot_profile = defaultdict(lambda: {
+        "ip":ip,
         "id": f"bot-{uuid4().hex[:8]}",
-        "attack_type": detect_attack_type(data),
-        "ua_os": f"{data.get('user_agent', 'Unknown')}:{detect_os(data.get('user_agent', ''))}",
-        "ttl_tcp": f"{data.get('ttl', 0)}:{data.get('tcp_flags', '')}:{detect_ttl_tcp_anomaly(data)}",
-        "precheck_status": simulate_precheck(),
-        "request_metrics": f"{int(data['rate']*60)}rpm:{detect_burst(data)}:constant:{estimate_payload_size(data)}bytes",
-        "origin_data": simulate_origin_data(ip),
-        "target_pattern": f"/api/process:POST:database:persistence"
-    }
+        "first_seen": meta.get("first_seen", 0),
+        "last_seen": meta.get("last_seen", 0),
+        "request_count": meta.get("request_count", 0),
+        "rpm": meta.get("rpm", 0),
+        "rps": meta.get("rps", 0),
+        "endpoints_accessed": set(meta.get("endpoints_accessed", [])),
+        "user_agents": set(meta.get("user_agents", [])),
+        "referrers": set(meta.get("referrers", [])),
+        "headers_present": not traffic.get("missing_headers", False),
+        "is_residential": data[ip].get("is_residential", None),
+        "ttl_values": set(meta.get("ttl_values", [])),
+        "ttl_obfuscation": packet.get("ttl_obfuscation", False),
+        "last_requests": deque(maxlen=10),  
+        "response_codes": defaultdict(int, meta.get("response_codes", {}))
+    })
+    print(bot_profile)
+    return bot_profile[ip]
 
-def detect_attack_type(data):
-    if data["rate"] > 5 and not data.get("user_agent"):
-        return "slowloris_ddos"
-    return "normal"
-
-def detect_os(ua):
-    if "Windows" in ua:
-        return "Windows"
-    elif "Linux" in ua:
-        return "Linux"
-    elif "Mac" in ua:
-        return "macOS"
-    return "Unknown"
-
-def detect_ttl_tcp_anomaly(data):
-    if data["ttl"] < 50 or "SYN" in data.get("tcp_flags", ""):
-        return "anomalous"
-    return "normal"
-
-def simulate_precheck():
-    return random.choice(["bypassed:js_failed:no_cookie_support", "passed", "bypassed:no_js"])
-
-def detect_burst(data):
-    return "burst" if data["rate"] > 10 else "steady"
-
-def estimate_payload_size(data):
-    return random.choice([2048, 8192, 24576])
-
-def simulate_origin_data(ip):
-    countries = ["RU", "CN", "BR", "NL"]
-    datacenter = "datacenter" if not ip.startswith("192.168") else "residential"
-    return f"multi_country:{','.join(random.sample(countries, 2))}:{random.randint(10, 150)}ips:{datacenter}"
