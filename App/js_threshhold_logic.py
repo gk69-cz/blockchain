@@ -29,13 +29,16 @@ def get_dynamic_difficulty():
 
 def verify_pow_challenge(challenge, nonce):
     """Verify a proof of work challenge"""
+    print('test1')
     if not challenge or not nonce:
         return False
         
     difficulty = challenge_store.get(challenge)
     if not difficulty:
         return False
-        
+    print('test2') 
+    print(difficulty)
+    print(challenge)  
     test_hash = hashlib.sha256((challenge + str(nonce)).encode()).hexdigest()
     if test_hash.startswith('0' * difficulty):
         # Clean up the used challenge
