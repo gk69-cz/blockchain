@@ -39,6 +39,7 @@ def load_bot_profiles():
 
 def save_bot_profiles(profiles):
     """Save bot profiles to JSON file"""
+    print(profile)
     try:
         # Convert sets to lists for JSON serialization
         serializable_profiles = {}
@@ -125,7 +126,9 @@ def generate_bot_profile(ip, data):
         
         # Update response codes by adding new counts
         for code, count in meta.get("response_codes", {}).items():
-            profile["response_codes"][code] += count
+            if code not in profile["response_codes"]:
+                profile["response_codes"][code] = 0
+                profile["response_codes"][code] += count
             
         # Update suspicious flag - if it's ever been suspicious, keep it marked
         if ip_data.get("is_suspicious", False):

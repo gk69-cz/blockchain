@@ -1,6 +1,8 @@
 from collections import defaultdict, deque
+import json
 from logging.handlers import RotatingFileHandler
-from flask import Flask, request, jsonify, g, session
+import os
+from flask import Flask, render_template, request, jsonify, g, session
 import time
 import threading
 import ipaddress
@@ -15,45 +17,78 @@ from shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPICIOUS_
 
 pow_script = """
 <script>
-function solvePow(challenge, difficulty) {
+// SHA-256 function is provided by the imported js-sha256 library
+
+function updateStatus(message) {
+    document.getElementById('status').innerText = message;
+}
+
+async function solvePow(challenge, difficulty) {
+    updateStatus('Solving proof of work challenge (difficulty: ' + difficulty + ')...');
+    
     let nonce = 0;
+    const startTime = Date.now();
+    
     while (true) {
-        const hash = sha256(challenge + nonce);  
+        const hash = sha256(challenge + nonce);
         if (hash.startsWith('0'.repeat(difficulty))) {
+            const timeTaken = ((Date.now() - startTime) / 1000).toFixed(2);
+            updateStatus('Solution found! Nonce: ' + nonce + ' (took ' + timeTaken + ' seconds)');
             return nonce;
         }
+        
         nonce++;
+        
+        // Update status every 1000 attempts
+        if (nonce % 1000 === 0) {
+            updateStatus('Still working... Tried ' + nonce + ' solutions');
+            // Allow UI to update
+            await new Promise(resolve => setTimeout(resolve, 0));
+        }
     }
 }
 
 // Start the PoW verification flow when page loads
 window.onload = async function() {
-    // Fetch challenge
-    const challengeResp = await fetch('/api/pow-challenge');
-    const challengeData = await challengeResp.json();
-    
-    // Solve the challenge
-    const nonce = await solvePow(challengeData.challenge, challengeData.difficulty);
-    
-    // Submit the solution
-    const submitResp = await fetch('/api/pow-submit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            challenge: challengeData.challenge,
-            nonce: nonce
-        })
-    });
-    
-    // Check the result
-    const submitData = await submitResp.json();
-    if (submitData.status === 'verified') {
-        // PoW verified, now start the analyzer
-        await fetch('/api/start-analyzer', {
-            method: 'GET'
+    try {
+        // Fetch challenge
+        updateStatus('Requesting challenge from server...');
+        const challengeResp = await fetch('/api/pow-challenge');
+        const challengeData = await challengeResp.json();
+        
+        updateStatus('Challenge received. Beginning computation...');
+        
+        // Solve the challenge
+        const nonce = await solvePow(challengeData.challenge, challengeData.difficulty);
+        
+        // Submit the solution
+        updateStatus('Submitting solution to server...');
+        const submitResp = await fetch('/api/pow-submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                challenge: challengeData.challenge,
+                nonce: nonce
+            })
         });
+        
+        // Check the result
+        const submitData = await submitResp.json();
+        if (submitData.status === 'verified') {
+            updateStatus('Verification successful! Redirecting...');
+            // Wait a moment to show the success message
+            setTimeout(() => {
+                // Reload the page to access the protected content
+                window.location.reload();
+            }, 1500);
+        } else {
+            updateStatus('Verification failed: ' + submitData.message);
+        }
+    } catch (error) {
+        updateStatus('Error during verification: ' + error.message);
+        console.error('PoW error:', error);
     }
 }
 </script>
@@ -243,23 +278,6 @@ def analyze_me():
     else:
         return jsonify({"error": "No data for your IP yet"}), 404
 
-# Example application route that could be protected
-@app.route('/')
-def index():
-    return f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Protected Application</title>
-        <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/build/sha256.min.js"></script>
-        {pow_script}
-    </head>
-    <body>
-        <h1>Hello, this is the protected application!</h1>
-        <p>PoW verification is running automatically in the background...</p>
-    </body>
-    </html>
-    """
 
 
 # Modify your pow_submit route to mark verification and start analyzer
@@ -268,22 +286,25 @@ def pow_submit():
     data = request.json
     challenge = data.get('challenge')
     nonce = str(data.get('nonce'))
-    
+
     if verify_pow_challenge(challenge, str(nonce)):
         # Mark this client as verified
         client_ip = request.remote_addr
+        print(client_ip + 'verified pow')
+        
         if not hasattr(app, 'verified_clients'):
             app.verified_clients = set()
         app.verified_clients.add(client_ip)
         
-        # Start the analyzer if not already started
-        if not app.config.get('ANALYZER_STARTED', False):
-            analyzer_thread = threading.Thread(target=periodic_analyzer(client_ip), daemon=True)
-            analyzer_thread.start()
-            logger.info("Traffic analyzer started after PoW verification 500 ")
-            app.config['ANALYZER_STARTED'] = True
+        # # Start the analyzer if not already started
+        # if not app.config.get('ANALYZER_STARTED', False):
+        #     analyzer_thread = threading.Thread(target=periodic_analyzer(client_ip), daemon=True)
+        #     analyzer_thread.start()
+        #     logger.info("Traffic analyzer started after PoW verification 500 ")
+        #     app.config['ANALYZER_STARTED'] = True
             
         return jsonify({'status': 'verified'})
+   
     return jsonify({'status': 'invalid proof'}), 403
 
 @app.route('/api/pow-challenge')
@@ -316,40 +337,144 @@ def check_request():
             "script_hits": False,
             "ttl_obfuscation": False
         })
-def periodic_analyzer(session_id):
+        
+@app.route("/bot-details")
+def bot_details():
+    json_path = os.path.join(os.path.dirname(__file__), "bot_profiles.json")
+    try:
+        with open(json_path, "r") as f:
+            data = json.load(f)
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+def periodic_analyzer(client_ip=None):
     """Run periodic analysis of traffic"""
     while True:
-        time.sleep(ANALYSIS_WINDOW)
-        logger.info(f"Periodic analyzer is Running for {session_id}")
-        results = analyze_traffic(session_id)
+        try:
+            time.sleep(ANALYSIS_WINDOW)
+            logger.info(f"Periodic analyzer is running")
+            
+            # Analyze specific IP if provided, otherwise analyze all IPs
+            if client_ip:
+                results = analyze_traffic(client_ip)
+                if client_ip in results and results[client_ip]["is_suspicious"]:
+                    logger.warning(f"Detected suspicious activity from {client_ip}")
+                    save_results({client_ip: results[client_ip]})
+            else:
+                results = analyze_traffic()
+                suspicious_count = sum(1 for ip, data in results.items() if data["is_suspicious"])
+                if suspicious_count > 0:
+                    logger.warning(f"Detected {suspicious_count} suspicious IPs")
+                    save_results(results)
+        except Exception as e:
+            logger.error(f"Error in periodic analyzer: {e}")
+            
+            
+            
+# Decorator function to do the pow analysis            
+def pow_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        client_ip = request.remote_addr
         
-        # Log suspicious activities
-        suspicious_count = sum(1 for session_id, data in results.items() if data["is_suspicious"])
-        if suspicious_count > 0:
-            logger.warning(f"Detected {suspicious_count} suspicious IP {session_id}")
-            # Save results to file
-            save_results(results)
+        # Check if PoW has been verified for this client
+        if not hasattr(app, 'verified_clients'):
+            app.verified_clients = set()
+            
+        if client_ip not in app.verified_clients:
+            # Client hasn't been verified, show PoW page
+            return f"""
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Proof of Work Required</title>
+                <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/build/sha256.min.js"></script>
+                {pow_script}
+            </head>
+            <body>
+                <h1>Please wait, verifying...</h1>
+                <p>Proof of Work verification is required before you can access this page.</p>
+                <p>This verification helps protect against DDoS attacks.</p>
+                <div id="status">Computing proof of work...</div>
+            </body>
+            </html>
+            """
+        
+        # If we get here, the client has been verified
+        return f(*args, **kwargs)
+    return decorated_function
 # Decorator function to protect routes with traffic analysis
 def traffic_protected(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         client_ip = request.remote_addr
         results = analyze_traffic(client_ip)
+        
         if client_ip in results and results[client_ip]["is_suspicious"]:
-            # Log suspicious activity
-            logger.warning(f"Blocked suspicious request from {client_ip}")
-            return jsonify({"error": "Access denied due to suspicious activity"}), 403
+            # Get specific reasons for suspicious activity
+            reasons = []
+            
+            # Check traffic indicators
+            traffic_indicators = results[client_ip]["traffic_indicators"]
+            for indicator, value in traffic_indicators.items():
+                if value:
+                    reasons.append(f"traffic:{indicator}")
+            
+            # Check packet indicators
+            packet_indicators = results[client_ip]["packet_indicators"]
+            for indicator, value in packet_indicators.items():
+                if value:
+                    reasons.append(f"packet:{indicator}")
+            
+            # Log detailed suspicious activity
+            logger.warning(f"Blocked suspicious request from {client_ip}. Reasons: {', '.join(reasons)}")
+            
+            # Add detailed info to the response so you can see it
+            return jsonify({
+                "error": "Access denied due to suspicious activity", 
+                "reasons": reasons,
+                "details": {
+                    "traffic_indicators": traffic_indicators,
+                    "packet_indicators": packet_indicators,
+                    "metadata": results[client_ip]["metadata"]
+                }
+            }), 403
         
         return f(*args, **kwargs)
     return decorated_function
 
-# Example of a protected route
+
 @app.route('/protected')
+@pow_required
 @traffic_protected
 def protected():
     return "This is a protected route!"
 
+@app.route("/home")
+def home():
+    return render_template("home.html")
+
+@app.route('/')
+@pow_required
+def index():
+    return f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Protected Application</title>
+        <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/build/sha256.min.js"></script>
+        {pow_script}
+    </head>
+    <body>
+        <h1>Hello, this is the protected application!</h1>
+        <p>PoW verification is running automatically in the background...</p>
+    </body>
+    <p><a href="/protected">Go to Protected Page</a></p>
+    </html>
+    """
+
+
+
 if __name__ == "__main__":
     # Start the Flask app
-    app.secret_key = "philipintepari"
     app.run(host="0.0.0.0", port=8080, debug=False)
