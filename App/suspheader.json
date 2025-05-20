@@ -1,0 +1,34 @@
+{
+    "user_agents": [
+      "sqlmap",
+      "nmap",
+      "nikto",
+      "curl",
+      "python-requests",
+      "libwww-perl",
+      "httrack",
+      "wget",
+      "masscan",
+      "zmeu",
+      "acunetix",
+      "netsparker",
+      "java",
+      "winhttp",
+      "axios",
+      "go-http-client",
+      "okhttp",
+      ""
+    ],
+    "headers": [
+      "X-Forwarded-For",
+      "X-Real-IP",
+      "X-Originating-IP",
+      "X-Requested-With",
+      "Referer",
+      "User-Agent",
+      "Accept-Language",
+      "Authorization",
+      "Cookie"
+    ]
+  }
+  

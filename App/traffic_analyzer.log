@@ -3782,3 +3782,122 @@
 2025-05-15 19:34:26,440 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 10.69.164.248
 2025-05-15 19:34:26,442 - traffic_analyzer - INFO - Suspicious ua Check completed for 10.69.164.248
 2025-05-15 19:34:26,444 - traffic_analyzer - WARNING - Blocked suspicious request from 10.69.164.248. Reasons: traffic:missing_headers
+2025-05-15 20:09:30,999 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-15 20:09:31,000 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-15 20:09:37,228 - traffic_analyzer - INFO - Traffic analysis Started for 10.69.164.248
+2025-05-15 20:09:37,229 - traffic_analyzer - INFO - data_lock started10.69.164.248
+2025-05-15 20:09:37,231 - traffic_analyzer - INFO - time Window calculation checked for 10.69.164.248
+2025-05-15 20:09:37,231 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 10.69.164.248
+2025-05-15 20:09:37,231 - traffic_analyzer - INFO - Suspicious ua Check completed for 10.69.164.248
+2025-05-15 20:09:37,231 - traffic_analyzer - WARNING - Blocked suspicious request from 10.69.164.248. Reasons: traffic:missing_headers
+2025-05-15 20:16:14,978 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-15 20:16:14,979 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-15 20:17:18,405 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-15 20:17:18,407 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-15 20:19:35,305 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-15 20:19:35,305 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-15 20:19:57,474 - traffic_analyzer - INFO - Traffic analysis Started for 10.69.164.248
+2025-05-15 20:19:57,476 - traffic_analyzer - INFO - data_lock started10.69.164.248
+2025-05-15 20:19:57,477 - traffic_analyzer - INFO - time Window calculation checked for 10.69.164.248
+2025-05-15 20:19:57,477 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 10.69.164.248
+2025-05-15 20:19:57,480 - traffic_analyzer - WARNING - Suspicious ua found for 10.69.164.248
+2025-05-15 20:19:57,481 - traffic_analyzer - INFO - Suspicious ua Check completed for 10.69.164.248
+2025-05-15 20:19:57,482 - traffic_analyzer - WARNING - Blocked suspicious request from 10.69.164.248. Reasons: traffic:missing_headers, traffic:suspicious_user_agent
+2025-05-15 20:21:06,000 - traffic_analyzer - INFO - Traffic analysis Started for 10.69.164.248
+2025-05-15 20:21:06,003 - traffic_analyzer - INFO - data_lock started10.69.164.248
+2025-05-15 20:21:06,004 - traffic_analyzer - INFO - time Window calculation checked for 10.69.164.248
+2025-05-15 20:21:06,006 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 10.69.164.248
+2025-05-15 20:21:06,006 - traffic_analyzer - WARNING - Suspicious ua found for 10.69.164.248
+2025-05-15 20:21:06,009 - traffic_analyzer - INFO - Suspicious ua Check completed for 10.69.164.248
+2025-05-15 20:21:44,878 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-15 20:21:44,879 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-15 20:22:08,179 - traffic_analyzer - INFO - Traffic analysis Started for 10.69.164.248
+2025-05-15 20:22:08,179 - traffic_analyzer - INFO - data_lock started10.69.164.248
+2025-05-15 20:22:08,179 - traffic_analyzer - INFO - time Window calculation checked for 10.69.164.248
+2025-05-15 20:22:08,179 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 10.69.164.248
+2025-05-15 20:22:08,179 - traffic_analyzer - WARNING - Suspicious ua found for 10.69.164.248
+2025-05-15 20:22:08,179 - traffic_analyzer - INFO - Suspicious ua Check completed for 10.69.164.248
+2025-05-16 00:54:37,560 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-16 00:54:37,571 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-16 00:54:51,766 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.192
+2025-05-16 00:54:51,766 - traffic_analyzer - INFO - data_lock started192.168.0.192
+2025-05-16 00:54:51,769 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.192
+2025-05-16 00:54:51,769 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.192
+2025-05-16 00:54:51,773 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.192
+2025-05-16 00:54:51,773 - traffic_analyzer - WARNING - Blocked suspicious request from 192.168.0.192. Reasons: traffic:missing_headers
+2025-05-16 00:55:30,886 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.192
+2025-05-16 00:55:30,886 - traffic_analyzer - INFO - data_lock started192.168.0.192
+2025-05-16 00:55:30,889 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.192
+2025-05-16 00:55:30,891 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.192
+2025-05-16 00:55:30,891 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.192
+2025-05-16 00:55:30,900 - traffic_analyzer - WARNING - Blocked suspicious request from 192.168.0.192. Reasons: traffic:missing_headers
+2025-05-16 00:56:35,569 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.119
+2025-05-16 00:56:35,571 - traffic_analyzer - INFO - data_lock started192.168.0.119
+2025-05-16 00:56:35,571 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.119
+2025-05-16 00:56:35,576 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.119
+2025-05-16 00:56:35,577 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.119
+2025-05-16 00:56:35,577 - traffic_analyzer - WARNING - Blocked suspicious request from 192.168.0.119. Reasons: traffic:missing_headers
+2025-05-16 01:02:00,202 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.192
+2025-05-16 01:02:00,203 - traffic_analyzer - INFO - data_lock started192.168.0.192
+2025-05-16 01:02:00,207 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.192
+2025-05-16 01:02:00,207 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.192
+2025-05-16 01:02:00,209 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.192
+2025-05-16 01:02:00,214 - traffic_analyzer - WARNING - Blocked suspicious request from 192.168.0.192. Reasons: traffic:missing_headers
+2025-05-16 01:05:57,997 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-16 01:05:58,007 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-16 01:06:55,012 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.192
+2025-05-16 01:06:55,015 - traffic_analyzer - INFO - data_lock started192.168.0.192
+2025-05-16 01:06:55,015 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.192
+2025-05-16 01:06:55,018 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.192
+2025-05-16 01:06:55,021 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.192
+2025-05-16 01:06:55,027 - traffic_analyzer - WARNING - Blocked suspicious request from 192.168.0.192. Reasons: traffic:missing_headers
+2025-05-16 01:19:35,677 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-16 01:19:35,679 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-16 01:19:43,331 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.192
+2025-05-16 01:19:43,331 - traffic_analyzer - INFO - data_lock started192.168.0.192
+2025-05-16 01:19:43,335 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.192
+2025-05-16 01:19:43,335 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.192
+2025-05-16 01:19:43,339 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.192
+2025-05-16 01:19:43,344 - traffic_analyzer - WARNING - Blocked suspicious request from 192.168.0.192. Reasons: traffic:missing_headers
+2025-05-16 01:22:58,014 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-16 01:22:58,018 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-16 01:23:08,861 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.192
+2025-05-16 01:23:08,861 - traffic_analyzer - INFO - data_lock started192.168.0.192
+2025-05-16 01:23:08,865 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.192
+2025-05-16 01:23:08,869 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.192
+2025-05-16 01:23:08,871 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.192
+2025-05-16 01:23:08,874 - traffic_analyzer - WARNING - Blocked suspicious request from 192.168.0.192. Reasons: traffic:missing_headers
+2025-05-16 01:26:49,977 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-16 01:26:49,977 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-16 01:26:58,017 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.192
+2025-05-16 01:26:58,017 - traffic_analyzer - INFO - data_lock started192.168.0.192
+2025-05-16 01:26:58,017 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.192
+2025-05-16 01:26:58,017 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.192
+2025-05-16 01:26:58,023 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.192
+2025-05-16 01:30:34,907 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.192
+2025-05-16 01:30:34,907 - traffic_analyzer - INFO - data_lock started192.168.0.192
+2025-05-16 01:30:34,907 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.192
+2025-05-16 01:30:34,907 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.192
+2025-05-16 01:30:34,907 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.192
+2025-05-16 01:30:38,063 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.192
+2025-05-16 01:30:38,063 - traffic_analyzer - INFO - data_lock started192.168.0.192
+2025-05-16 01:30:38,063 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.192
+2025-05-16 01:30:38,063 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.192
+2025-05-16 01:30:38,063 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.192
+2025-05-16 04:56:55,288 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-16 04:56:55,289 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-16 04:56:56,304 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.119
+2025-05-16 04:56:56,305 - traffic_analyzer - INFO - data_lock started192.168.0.119
+2025-05-16 04:56:56,307 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.119
+2025-05-16 04:56:56,308 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.119
+2025-05-16 04:56:56,311 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.119
+2025-05-16 04:58:56,373 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.119
+2025-05-16 04:58:56,373 - traffic_analyzer - INFO - data_lock started192.168.0.119
+2025-05-16 04:58:56,373 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.119
+2025-05-16 04:58:56,373 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.119
+2025-05-16 04:58:56,373 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.119
+2025-05-16 04:59:58,697 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.119
+2025-05-16 04:59:58,698 - traffic_analyzer - INFO - data_lock started192.168.0.119
+2025-05-16 04:59:58,698 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.119
+2025-05-16 04:59:58,698 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.119
+2025-05-16 04:59:58,698 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.119

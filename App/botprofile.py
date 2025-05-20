@@ -39,7 +39,7 @@ def load_bot_profiles():
 
 def save_bot_profiles(profiles):
     """Save bot profiles to JSON file"""
-    print(profile)
+    print(profiles)
     try:
         # Convert sets to lists for JSON serialization
         serializable_profiles = {}

@@ -189,7 +189,20 @@ def analyze_traffic(ip):
                     "response_codes": dict(data["response_codes"])
                 }
             }
-            
+            print("japanese")
+            print("japanese")
+            print("japanese")
+            print("japanese")
+            print("japanese")
+
+            print(data)
+            print("japanese")
+            print("japanese")
+            print("japanese")
+            print("japanese")
+            print("japanese")
+            print("japanese")
+
             # Add summary flags
             results[ip]["is_suspicious"] = any(results[ip]["traffic_indicators"].values()) or \
                                          any(results[ip]["packet_indicators"].values())

@@ -1,3 +1,4 @@
+import json
 import logging
 import threading
 from collections import defaultdict, deque
@@ -40,6 +41,11 @@ ip_stats = defaultdict(lambda: {
 
 # Thread safety
 data_lock = threading.Lock()
+with open('suspheader.json', 'r') as f:
+    SUSPICIOUS_DATA = json.load(f)
+
+SUSPICIOUS_USER_AGENTS = SUSPICIOUS_DATA["user_agents"]
+SUSPICIOUS_HEADERS = SUSPICIOUS_DATA["headers"]
 
 # Global stores
 challenge_store = {}
