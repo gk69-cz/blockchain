@@ -136,9 +136,6 @@ def ensure_initialized():
             logger.info("Traffic analyzer started without PoW requirement")
             
         app.config['INITIALIZED'] = True
-        
-        
-
 
 # Traffic analysis middleware
 @app.before_request
@@ -535,11 +532,6 @@ def analyze_request_api():
 
 # function to connect with other applications
 
-
-
-
-
-
 # Decorator function to protect routes with traffic analysis
 def traffic_protected(f):
     @wraps(f)
@@ -580,7 +572,6 @@ def traffic_protected(f):
         return f(*args, **kwargs)
     return decorated_function
 
-
 @app.route('/protected')
 @pow_required
 @traffic_protected
@@ -610,8 +601,6 @@ def index():
     <p><a href="/protected">Go to Protected Page</a></p>
     </html>
     """
-
-
 
 if __name__ == "__main__":
     # Start the Flask app
