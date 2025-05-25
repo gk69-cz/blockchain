@@ -1,0 +1,24 @@
+2025-05-26 01:20:32,948 - traffic_analyzer - INFO - Loaded 13 data center IP ranges
+2025-05-26 01:20:32,949 - traffic_analyzer - INFO - PoW verification required before starting analyzer
+2025-05-26 01:20:49,559 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.119
+2025-05-26 01:20:49,563 - traffic_analyzer - INFO - data_lock started192.168.0.119
+2025-05-26 01:20:49,563 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.119
+2025-05-26 01:20:49,568 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.119
+2025-05-26 01:20:49,569 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.119
+2025-05-26 01:20:59,413 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.119
+2025-05-26 01:20:59,416 - traffic_analyzer - INFO - data_lock started192.168.0.119
+2025-05-26 01:20:59,417 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.119
+2025-05-26 01:20:59,419 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.119
+2025-05-26 01:20:59,422 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.119
+2025-05-26 01:20:59,428 - traffic_analyzer - WARNING - Blocked suspicious request from 192.168.0.119. Reasons: traffic:missing_headers
+2025-05-26 01:21:17,096 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.119
+2025-05-26 01:21:17,096 - traffic_analyzer - INFO - data_lock started192.168.0.119
+2025-05-26 01:21:17,096 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.119
+2025-05-26 01:21:17,102 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.119
+2025-05-26 01:21:17,103 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.119
+2025-05-26 01:21:23,888 - traffic_analyzer - INFO - Traffic analysis Started for 192.168.0.119
+2025-05-26 01:21:23,890 - traffic_analyzer - INFO - data_lock started192.168.0.119
+2025-05-26 01:21:23,893 - traffic_analyzer - INFO - time Window calculation checked for 192.168.0.119
+2025-05-26 01:21:23,895 - traffic_analyzer - INFO - sudden traffic spikes Check completed for 192.168.0.119
+2025-05-26 01:21:23,896 - traffic_analyzer - INFO - Suspicious ua Check completed for 192.168.0.119
+2025-05-26 01:21:23,901 - traffic_analyzer - WARNING - Blocked suspicious request from 192.168.0.119. Reasons: traffic:missing_headers

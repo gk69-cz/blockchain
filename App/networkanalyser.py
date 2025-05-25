@@ -9,6 +9,7 @@ import ipaddress
 import logging
 from functools import wraps
 
+from ipblocker import schedule_extraction
 from js_threshhold_logic import analyze_traffic, generate_challenge, get_dynamic_difficulty, get_ttl_value, is_datacenter_ip, load_datacenter_ips, pow_routes, save_results, verify_pow_challenge
 
 from shared_data import SUSPICIOUS_HEADERS, SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
@@ -530,7 +531,6 @@ def analyze_request_api():
         }
     })
 
-# function to connect with other applications
 
 # Decorator function to protect routes with traffic analysis
 def traffic_protected(f):
@@ -604,4 +604,7 @@ def index():
 
 if __name__ == "__main__":
     # Start the Flask app
+    schedule_extraction()
     app.run(host="0.0.0.0", port=8080, debug=False)
+    
+    
