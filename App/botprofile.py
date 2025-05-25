@@ -7,11 +7,12 @@ import threading
 
 # File to store bot profiles
 BOT_PROFILES_FILE = "bot_profiles.json"
+BOT_FILE = 'bot_profiles.json'
+TO_BLOCK_FILE = 'to_block.json'
 # Lock for thread-safe file operations
 file_lock = threading.Lock()
 
 def load_bot_profiles():
-    """Load existing bot profiles from JSON file"""
     if not os.path.exists(BOT_PROFILES_FILE):
         return {}
     
@@ -39,7 +40,7 @@ def load_bot_profiles():
 
 def save_bot_profiles(profiles):
     """Save bot profiles to JSON file"""
-    print(profile)
+    print(profiles)
     try:
         # Convert sets to lists for JSON serialization
         serializable_profiles = {}

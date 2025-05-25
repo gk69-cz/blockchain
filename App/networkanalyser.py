@@ -9,10 +9,12 @@ import ipaddress
 import logging
 from functools import wraps
 
+from ipblocker import schedule_extraction
 from js_threshhold_logic import analyze_traffic, generate_challenge, get_dynamic_difficulty, get_ttl_value, is_datacenter_ip, load_datacenter_ips, pow_routes, save_results, verify_pow_challenge
 
-from shared_data import ip_stats, data_lock, challenge_store, dc_ranges
+from shared_data import SUSPICIOUS_HEADERS, SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
 from shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
+
 
 
 pow_script = """
@@ -135,9 +137,6 @@ def ensure_initialized():
             logger.info("Traffic analyzer started without PoW requirement")
             
         app.config['INITIALIZED'] = True
-        
-        
-
 
 # Traffic analysis middleware
 @app.before_request
@@ -157,8 +156,11 @@ def analyze_request():
     referrer = request.headers.get('Referer', '')
     endpoint = request.path
     
+    if is_suspicious(user_agent, request.headers):
+        print("Suspicious request detected.")
+    else:
+        print("Request seems fine.")
     if request.headers.get('X-Forwarded-For'):
-            # X-Forwarded-For can contain multiple IPs - the leftmost is typically the client
         forwarded_ips = request.headers.get('X-Forwarded-For').split(',')
         client_ip = forwarded_ips[0].strip()
     elif request.headers.get('X-Real-IP'):
@@ -196,9 +198,9 @@ def analyze_request():
         if referrer:
             ip_data["referrers"].add(referrer)
         
-        # Check if important headers are missing
-        ip_data["headers_present"] = bool(user_agent and referrer)
-        
+        # Check if important headers are missing or invalid
+        ip_data["headers_present"] = bool(user_agent and referrer and not(is_suspicious(user_agent, request.headers)))
+        print(ip_data["headers_present"])
         # Store TTL if available
         if ttl:
             ip_data["ttl_values"].add(ttl)
@@ -225,6 +227,26 @@ def after_request(response):
             ip_stats[client_ip]["response_codes"][response.status_code] += 1
     
     return response
+
+def is_suspicious(user_agent, headers):
+    ua = (user_agent or "").lower()
+
+    # Partial match: check if any suspicious string appears in the UA
+    for bad_ua in SUSPICIOUS_USER_AGENTS:
+        if bad_ua and bad_ua in ua:
+            return True
+        if not bad_ua and ua.strip() == "":
+            return True  # Empty UA
+
+    # Check for suspicious headers presence or emptiness
+    for header in SUSPICIOUS_HEADERS:
+        if header in headers:
+            val = headers[header]
+            if val is None or val.strip() == "":
+                return True
+
+    return False
+
 
 # Add a route to manually check an IP
 @app.route('/check/<ip>')
@@ -295,13 +317,6 @@ def pow_submit():
         if not hasattr(app, 'verified_clients'):
             app.verified_clients = set()
         app.verified_clients.add(client_ip)
-        
-        # # Start the analyzer if not already started
-        # if not app.config.get('ANALYZER_STARTED', False):
-        #     analyzer_thread = threading.Thread(target=periodic_analyzer(client_ip), daemon=True)
-        #     analyzer_thread.start()
-        #     logger.info("Traffic analyzer started after PoW verification 500 ")
-        #     app.config['ANALYZER_STARTED'] = True
             
         return jsonify({'status': 'verified'})
    
@@ -347,7 +362,7 @@ def bot_details():
         return jsonify(data)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-def periodic_analyzer(client_ip=None):
+def periodic_analyzer(client_ip):
     """Run periodic analysis of traffic"""
     while True:
         try:
@@ -403,6 +418,120 @@ def pow_required(f):
         # If we get here, the client has been verified
         return f(*args, **kwargs)
     return decorated_function
+
+# function to connect with other applications
+
+
+@app.route('/api/analyze', methods=['GET', 'POST'])
+def analyze_request_api():
+    """
+    Single API endpoint that processes incoming requests through both
+    pow_required and traffic_protected checks and returns the combined results.
+    """
+    client_ip = request.remote_addr
+    
+    # Track request processing time
+    g.start_time = time.time()
+    
+    # Extract useful request information
+    user_agent = request.headers.get('User-Agent', '')
+    referrer = request.headers.get('Referer', '')
+    endpoint = request.path
+    
+    # Get the actual IP if behind a proxy
+    if request.headers.get('X-Forwarded-For'):
+        forwarded_ips = request.headers.get('X-Forwarded-For').split(',')
+        client_ip = forwarded_ips[0].strip()
+    elif request.headers.get('X-Real-IP'):
+        client_ip = request.headers.get('X-Real-IP')
+    
+    # PART 1: Check PoW verification
+    pow_status = {}
+    if not hasattr(app, 'verified_clients'):
+        app.verified_clients = set()
+    
+    if client_ip not in app.verified_clients:
+        # Client needs to complete PoW
+        challenge, difficulty = generate_challenge()
+        pow_status = {
+            'verified': False,
+            'challenge': challenge,
+            'difficulty': difficulty,
+            'message': 'Proof of work verification required'
+        }
+    else:
+        # Client already verified
+        pow_status = {
+            'verified': True,
+            'message': 'Proof of work previously verified'
+        }
+    
+    # PART 2: Analyze traffic patterns
+    # Also check if the current request's headers are suspicious
+    headers_suspicious = is_suspicious(user_agent, request.headers)
+    
+    # Run the full traffic analysis
+    results = analyze_traffic(client_ip)
+    
+    traffic_status = {}
+    if client_ip in results:
+        is_suspicious_ip = results[client_ip]["is_suspicious"]
+        
+        # Get specific reasons for suspicious activity
+        reasons = []
+        
+        # Check traffic indicators
+        traffic_indicators = results[client_ip]["traffic_indicators"]
+        for indicator, value in traffic_indicators.items():
+            if value:
+                reasons.append(f"traffic:{indicator}")
+        
+        # Check packet indicators
+        packet_indicators = results[client_ip]["packet_indicators"]
+        for indicator, value in packet_indicators.items():
+            if value:
+                reasons.append(f"packet:{indicator}")
+        
+        traffic_status = {
+            'is_suspicious': is_suspicious_ip,
+            'current_request_suspicious': headers_suspicious,
+            'reasons': reasons if is_suspicious_ip else [],
+            'traffic_indicators': traffic_indicators,
+            'packet_indicators': packet_indicators,
+            'metadata': results[client_ip]["metadata"]
+        }
+    else:
+        # No previous data for this IP
+        traffic_status = {
+            'is_suspicious': False,
+            'current_request_suspicious': headers_suspicious,
+            'reasons': ['current_request_suspicious'] if headers_suspicious else [],
+            'traffic_indicators': {},
+            'packet_indicators': {},
+            'metadata': {}
+        }
+    
+    # Calculate response time
+    response_time = time.time() - g.start_time
+    
+    # Determine if access would be granted
+    access_granted = pow_status.get('verified', False) and not traffic_status.get('is_suspicious', True) and not headers_suspicious
+    
+    # Return combined results
+    return jsonify({
+        'access_granted': access_granted,
+        'pow_status': pow_status,
+        'traffic_status': traffic_status,
+        'client_ip': client_ip,
+        'response_time_ms': round(response_time * 1000, 2),
+        'request_details': {
+            'user_agent': user_agent,
+            'referrer': referrer,
+            'endpoint': endpoint
+        }
+    })
+
+
 # Decorator function to protect routes with traffic analysis
 def traffic_protected(f):
     @wraps(f)
@@ -443,7 +572,6 @@ def traffic_protected(f):
         return f(*args, **kwargs)
     return decorated_function
 
-
 @app.route('/protected')
 @pow_required
 @traffic_protected
@@ -453,6 +581,7 @@ def protected():
 @app.route("/home")
 def home():
     return render_template("home.html")
+
 
 @app.route('/')
 @pow_required
@@ -473,8 +602,9 @@ def index():
     </html>
     """
 
-
-
 if __name__ == "__main__":
     # Start the Flask app
+    schedule_extraction()
     app.run(host="0.0.0.0", port=8080, debug=False)
+    
+    
