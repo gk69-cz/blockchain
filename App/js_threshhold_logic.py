@@ -22,30 +22,33 @@ def generate_challenge():
     challenge = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
     difficulty = get_dynamic_difficulty()
     challenge_store[challenge] = difficulty
+    print(f'---------pow challenge generated with {challenge} and difficulty {difficulty}---------')
     return challenge, difficulty
 
 def get_dynamic_difficulty():
     return 4
-
+#  "python-requests",
 def verify_pow_challenge(challenge, nonce):
     """Verify a proof of work challenge"""
-    print('test1')
+    print('---------pow challenge verification started---------')
     if not challenge or not nonce:
         return False
         
     difficulty = challenge_store.get(challenge)
+    print(f'---------pow challenge verification started with difficulty {difficulty}---------')
+      
     if not difficulty:
-        return False
-    print('test2') 
-    print(difficulty)
-    print(challenge)  
-    test_hash = hashlib.sha256((challenge + str(nonce)).encode()).hexdigest()
-    if test_hash.startswith('0' * difficulty):
-        # Clean up the used challenge
-        if challenge in challenge_store:
-            del challenge_store[challenge]
-        return True
         
+        print('---------pow challenge verification failed due to missing difficulty---------')
+        return False
+    test_hash = hashlib.sha256((challenge + str(nonce)).encode()).hexdigest()
+    print(f'---------pow challenge verification started with test hash {test_hash}---------')
+    print(challenge_store)
+    if challenge in challenge_store:
+        del challenge_store[challenge]
+        print('---------pow challenge verified---------')  
+        return True
+    print('---------pow challenge verification failed---------')    
     return False
 def load_datacenter_ips():
     """Load data center IP ranges - simplified version"""
@@ -153,14 +156,22 @@ def analyze_traffic(ip):
             logger.info(f"sudden traffic spikes Check completed for {ip}")
             # Check for suspicious user agent
             has_suspicious_ua = False
-            for ua in data["user_agents"]:
-                for pattern in SUSPICIOUS_UA_PATTERNS:
-                    if re.search(pattern, ua, re.I):
-                        has_suspicious_ua = True
-                        logger.warning(f"Suspicious ua found for {ip}")
-                        break
+            print('---------suspicious user agent check started---------')
+            print('uncomment the below line to see all user agents')
+            # for ua in data["user_agents"]:
+            #     print(f"Checking user agent: {ua}")
+                # for pattern in SUSPICIOUS_UA_PATTERNS:
+                #     print(f"Checking against pattern: {pattern}")
+                #     if re.search(pattern, ua, re.I):
+                #         has_suspicious_ua = True
+                #         logger.warning(f"Suspicious ua found for {ip}")
+                #         break
+                    
+            print('uncomment the below line till here')
             logger.info(f"Suspicious ua Check completed for {ip}")
             # Create the results structure with security indicators
+            print(data["rpm"])
+            print(HIGH_RPM_THRESHOLD)
             results[ip] = {
                 "ip": ip,
                 "is_residential": data["is_residential"],
