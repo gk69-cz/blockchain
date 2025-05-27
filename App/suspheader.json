@@ -4,7 +4,6 @@
       "nmap",
       "nikto",
       "curl",
-      "python-requests",
       "libwww-perl",
       "httrack",
       "wget",
@@ -31,4 +30,6 @@
       "Cookie"
     ]
   }
+  
+
   

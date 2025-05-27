@@ -199,14 +199,16 @@ def analyze_request():
             ip_data["referrers"].add(referrer)
         
         # Check if important headers are missing or invalid
-        ip_data["headers_present"] = bool(user_agent and referrer and not(is_suspicious(user_agent, request.headers)))
+        ip_data["headers_present"] = bool(user_agent and not(is_suspicious(user_agent, request.headers)))
         print(ip_data["headers_present"])
         # Store TTL if available
         if ttl:
             ip_data["ttl_values"].add(ttl)
             if ttl in TTL_SUSPICIOUS_VALUES:
                 ip_data["ttl_obfuscation"] = True
-    
+    print("----------------")           
+    print(ip_data["headers_present"])
+    print("----------------")    
     # Store start time for response time tracking
     g.start_time = time.time()
 
@@ -229,13 +231,16 @@ def after_request(response):
     return response
 
 def is_suspicious(user_agent, headers):
+    print("Checking if user agent or headers are suspicious...")
     ua = (user_agent or "").lower()
 
     # Partial match: check if any suspicious string appears in the UA
     for bad_ua in SUSPICIOUS_USER_AGENTS:
         if bad_ua and bad_ua in ua:
+            print(f"Suspicious user agent detected: {ua} contains {bad_ua}")
             return True
         if not bad_ua and ua.strip() == "":
+            print("Suspicious user agent detected: empty UA")
             return True  # Empty UA
 
     # Check for suspicious headers presence or emptiness
@@ -243,8 +248,9 @@ def is_suspicious(user_agent, headers):
         if header in headers:
             val = headers[header]
             if val is None or val.strip() == "":
+                print(f"Suspicious header detected: {header} is empty or missing")
                 return True
-
+    print("No suspicious user agent or headers detected.")
     return False
 
 
@@ -424,10 +430,7 @@ def pow_required(f):
 
 @app.route('/api/analyze', methods=['GET', 'POST'])
 def analyze_request_api():
-    """
-    Single API endpoint that processes incoming requests through both
-    pow_required and traffic_protected checks and returns the combined results.
-    """
+    # process the request and extract client IP
     client_ip = request.remote_addr
     
     # Track request processing time
@@ -444,7 +447,10 @@ def analyze_request_api():
         client_ip = forwarded_ips[0].strip()
     elif request.headers.get('X-Real-IP'):
         client_ip = request.headers.get('X-Real-IP')
-    
+    print(f"Client IP: {client_ip}")
+    print(f"User-Agent: {user_agent}")
+    print('----------End Of initial inference---------------')
+    print('----------Start Of Part one---------------')
     # PART 1: Check PoW verification
     pow_status = {}
     if not hasattr(app, 'verified_clients'):
@@ -452,20 +458,24 @@ def analyze_request_api():
     
     if client_ip not in app.verified_clients:
         # Client needs to complete PoW
-        challenge, difficulty = generate_challenge()
+        print('----------doing Pow---------------')
+        challenge, difficulty = generate_challenge();
+        print(f"Generated challenge: {challenge} with difficulty {difficulty} inside analyze_request_api")
+        print('----------done Pow---------------')
         pow_status = {
-            'verified': False,
+            'verified': verify_pow_challenge(challenge, str(difficulty)),
             'challenge': challenge,
             'difficulty': difficulty,
             'message': 'Proof of work verification required'
         }
     else:
         # Client already verified
+        print('----------done before Pow---------------')
         pow_status = {
             'verified': True,
             'message': 'Proof of work previously verified'
         }
-    
+    print('----------End Of Part one---------------')
     # PART 2: Analyze traffic patterns
     # Also check if the current request's headers are suspicious
     headers_suspicious = is_suspicious(user_agent, request.headers)
@@ -604,7 +614,7 @@ def index():
 
 if __name__ == "__main__":
     # Start the Flask app
-    schedule_extraction()
+    # schedule_extraction()
     app.run(host="0.0.0.0", port=8080, debug=False)
     
     

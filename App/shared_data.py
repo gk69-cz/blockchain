@@ -11,7 +11,7 @@ logger.setLevel(logging.INFO)
 
 # Constants and thresholds
 ANALYSIS_WINDOW = 15  # 15 seconds analysis window
-HIGH_RPM_THRESHOLD = 60  # More than 1 request per second
+HIGH_RPM_THRESHOLD = 90  # More than 1 request per second
 SYN_FLOOD_THRESHOLD = 20  # Not detectable in web app context
 SUSPICIOUS_UA_PATTERNS = [
     r'^\s*$',  # Empty user agent
