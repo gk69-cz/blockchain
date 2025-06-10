@@ -204,3 +204,72 @@ Look for these indicators in the JSON output:
 - `ttl_obfuscation: true`
 - `error_response_rate: true`
 - `is_suspicious: true` (summary flag)
+
+
+mallformed headers
+
+# Invalid HTTP method
+echo -e "INVALID / HTTP/1.1\r\nHost: yourserver.com\r\n\r\n" | nc [server-ip] 80
+
+# Missing HTTP version
+echo -e "GET /\r\nHost: yourserver.com\r\n\r\n" | nc [server-ip] 80
+
+# Malformed headers
+curl -H "Host:" http://[server-ip]
+
+# Invalid content-length
+curl -H "Content-Length: -1" http://[server-ip]
+
+# Oversized headers
+curl -H "X-Large-Header: $(python3 -c 'print("A"*10000)')" http://[server-ip]
+
+suspicious headers
+
+# SQL injection attempts in URL
+curl "http://[server-ip]/page?id=1' OR '1'='1"
+
+# XSS payload in parameters
+curl "http://[server-ip]/search?q=<script>alert('xss')</script>"
+
+# Directory traversal
+curl "http://[server-ip]/../../../etc/passwd"
+
+# Invalid user agents
+curl -A "" http://[server-ip]
+curl -A "BadBot/1.0" http://[server-ip]
+
+
+protocall unusual_traffic_distribution
+
+# TCP SYN flood simulation
+sudo hping3 -S -p 80 --flood [server-ip]
+
+# UDP flood
+sudo hping3 -2 -p 53 --flood [server-ip]
+
+# ICMP flood
+sudo hping3 -1 --flood [server-ip]
+
+# Fragmented packets
+sudo hping3 -f -p 80 [server-ip]
+
+# Invalid TCP flags
+sudo hping3 -F -S -R -P -A -U -p 80 [server-ip]
+
+
+application lever
+
+# Slowloris simulation (slow headers)
+(echo -e "GET / HTTP/1.1\r\nHost: [server-ip]\r\n"; sleep 10; echo -e "User-Agent: SlowClient\r\n"; sleep 10) | nc [server-ip] 80
+
+# HTTP POST with no content-length
+(echo -e "POST /upload HTTP/1.1\r\nHost: [server-ip]\r\n\r\n"; cat /dev/zero) | nc [server-ip] 80
+
+# Multiple Host headers
+curl -H "Host: evil.com" -H "Host: 10.69.164.248:8080" http://10.69.164.248:8080
+
+# Range header attacks
+curl -H "Range: bytes=0-,0-,0-,0-,0-" http://[server-ip]
+
+# Connection exhaustion
+for i in {1..1000}; do (curl --max-time 60 http://[server-ip] &); done

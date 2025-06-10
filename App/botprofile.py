@@ -15,7 +15,6 @@ file_lock = threading.Lock()
 def load_bot_profiles():
     if not os.path.exists(BOT_PROFILES_FILE):
         return {}
-    
     try:
         with file_lock, open(BOT_PROFILES_FILE, 'r') as f:
             profiles = json.load(f)
@@ -39,8 +38,6 @@ def load_bot_profiles():
         return {}
 
 def save_bot_profiles(profiles):
-    """Save bot profiles to JSON file"""
-    print(profiles)
     try:
         # Convert sets to lists for JSON serialization
         serializable_profiles = {}
@@ -65,14 +62,7 @@ def save_bot_profiles(profiles):
         print(f"Error saving bot profiles: {e}")
 
 def generate_bot_profile(ip, data):
-    """
-    Generate or update a bot profile for the given IP
-    Parameters:
-        ip (str): IP address of the bot
-        data (dict): Analysis data for the IP
-    Returns:
-        dict: Updated bot profile
-    """
+    print(f"Generating bot profile for IP: {ip}")
     # Load existing profiles
     profiles = load_bot_profiles()
     

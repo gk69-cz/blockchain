@@ -1,6 +1,7 @@
 import json
 import logging
 import threading
+import requests
 from collections import defaultdict, deque
 
 # Configure logging
@@ -10,16 +11,25 @@ logger = logging.getLogger("traffic_analyzer")
 logger.setLevel(logging.INFO)
 
 # Constants and thresholds
-ANALYSIS_WINDOW = 15  # 15 seconds analysis window
-HIGH_RPM_THRESHOLD = 90  # More than 1 request per second
-SYN_FLOOD_THRESHOLD = 20  # Not detectable in web app context
+ANALYSIS_WINDOW = 15  
+HIGH_RPM_THRESHOLD = 90  
+SYN_FLOOD_THRESHOLD = 20  
 SUSPICIOUS_UA_PATTERNS = [
     r'^\s*$',  # Empty user agent
     r'(bot|crawl|spider)',  # Known bot patterns
     r'(nmap|nikto|gobuster|dirb)',  # Security tools
     r'(curl|wget|python-requests)',  # Scripting tools
 ]
-TTL_SUSPICIOUS_VALUES = [1, 2, 3, 4, 5, 6, 7, 8, 254, 255]  # Suspicious TTL values
+TTL_SUSPICIOUS_VALUES = [
+    0,     # Invalid
+    1, 2, 3, 4, 5,     # Unusually low - could indicate crafted packets
+    6, 7, 8, 9, 10,    # Below typical hop limits
+    32, 36,            # Rare but occasionally used in obfuscated attacks
+    100,               # Not typical for major OS defaults
+    192, 200, 222,     # Often seen in spoofed packets
+    255                # Possible router or forged header
+]
+
 
 # Global data structures
 ip_stats = defaultdict(lambda: {
@@ -35,8 +45,8 @@ ip_stats = defaultdict(lambda: {
     "is_residential": None,
     "ttl_values": set(),
     "ttl_obfuscation": False,
-    "last_requests": deque(maxlen=10),  # Store last 10 request times to detect spikes
-    "response_codes": defaultdict(int)  # Track HTTP response codes
+    "last_requests": deque(maxlen=10),  
+    "response_codes": defaultdict(int)  
 })
 
 # Thread safety
@@ -50,3 +60,4 @@ SUSPICIOUS_HEADERS = SUSPICIOUS_DATA["headers"]
 # Global stores
 challenge_store = {}
 dc_ranges = []
+

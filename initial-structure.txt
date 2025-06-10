@@ -1,3 +1,19 @@
--- to create the frontend of the application 
--- to create the architecture 
--- to build the connection to metamask
+flow structure 
+
+The website calls the /protected api --> @app.route('/protected')
+-- @pow_required (decorator is called)
+------- gets the clients address and checks if its in the list of verified clients 
+---------- {pow_script} script is called
+----------------/api/pow-challenge is called to get the challenge 
+----------------wait for solvePow to solve the challenge (js function to solve the hash)
+----------------/api/pow-submit is used to send the result of the challengedata to the server
+------------------if the response is successfull will reload the page to show the other page.
+------------------else error
+--@traffic_protected(decorator is called)
+    analyze_traffic(client_ip) Function is called 
+    checks if the client ip is in the list of ips and ["is_suspicious"] key is there
+    we will check for all indicators if there is any true amoung them then we shall add it to reasons []
+    and block it and provide the reason also. 
+
+
+analyze_traffic(client_ip) function
