@@ -6,7 +6,7 @@ import re
 import hashlib, random, string
 import time
 from flask import jsonify, request
-from botprofile import generate_bot_profile
+from bots.botprofile import generate_bot_profile, score_save_bot
 import ipaddress
 import socket
 import struct
@@ -14,9 +14,9 @@ import threading
 from datetime import datetime
 from collections import defaultdict, deque
 
-from shared_data import ip_stats, data_lock, challenge_store, dc_ranges
-from shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SYN_FLOOD_THRESHOLD
-from shared_data import SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
+from utils.shared_data import ip_stats, data_lock, challenge_store, dc_ranges
+from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SYN_FLOOD_THRESHOLD
+from utils.shared_data import SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
 
 
 def generate_challenge():
@@ -26,7 +26,7 @@ def generate_challenge():
     return challenge, difficulty
 
 def get_dynamic_difficulty():
-    return 5
+    return 2
 #  "python-requests",
 def verify_pow_challenge(challenge, nonce):
     """Verify a proof of work challenge"""
@@ -45,7 +45,6 @@ def verify_pow_challenge(challenge, nonce):
     return False
 
 def get_ttl_value(ip):
-  
     try:
         # Create raw socket
         s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
@@ -86,7 +85,6 @@ def checksum(data):
     return (~res) & 0xffff
 
 def analyze_traffic(ip):
-    print(f"Analyzing traffic for IPhhhhhhhhhhhhhhhhhhhhhhhhhhh: {ip}")
     results = {}
     current_time = time.time()
     logger.info(f"Traffic analysis Started for {ip}")
@@ -164,17 +162,15 @@ def analyze_traffic(ip):
             # Add summary flags
             results[ip]["is_suspicious"] = any(results[ip]["traffic_indicators"].values()) or \
                                          any(results[ip]["packet_indicators"].values())
-    print("test")
-    print("test")
-    print("test")
-    print("test")
+    logger.info(f"Analysis completed for {ip} with results: {results[ip]}")
     print(results[ip]["is_suspicious"])
-    print("test")
-    print("test")
-    print("test")
-    if(results !={} and time_window >50 ):
+    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
+    print(f"Time window for {ip}: {time_window} seconds")
+    print(results)
+    if(results !={} and time_window >.01 ):
         print("generatebotprofile1  ")
         generate_bot_profile(ip,results);
+        score_save_bot(results)
     
     return results
 def save_results(results):

@@ -2,7 +2,7 @@ from hashlib import sha256
 import json
 import os
 import time
-from flask import Flask, request
+from flask import Blueprint, request
 
 class Block:
     def __init__(self, index, transactions, timestamp, previous_hash, nonce=0):
@@ -11,7 +11,7 @@ class Block:
         self.timestamp = timestamp
         self.previous_hash = previous_hash
         self.nonce = nonce
-        self.hash = None  # Ensure it's part of the block by default
+        self.hash = None  
 
     def compute_hash(self):
         block_data = {
@@ -47,10 +47,10 @@ class Block:
         return block
 
 class Blockchain:
-    difficulty = 2
+    difficulty = 4
 
-    def __init__(self):
-        self.blockchain_file = "blockchain.json"
+    def __init__(self, blockchain_file="blockchain.json"):
+        self.blockchain_file = blockchain_file
         self.unconfirmed_transactions = []
         self.chain = []
         self.load_blockchain()
@@ -113,7 +113,7 @@ class Blockchain:
             return False
         block.hash = proof
         self.chain.append(block)
-        self.save_blockchain()  # ✅ Save chain after adding block
+        self.save_blockchain() 
         return True
 
     def is_valid_proof(self, block, block_hash):
@@ -124,8 +124,11 @@ class Blockchain:
         self.unconfirmed_transactions.append(transaction)
 
     def mine(self):
+        hex_key = os.urandom(8).hex()
         if not self.unconfirmed_transactions:
             return False
+        block_data = self.unconfirmed_transactions.copy()
+        block_data.append({'mined_by_key': hex_key})
         last_block = self.last_block
         new_block = Block(index=last_block.index + 1,
                           transactions=self.unconfirmed_transactions,
@@ -135,7 +138,10 @@ class Blockchain:
         added = self.add_block(new_block, proof)
         if added:
             self.unconfirmed_transactions = []
-            return new_block.index
+            return {
+            "index": new_block.index,
+            "hex_key": hex_key
+        }
         return False
 
     def search_content(self, term):
@@ -149,26 +155,45 @@ class Blockchain:
                     })
         return matches
 
-app = Flask(__name__)
+# Create the Blueprint
+blockchain_bp = Blueprint('blockchain', __name__)
+
+# Initialize blockchain instance (can be customized with different file path)
 blockchain = Blockchain()
 
-@app.route('/chain', methods=['GET'])
+@blockchain_bp.route('/chain', methods=['GET'])
 def get_chain():
     chain_data = [block.to_dict() for block in blockchain.chain]
     return json.dumps({"length": len(chain_data), "chain": chain_data}, indent=2)
 
-@app.route('/new_transaction', methods=['POST'])
-def new_transaction():
+@blockchain_bp.route('/new_transaction', methods=['POST'])
+def submit_transaction_to_blockchain():
     tx_data = request.get_json()
-    required_fields = ["iphash", "content"]
+    required_fields=["ip", "headers_present", "ttl_obfuscation", "legitimacy_score", "is_trustworthy"]
+    # Check if all required fields are present
     for field in required_fields:
-        if not tx_data.get(field):
-            return "Invalid transaction data", 400
+        if field not in tx_data:
+            return f"Missing required field: {field}", 400
+    
+    # Validate data types
+    if not isinstance(tx_data.get("ip"), str):
+        return "Invalid IP format", 400
+    
+    if not isinstance(tx_data.get("legitimacy_score"), (int, float)):
+        return "Invalid legitimacy_score format", 400
+    
+    if not isinstance(tx_data.get("is_trustworthy"), bool):
+        return "Invalid is_trustworthy format", 400
+    
+    # Add timestamp
     tx_data["timestamp"] = time.time()
+    
+    # Add transaction to blockchain
     blockchain.add_new_transaction(tx_data)
+    
     return "Success", 201
 
-@app.route('/mine', methods=['GET'])
+@blockchain_bp.route('/mine', methods=['GET'])
 def mine_unconfirmed_transactions():
     result = blockchain.mine()
     if not result:
@@ -176,27 +201,40 @@ def mine_unconfirmed_transactions():
     else:
         return f"Block #{result} is mined."
 
-@app.route('/pending_tx')
+@blockchain_bp.route('/pending_tx')
 def get_pending_tx():
     return json.dumps(blockchain.unconfirmed_transactions, indent=2)
 
-@app.route('/search/<search_term>')
-def search_blockchain(search_term):
-    results = blockchain.search_content(search_term)
-    if not results:
+@blockchain_bp.route('/search/<search_term>')
+def search_unconfirmed_for_ip(search_term):
+    matches = []
+    print(f"Searching for IP: {search_term} in unconfirmed transactions")
+
+    # Loop through each unconfirmed transaction
+    for tx in blockchain.unconfirmed_transactions:
+        # Assuming each transaction is a dict
+        for key, value in tx.items():
+            # Check if the key indicates it's an IP and value matches search_term
+            if 'ip' in key.lower() and value == search_term:
+                matches.append(tx)
+                break  # avoid duplicate if multiple IP keys match
+
+    if not matches:
         return json.dumps({
             "found": False,
-            "message": f"No content found for '{search_term}'",
+            "message": f"No unconfirmed transaction contains IP '{search_term}'",
             "results": []
         })
+
     return json.dumps({
         "found": True,
-        "total_matches": len(results),
+        "total_matches": len(matches),
         "search_term": search_term,
-        "results": results
+        "results": matches
     }, indent=2)
 
-@app.route('/search', methods=['POST'])
+
+@blockchain_bp.route('/search', methods=['POST'])
 def search_blockchain_post():
     search_data = request.get_json()
     search_term = search_data.get('search_term', '')
@@ -216,5 +254,9 @@ def search_blockchain_post():
         "results": results
     }, indent=2)
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+def init_blockchain(blockchain_file="blockchain.json", difficulty=3):
+    global blockchain
+    Blockchain.difficulty = difficulty
+    blockchain = Blockchain(blockchain_file)
+    return blockchain
+

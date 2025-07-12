@@ -26,9 +26,9 @@ async def block_ip(ip: str, port: Optional[int] = None):
     stdout, stderr = await proc.communicate()
     
     if proc.returncode == 0:
-        print(f"✅ Blocked {ip}" + (f" on port {port}" if port else ""))
+        print(f" Blocked {ip}" + (f" on port {port}" if port else ""))
     else:
-        print(f"❌ Failed to block {ip}: {stderr.decode().strip()}")
+        print(f" Failed to block {ip}: {stderr.decode().strip()}")
 
 async def save_rules():
     """Save iptables rules persistently."""
@@ -55,6 +55,7 @@ def extract_and_save_ips():
     try:
         with open(BOT_FILE, 'r') as f:
             bot_data = json.load(f)
+            
 
         # Filter only suspicious IPs
         suspicious_ips = [

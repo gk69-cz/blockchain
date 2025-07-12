@@ -1,28 +1,33 @@
 # bot_profile.py
 import json
 import os
+from typing import Any, Dict
 from uuid import uuid4
 from collections import defaultdict, deque
 import threading
+import requests
+import hashlib
+
+from blockchain.blockchain_blueprint import search_unconfirmed_for_ip
+from server.to_blockchain import submit_transaction_to_blockchain
 
 # File to store bot profiles
 BOT_PROFILES_FILE = "bot_profiles.json"
+BLOCK_PROFILES_FILE = 'blockchain.json'
 BOT_FILE = 'bot_profiles.json'
 TO_BLOCK_FILE = 'to_block.json'
 # Lock for thread-safe file operations
 file_lock = threading.Lock()
-
+number = 1
 def load_bot_profiles():
     if not os.path.exists(BOT_PROFILES_FILE):
         return {}
     try:
         with file_lock, open(BOT_PROFILES_FILE, 'r') as f:
             profiles = json.load(f)
-            
+            print(profiles)
             # Convert sets back from lists (JSON doesn't support sets)
             for ip, profile in profiles.items():
-                if 'endpoints_accessed' in profile:
-                    profile['endpoints_accessed'] = set(profile['endpoints_accessed'])
                 if 'user_agents' in profile:
                     profile['user_agents'] = set(profile['user_agents'])
                 if 'referrers' in profile:
@@ -61,7 +66,9 @@ def save_bot_profiles(profiles):
     except IOError as e:
         print(f"Error saving bot profiles: {e}")
 
+
 def generate_bot_profile(ip, data):
+    
     print(f"Generating bot profile for IP: {ip}")
     # Load existing profiles
     profiles = load_bot_profiles()
@@ -101,7 +108,13 @@ def generate_bot_profile(ip, data):
         profile["rpm"] = meta.get("rpm", profile["rpm"])
         profile["rps"] = meta.get("rps", profile["rps"])
         
-        # Update sets by merging
+       # Make sure all relevant fields are sets
+        profile["endpoints_accessed"] = set(profile.get("endpoints_accessed", []))
+        profile["user_agents"] = set(profile.get("user_agents", []))
+        profile["referrers"] = set(profile.get("referrers", []))
+        profile["ttl_values"] = set(profile.get("ttl_values", []))
+
+        # Now safely update
         if "endpoints_accessed" in meta:
             profile["endpoints_accessed"].update(meta["endpoints_accessed"])
         if "user_agents" in meta:
@@ -127,7 +140,113 @@ def generate_bot_profile(ip, data):
     
     # Save updated profiles
     save_bot_profiles(profiles)
-    
-    print(f"Bot profile for {ip} {'created' if ip not in profiles else 'updated'}")
+    score_save_bot(profiles)
     return profiles[ip]
+
+def score_save_bot(bot):
+   
+    print(number)
+    print("Scoring bot profile...")
+    print(bot)
+    print("Scoring bot profile...")
+    score = 0
+    print("Scoring bot profile for IP: ")
+    # 1. RPM
+    rpm = bot.get("rpm", 0)
+    if rpm <= 2:
+        score += 1
+    elif rpm > 5:
+        score -= 1
+
+    # 2. User-Agent
+    user_agents = bot.get("user_agents", [])
+    if any("Mozilla" in ua or "Chrome" in ua or "Safari" in ua for ua in user_agents):
+        score += 1
+    if all("curl" in ua.lower() for ua in user_agents):
+        score -= 1
+    if any(ua in user_agents for ua in ["nmap", "nikto", "gobuster", "dirb"]):
+        score -= 2
+    if any(ua in user_agents for ua in ["python-requests", "python", "requests"]):
+        score -= 1
+    if any(ua in user_agents for ua in ["bot", "crawl", "spider"]):
+        score -= 1
+    if len(user_agents) == 0:
+        score -= 1
+
+    # 4. Headers
+    if bot.get("headers_present"):
+        score += 1
+    else:
+        score -= 1
+
+    # 5. TTL Obfuscation
+    if bot.get("ttl_obfuscation") is False:
+        score += 1
+    else:
+        score -= 1
+
+    # 6. Response codes
+    codes = bot.get("response_codes", {})
+    if sum(codes.get(str(code), 0) for code in [200]) >= 1:
+        score += 1
+    if sum(codes.get(str(code), 0) for code in [403, 404, 500]) >= 2:
+        score -= 1
+
+    # 7. Is Residential
+    if bot.get("is_residential"):
+        score += 1
+    else:
+        score -= 1
+
+    # 8. Is Suspicious
+    if bot.get("is_suspicious"):
+        score -= 2
+    else:
+        score += 2
+
+    # 9. Referrer
+    referrers = bot.get("referrers", [])
+    if all(bot["ip"] in ref for ref in referrers):
+        score += 1
+    else:
+        score -= 1
+
+    # 10. TTL Values
+    if len(set(bot.get("ttl_values", []))) == 1:
+        score += 1
+    else:
+        score -= 1
+
+    # Clamp score between 0 and 10
+    final_score = max(0, min(10, score))
+    print(bot)
+    ip = list(bot.keys())[0]
+    data = bot[ip]
+    result = {
+            "ip": data.get("ip"),
+            "headers_present": data.get("missing_headers", "unknown"),  
+            "ttl_obfuscation": data.get("ttl_obfuscation", None),
+            "legitimacy_score": final_score,
+            "is_trustworthy": final_score >= 5
+    }
+    
+    search_result = json.loads(search_unconfirmed_for_ip(data.get("ip")))
+
+    if search_result.get("found"):
+        return 
+    
+    submit_transaction_to_blockchain(
+    ip_address=result["ip"],
+    headers_present=result["headers_present"], 
+    ttl_obfuscation=result["ttl_obfuscation"],
+    legitimacy_score=result["legitimacy_score"],
+    is_trustworthy=result["is_trustworthy"]
+)
+    with file_lock, open(BLOCK_PROFILES_FILE, 'w') as f:
+        json.dump(result, f, indent=2)
+        
+    print(f"Bot profile for {ip} scored: {final_score} is scored and added to the pending transactions list.")
+
+
+
 

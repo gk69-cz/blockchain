@@ -1,0 +1,35 @@
+{
+  "192.168.0.119": {
+    "ip": "192.168.0.119",
+    "id": "bot-56cdc8a2",
+    "first_seen": 1752287976.7443373,
+    "last_seen": 1752287984.8307323,
+    "request_count": 9,
+    "rpm": 66.78,
+    "rps": 1.11,
+    "endpoints_accessed": [
+      "/blockchain/pending_tx",
+      "/api/pow-challenge",
+      "/api/pow-submit",
+      "/",
+      "/protected"
+    ],
+    "user_agents": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+    ],
+    "referrers": [
+      "http://192.168.0.119:8081/"
+    ],
+    "headers_present": true,
+    "is_residential": true,
+    "ttl_values": [
+      128
+    ],
+    "ttl_obfuscation": false,
+    "last_requests": [],
+    "response_codes": {
+      "200": 8
+    },
+    "is_suspicious": false
+  }
+}

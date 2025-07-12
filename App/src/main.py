@@ -8,93 +8,104 @@ import threading
 import ipaddress
 import logging
 from functools import wraps
+from blockchain.blockchain_blueprint import blockchain_bp
 
-from botprofile import save_bot_profiles
-from ipblocker import schedule_extraction
-from js_threshhold_logic import analyze_traffic, generate_challenge, get_dynamic_difficulty, get_ttl_value, save_results, verify_pow_challenge
+from bots.botprofile import save_bot_profiles, score_save_bot
+from server.ipblocker import schedule_extraction
+from pow.js_threshhold_logic import analyze_traffic, generate_challenge, get_dynamic_difficulty, get_ttl_value, save_results, verify_pow_challenge
 
-from shared_data import SUSPICIOUS_HEADERS, SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
-from shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
+from utils.shared_data import SUSPICIOUS_HEADERS, SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
+from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
 
 
 
 pow_script = """
 <script>
-// SHA-256 function is provided by the imported js-sha256 library
-
-function updateStatus(message) {
+async function updateStatus(message) {
     document.getElementById('status').innerText = message;
 }
+
+
 
 async function solvePow(challenge, difficulty) {
     updateStatus('Solving proof of work challenge (difficulty: ' + difficulty + ')...');
     
     let nonce = 0;
     const startTime = Date.now();
-    
+
     while (true) {
         const hash = sha256(challenge + nonce);
         if (hash.startsWith('0'.repeat(difficulty))) {
             const timeTaken = ((Date.now() - startTime) / 1000).toFixed(2);
             updateStatus('Solution found! Nonce: ' + nonce + ' (took ' + timeTaken + ' seconds)');
-            
             return nonce;
         }
-        
+
         nonce++;
-        
-        // Update status every 1000 attempts
         if (nonce % 1000 === 0) {
             updateStatus('Still working... Tried ' + nonce + ' solutions');
-            // Allow UI to update
             await new Promise(resolve => setTimeout(resolve, 0));
         }
     }
 }
 
-// Start the PoW verification flow when page loads
-window.onload = async function() {
+window.onload = async function () {
     try {
-        // Fetch challenge
-        updateStatus('Requesting challenge from server...');
+        updateStatus('Checking for pending transactions...');
+     
+
         const challengeResp = await fetch('/api/pow-challenge');
         const challengeData = await challengeResp.json();
-        
-        updateStatus('Challenge received. Beginning computation...');
-        
-        // Solve the challenge
+
         const nonce = await solvePow(challengeData.challenge, challengeData.difficulty);
-        
-        // Submit the solution
-        updateStatus('Submitting solution to server...');
+
+        updateStatus('Submitting PoW solution...');
         const submitResp = await fetch('/api/pow-submit', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 challenge: challengeData.challenge,
                 nonce: nonce
             })
         });
-        
-        // Check the result
+
         const submitData = await submitResp.json();
-        if (submitData.status === 'verified') {
-            updateStatus('Verification successful! Redirecting...');
-            // Wait a moment to show the success message
-            setTimeout(() => {
-                // Reload the page to access the protected content
-                window.location.reload();
-            }, 1500);
-        } else {
+        if (submitData.status !== 'verified') {
             updateStatus('Verification failed: ' + submitData.message);
+            return;
         }
-    } catch (error) {
-        updateStatus('Error during verification: ' + error.message);
-        console.error('PoW error:', error);
-    }
+        
+        const pendingResp = await fetch('blockchain/pending_tx');
+        const pendingTx = await pendingResp.json();
+
+        if (!pendingTx || pendingTx.length === 0) {
+            updateStatus('No pending transactions. Nothing to mine. proceding to next step...');
+
+        }
+
+        if (localStorage.getItem('minedKey')) {
+    updateStatus('You have already mined a block. Mining skipped.');
+    return;
 }
+
+updateStatus('Verification successful. Mining block...');
+const mineResp = await fetch('blockchain/mine');
+const mineText = await mineResp.text();
+
+if (mineText.toLowerCase().includes("mined")) {
+    const hexKey = [...crypto.getRandomValues(new Uint8Array(8))]
+        .map(b => b.toString(16).padStart(2, '0')).join('');
+    localStorage.setItem('minedKey', hexKey);
+    updateStatus(mineText + ' Key stored: ' + hexKey);
+} else {
+    updateStatus('Mining failed: ' + mineText);
+}
+
+    } catch (err) {
+        updateStatus('Error: ' + err.message);
+        console.error('Error:', err);
+    }
+};
 </script>
 """
 
@@ -119,7 +130,7 @@ logger.addHandler(console_handler)
 
 # Initialize Flask app
 app = Flask(__name__)
-
+app.register_blueprint(blockchain_bp, url_prefix='/blockchain')
 # Run setup code with app context
 @app.before_request
 def ensure_initialized():
@@ -168,7 +179,6 @@ def analyze_request():
     
     # Try to get TTL value (may require additional privileges)
     ttl = get_ttl_value(client_ip)
-    print(f"TTL for {client_ip}: {ttl}")
     # Store request data with thread safety
     with data_lock:
         ip_data = ip_stats[client_ip]
@@ -198,8 +208,7 @@ def analyze_request():
             ip_data["ttl_values"].add(ttl)
             if ttl in TTL_SUSPICIOUS_VALUES:
                 ip_data["ttl_obfuscation"] = True  
-               
-        print(f"Updated stats for {client_ip}: {ip_data}")
+              
     g.start_time = time.time()
 
 @app.after_request
@@ -286,9 +295,7 @@ def pow_submit():
 @app.route('/api/pow-challenge')
 def pow_challenge():
         challenge, difficulty = generate_challenge()
-        return jsonify({'challenge': challenge, 'difficulty': difficulty})
-  
-        
+        return jsonify({'challenge': challenge, 'difficulty': difficulty})       
 @app.route("/api/bot-details")
 def bot_details():
     json_path = os.path.join(os.path.dirname(__file__), "bot_profiles.json")
@@ -382,6 +389,7 @@ def traffic_protected(f):
             
             # Add detailed info to the response so you can see it
             return jsonify({
+                "ip"    : client_ip,
                 "error": "Access denied due to suspicious activity", 
                 "reasons": reasons,
                 "details": {
@@ -390,7 +398,7 @@ def traffic_protected(f):
                     "metadata": results[client_ip]["metadata"]
                 }
             }), 403
-        
+        score_save_bot(results)
         return f(*args, **kwargs)
     return decorated_function
 
@@ -427,6 +435,6 @@ def index():
 if __name__ == "__main__":
     # Start the Flask app
     # schedule_extraction()
-    app.run(host="0.0.0.0", port=8080, debug=False)
+    app.run(host="0.0.0.0", port=8081, debug=False)
     
     
