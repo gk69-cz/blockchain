@@ -1,0 +1,163 @@
+{
+  "192.168.0.119": {
+    "ip": "192.168.0.119",
+    "id": "bot-f8e7cdb4",
+    "first_seen": 1749643874.8621304,
+    "last_seen": 1751918619.6157136,
+    "request_count": 14,
+    "rpm": 0.66,
+    "rps": 0.01,
+    "endpoints_accessed": [
+      "/",
+      "/blockchain/chain",
+      "/blockchain/mine",
+      "/favicon.ico",
+      "/protected",
+      "/mine",
+      "/blockchain/new_transaction",
+      "/api/pow-submit",
+      "/blockchain/pending_tx",
+      "/api/pow-challenge"
+    ],
+    "user_agents": [
+      "python-requests/2.31.0",
+      "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+      "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "python-requests/2.32.3",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+      "Python-urllib/3.10"
+    ],
+    "referrers": [
+      "http://192.168.0.119:8081/protected",
+      "http://192.168.0.119:8081/"
+    ],
+    "headers_present": true,
+    "is_residential": true,
+    "ttl_values": [
+      128
+    ],
+    "ttl_obfuscation": false,
+    "last_requests": [],
+    "response_codes": {
+      "200": 8,
+      "500": 1,
+      "404": 1,
+      "201": 21,
+      "403": 1,
+      "200": 10,
+      "404": 1,
+      "403": 2
+    },
+    "is_suspicious": true
+  },
+  "192.168.0.192": {
+    "ip": "192.168.0.192",
+    "id": "bot-a5c64d6b",
+    "first_seen": 1749735807.1676757,
+    "last_seen": 1749735821.8866906,
+    "request_count": 32,
+    "rpm": 130.44,
+    "rps": 2.17,
+    "endpoints_accessed": [
+      "/protected",
+      "/favicon.ico",
+      "/blockchain/mine",
+      "/",
+      "/api/pow-submit",
+      "/api/pow-challenge",
+      "/blockchain/pending_tx"
+    ],
+    "user_agents": [
+      "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36"
+    ],
+    "referrers": [
+      "http://192.168.0.119:8081/"
+    ],
+    "headers_present": true,
+    "is_residential": true,
+    "ttl_values": [
+      64
+    ],
+    "ttl_obfuscation": false,
+    "last_requests": [],
+    "response_codes": {
+      "200": 30,
+      "404": 1
+    },
+    "is_suspicious": true
+  },
+  "192.168.0.165": {
+    "ip": "192.168.0.165",
+    "id": "bot-4681eb72",
+    "first_seen": 1749746793.0269442,
+    "last_seen": 1749746799.1373615,
+    "request_count": 31,
+    "rpm": 304.4,
+    "rps": 5.07,
+    "endpoints_accessed": [
+      "/blockchain/mine",
+      "/api/pow-challenge",
+      "/protected",
+      "/api/pow-submit",
+      "/blockchain/pending_tx",
+      "/favicon.ico",
+      "/"
+    ],
+    "user_agents": [
+      "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36"
+    ],
+    "referrers": [
+      "http://192.168.0.119:8081/",
+      "android-app://com.google.android.googlequicksearchbox/"
+    ],
+    "headers_present": true,
+    "is_residential": true,
+    "ttl_values": [
+      64
+    ],
+    "ttl_obfuscation": false,
+    "last_requests": [],
+    "response_codes": {
+      "200": 28,
+      "404": 2
+    },
+    "is_suspicious": true
+  },
+  "192.168.0.117": {
+    "ip": "192.168.0.117",
+    "id": "bot-5cfc9023",
+    "first_seen": 1749799803.8177977,
+    "last_seen": 1749799808.0665438,
+    "request_count": 12,
+    "rpm": 169.46,
+    "rps": 2.82,
+    "endpoints_accessed": [
+      "/favicon.ico",
+      "/blockchain/mine",
+      "/api/pow-submit",
+      "/protected",
+      "/",
+      "/blockchain/pending_tx",
+      "/api/pow-challenge"
+    ],
+    "user_agents": [
+      "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36"
+    ],
+    "referrers": [
+      "http://192.168.0.119:8081/"
+    ],
+    "headers_present": true,
+    "is_residential": true,
+    "ttl_values": [
+      64
+    ],
+    "ttl_obfuscation": false,
+    "last_requests": [],
+    "response_codes": {
+      "200": 10,
+      "404": 1
+    },
+    "is_suspicious": true
+  }
+}

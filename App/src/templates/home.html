@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Log Analyzer</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #111111;
+            --card: #f8f9fa;
+            --border: #e9ecef;
+            --danger: #dc3545;
+            --success: #28a745;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --highlight: #0d6efd;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #1e1e2f;
+            --text: #f0f0f0;
+            --card: #2a2a3c;
+            --border: #404040;
+            --shadow: rgba(255,255,255,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            overflow: hidden;
+            font-size: 13px;
+        }
+
+        .header {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .header h1 {
+            color: var(--highlight);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            font-size: 12px;
+            cursor: pointer;
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--card);
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-online {
+            background: var(--success);
+            color: white;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            height: calc(100vh - 80px);
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .stats-grid {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 4px var(--shadow);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 11px;
+        }
+
+        .traffic-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .section-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--highlight);
+        }
+
+        .table-container {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+        }
+
+        th {
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            font-weight: 600;
+        }
+
+        tr.pass {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--success);
+        }
+
+        tr.fail {
+            background-color: rgba(220, 53, 69, 0.1);
+            border-left: 4px solid var(--danger);
+        }
+
+        tr.suspicious {
+            background-color: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid var(--warning);
+        }
+
+        .blockchain-section {
+            grid-column: 1 / -1;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+
+        .blockchain-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .block {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            min-width: 200px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .block:hover {
+            transform: scale(1.02);
+            border-color: var(--highlight);
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+
+        .block-title {
+            font-weight: bold;
+            color: var(--highlight);
+            margin-bottom: 0.5rem;
+        }
+
+        .block-info {
+            font-size: 11px;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .select-wrapper {
+            position: relative;
+            display: inline-block;
+            min-width: 150px;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--card);
+            color: var(--text);
+            appearance: none;
+        }
+
+        .select-wrapper::after {
+            content: "▼";
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text);
+        }
+
+        .button {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            background-color: var(--highlight);
+            color: white;
+            transition: all 0.2s;
+            font-size: 11px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .button.danger {
+            background-color: var(--danger);
+        }
+
+        .button.success {
+            background-color: var(--success);
+        }
+
+        .button.warning {
+            background-color: var(--warning);
+            color: #333;
+        }
+
+        .refresh-indicator {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .ip-address {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .user-agent {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .endpoint {
+            font-family: 'Courier New', monospace;
+            color: var(--info);
+        }
+
+        .timestamp {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                padding: 0.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header {
+                padding: 0.5rem 1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="header">
+        <h1>Traffic Log Analyzer</h1>
+        <div class="header-controls">
+            <span class="status-badge status-online">System Online</span>
+            <button id="theme-toggle" class="theme-toggle">Toggle Theme</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Statistics Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--success);">247</div>
+                <div class="stat-label">Total Requests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--danger);">12</div>
+                <div class="stat-label">Blocked IPs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--warning);">5</div>
+                <div class="stat-label">Suspicious</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--info);">15.2</div>
+                <div class="stat-label">Avg RPM</div>
+            </div>
+        </div>
+
+        <!-- Traffic Logs Section -->
+        <div class="traffic-section">
+            <div class="section-header">
+                <h2 class="section-title">Traffic Logs</h2>
+                <div class="controls">
+                    <div class="select-wrapper">
+                        <select id="statusFilter">
+                            <option value="all">All Status</option>
+                            <option value="pass">Allowed</option>
+                            <option value="fail">Blocked</option>
+                            <option value="suspicious">Suspicious</option>
+                        </select>
+                    </div>
+                    <button class="button success" onclick="refreshLogs()">
+                        <span id="refresh-icon">Refresh</span>
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="trafficTable">
+                    <thead>
+                        <tr>
+                            <th>IP Address</th>
+                            <th>Status</th>
+                            <th>Endpoint</th>
+                            <th>User Agent</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trafficTableBody">
+                        <!-- Dynamic content will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Analysis Section -->
+        <div class="traffic-section">
+            <div class="section-header">
+                <h2 class="section-title">Analysis Dashboard</h2>
+                <div class="controls">
+                    <button class="button warning" onclick="runAnalysis()">Run Analysis</button>
+                    <button class="button danger" onclick="clearLogs()">Clear All</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IP Address</th>
+                            <th>Requests</th>
+                            <th>RPM</th>
+                            <th>Risk Level</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="analysisTableBody">
+                        <!-- Analysis results will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Blockchain Section -->
+        <div class="blockchain-section">
+            <div class="section-header">
+                <h2 class="section-title">Blockchain Viewer</h2>
+                <div class="controls">
+                    <button class="button" onclick="addBlock()">Add Block</button>
+                    <button class="button success" onclick="refreshBlockchain()">Refresh</button>
+                </div>
+            </div>
+            <div class="blockchain-container" id="blockchainContainer">
+                <!-- Blockchain blocks will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Management
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+            updateThemeIcon(saved);
+        });
+
+        document.getElementById('theme-toggle').onclick = () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const theme = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeIcon(theme);
+        };
+
+        function updateThemeIcon(theme) {
+            const toggle = document.getElementById('theme-toggle');
+            toggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+        }
+
+        // Sample data based on your logs
+        const sampleTrafficData = [
+            {
+                ip: '192.168.0.119',
+                status: 'pass',
+                endpoint: '/',
+                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                timestamp: '2025-07-12 07:48:36'
+            },
+            {
+                ip: '192.168.0.119',
+                status: 'pass',
+                endpoint: '/api/pow-challenge',
+                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                timestamp: '2025-07-12 07:48:36'
+            },
+            {
+                ip: '10.0.0.15',
+                status: 'fail',
+                endpoint: '/admin',
+                userAgent: 'sqlmap/1.6.12',
+                timestamp: '2025-07-12 07:45:22'
+            },
+            {
+                ip: '172.16.0.8',
+                status: 'suspicious',
+                endpoint: '/api/users',
+                userAgent: 'curl/7.68.0',
+                timestamp: '2025-07-12 07:44:15'
+            }
+        ];
+
+        const sampleAnalysisData = [
+            { ip: '192.168.0.119', requests: 15, rpm: 12.5, risk: 'Low', action: 'Monitor' },
+            { ip: '10.0.0.15', requests: 45, rpm: 32.1, risk: 'High', action: 'Block' },
+            { ip: '172.16.0.8', requests: 8, rpm: 6.2, risk: 'Medium', action: 'Flag' }
+        ];
+
+        const sampleBlockchainData = [
+            {
+                id: 0,
+                hash: 'abc123...',
+                data: 'Genesis Block',
+                timestamp: '2025-07-12 07:00:00',
+                transactions: 0
+            },
+            {
+                id: 1,
+                hash: 'def456...',
+                data: 'Traffic Log #1',
+                timestamp: '2025-07-12 07:15:00',
+                transactions: 5
+            },
+            {
+                id: 2,
+                hash: 'ghi789...',
+                data: 'Security Event',
+                timestamp: '2025-07-12 07:30:00',
+                transactions: 3
+            }
+        ];
+
+        // Load Traffic Data
+        function loadTrafficData(filter = 'all') {
+            const tbody = document.getElementById('trafficTableBody');
+            tbody.innerHTML = '';
+            
+            const filteredData = filter === 'all' 
+                ? sampleTrafficData 
+                : sampleTrafficData.filter(item => item.status === filter);
+
+            filteredData.forEach(item => {
+                const row = document.createElement('tr');
+                row.className = item.status;
+                
+                const statusText = {
+                    'pass': 'Allowed',
+                    'fail': 'Blocked',
+                    'suspicious': 'Suspicious'
+                }[item.status];
+
+                row.innerHTML = `
+                    <td class="ip-address">${item.ip}</td>
+                    <td>${statusText}</td>
+                    <td class="endpoint">${item.endpoint}</td>
+                    <td class="user-agent" title="${item.userAgent}">${item.userAgent}</td>
+                    <td class="timestamp">${item.timestamp}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Load Analysis Data
+        function loadAnalysisData() {
+            const tbody = document.getElementById('analysisTableBody');
+            tbody.innerHTML = '';
+
+            sampleAnalysisData.forEach(item => {
+                const row = document.createElement('tr');
+                
+                const riskClass = {
+                    'Low': 'success',
+                    'Medium': 'warning',
+                    'High': 'danger'
+                }[item.risk];
+
+                row.innerHTML = `
+                    <td class="ip-address">${item.ip}</td>
+                    <td>${item.requests}</td>
+                    <td>${item.rpm}</td>
+                    <td><span class="status-badge ${riskClass}">${item.risk}</span></td>
+                    <td>
+                        <button class="button" style="padding: 0.2rem 0.4rem; font-size: 10px;">
+                            ${item.action}
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Load Blockchain Data
+        function loadBlockchainData() {
+            const container = document.getElementById('blockchainContainer');
+            container.innerHTML = '';
+
+            sampleBlockchainData.forEach(block => {
+                const blockElement = document.createElement('div');
+                blockElement.className = 'block';
+                blockElement.innerHTML = `
+                    <div class="block-title">Block #${block.id}</div>
+                    <div class="block-info">
+                        <strong>Hash:</strong> ${block.hash}<br>
+                        <strong>Data:</strong> ${block.data}<br>
+                        <strong>Transactions:</strong> ${block.transactions}<br>
+                        <strong>Time:</strong> ${block.timestamp}
+                    </div>
+                `;
+                container.appendChild(blockElement);
+            });
+        }
+
+        // Event Handlers
+        function refreshLogs() {
+            const icon = document.getElementById('refresh-icon');
+            icon.classList.add('refresh-indicator');
+            
+            // Simulate API call
+            setTimeout(() => {
+                loadTrafficData();
+                icon.classList.remove('refresh-indicator');
+            }, 1000);
+        }
+
+        function runAnalysis() {
+            // Simulate analysis
+            loadAnalysisData();
+            alert('Analysis completed! Check the Analysis Dashboard for results.');
+        }
+
+        function clearLogs() {
+            if (confirm('Are you sure you want to clear all logs?')) {
+                document.getElementById('trafficTableBody').innerHTML = '';
+                document.getElementById('analysisTableBody').innerHTML = '';
+            }
+        }
+
+        function addBlock() {
+            // Simulate adding a new block
+            const newBlock = {
+                id: sampleBlockchainData.length,
+                hash: 'new' + Math.random().toString(36).substr(2, 6) + '...',
+                data: 'New Traffic Log',
+                timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                transactions: Math.floor(Math.random() * 10) + 1
+            };
+            sampleBlockchainData.push(newBlock);
+            loadBlockchainData();
+        }
+
+        function refreshBlockchain() {
+            loadBlockchainData();
+        }
+
+        // Filter Event
+        document.getElementById('statusFilter').addEventListener('change', (e) => {
+            loadTrafficData(e.target.value);
+        });
+
+        // Initialize Dashboard
+        loadTrafficData();
+        loadAnalysisData();
+        loadBlockchainData();
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            loadTrafficData();
+            loadAnalysisData();
+        }, 30000);
+    </script>
+</body>
+</html>

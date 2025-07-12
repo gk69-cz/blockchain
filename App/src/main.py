@@ -8,29 +8,31 @@ import threading
 import ipaddress
 import logging
 from functools import wraps
+from blockchain.blockchain_blueprint import blockchain_bp
 
-from ipblocker import schedule_extraction
-from js_threshhold_logic import analyze_traffic, generate_challenge, get_dynamic_difficulty, get_ttl_value, is_datacenter_ip, load_datacenter_ips, pow_routes, save_results, verify_pow_challenge
+from bots.botprofile import save_bot_profiles, score_save_bot
+from server.ipblocker import schedule_extraction
+from pow.js_threshhold_logic import analyze_traffic, generate_challenge, get_dynamic_difficulty, get_ttl_value, save_results, verify_pow_challenge
 
-from shared_data import SUSPICIOUS_HEADERS, SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
-from shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
+from utils.shared_data import SUSPICIOUS_HEADERS, SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
+from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
 
 
 
 pow_script = """
 <script>
-// SHA-256 function is provided by the imported js-sha256 library
-
-function updateStatus(message) {
+async function updateStatus(message) {
     document.getElementById('status').innerText = message;
 }
+
+
 
 async function solvePow(challenge, difficulty) {
     updateStatus('Solving proof of work challenge (difficulty: ' + difficulty + ')...');
     
     let nonce = 0;
     const startTime = Date.now();
-    
+
     while (true) {
         const hash = sha256(challenge + nonce);
         if (hash.startsWith('0'.repeat(difficulty))) {
@@ -38,61 +40,72 @@ async function solvePow(challenge, difficulty) {
             updateStatus('Solution found! Nonce: ' + nonce + ' (took ' + timeTaken + ' seconds)');
             return nonce;
         }
-        
+
         nonce++;
-        
-        // Update status every 1000 attempts
         if (nonce % 1000 === 0) {
             updateStatus('Still working... Tried ' + nonce + ' solutions');
-            // Allow UI to update
             await new Promise(resolve => setTimeout(resolve, 0));
         }
     }
 }
 
-// Start the PoW verification flow when page loads
-window.onload = async function() {
+window.onload = async function () {
     try {
-        // Fetch challenge
-        updateStatus('Requesting challenge from server...');
+        updateStatus('Checking for pending transactions...');
+     
+
         const challengeResp = await fetch('/api/pow-challenge');
         const challengeData = await challengeResp.json();
-        
-        updateStatus('Challenge received. Beginning computation...');
-        
-        // Solve the challenge
+
         const nonce = await solvePow(challengeData.challenge, challengeData.difficulty);
-        
-        // Submit the solution
-        updateStatus('Submitting solution to server...');
+
+        updateStatus('Submitting PoW solution...');
         const submitResp = await fetch('/api/pow-submit', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 challenge: challengeData.challenge,
                 nonce: nonce
             })
         });
-        
-        // Check the result
+
         const submitData = await submitResp.json();
-        if (submitData.status === 'verified') {
-            updateStatus('Verification successful! Redirecting...');
-            // Wait a moment to show the success message
-            setTimeout(() => {
-                // Reload the page to access the protected content
-                window.location.reload();
-            }, 1500);
-        } else {
+        if (submitData.status !== 'verified') {
             updateStatus('Verification failed: ' + submitData.message);
+            return;
         }
-    } catch (error) {
-        updateStatus('Error during verification: ' + error.message);
-        console.error('PoW error:', error);
-    }
+        
+        const pendingResp = await fetch('blockchain/pending_tx');
+        const pendingTx = await pendingResp.json();
+
+        if (!pendingTx || pendingTx.length === 0) {
+            updateStatus('No pending transactions. Nothing to mine. proceding to next step...');
+
+        }
+
+        if (localStorage.getItem('minedKey')) {
+    updateStatus('You have already mined a block. Mining skipped.');
+    return;
 }
+
+updateStatus('Verification successful. Mining block...');
+const mineResp = await fetch('blockchain/mine');
+const mineText = await mineResp.text();
+
+if (mineText.toLowerCase().includes("mined")) {
+    const hexKey = [...crypto.getRandomValues(new Uint8Array(8))]
+        .map(b => b.toString(16).padStart(2, '0')).join('');
+    localStorage.setItem('minedKey', hexKey);
+    updateStatus(mineText + ' Key stored: ' + hexKey);
+} else {
+    updateStatus('Mining failed: ' + mineText);
+}
+
+    } catch (err) {
+        updateStatus('Error: ' + err.message);
+        console.error('Error:', err);
+    }
+};
 </script>
 """
 
@@ -117,13 +130,12 @@ logger.addHandler(console_handler)
 
 # Initialize Flask app
 app = Flask(__name__)
-
+app.register_blueprint(blockchain_bp, url_prefix='/blockchain')
 # Run setup code with app context
 @app.before_request
 def ensure_initialized():
     # Use a flag in app config to check if initialization has been done
     if not app.config.get('INITIALIZED', False):
-        load_datacenter_ips()
         
         # Check if PoW verification is needed
         if app.config.get('REQUIRE_POW', True):
@@ -144,39 +156,29 @@ def analyze_request():
     # Get client IP
     client_ip = request.remote_addr
     
-    
     # Get request timestamp
     request_time = time.time()
     
     # Extract useful request information
     user_agent = request.headers.get('User-Agent', '')
-    print("User-Agent")
-    print(user_agent)
-    print("User-Agent")
     referrer = request.headers.get('Referer', '')
     endpoint = request.path
     
     if is_suspicious(user_agent, request.headers):
-        print("Suspicious request detected.")
+        # Log suspicious request
+        logger.warning(f"Suspicious request detected from {client_ip} with user agent: {user_agent}")
     else:
-        print("Request seems fine.")
+        # Log normal request
+        logger.info(f"Request from {client_ip} to {endpoint} with user agent: {user_agent}")
     if request.headers.get('X-Forwarded-For'):
         forwarded_ips = request.headers.get('X-Forwarded-For').split(',')
         client_ip = forwarded_ips[0].strip()
     elif request.headers.get('X-Real-IP'):
         client_ip = request.headers.get('X-Real-IP')
-        
-     # Debug print to see all request information
-    print(f"==== REQUEST INFO ====")
-    print(f"Original remote_addr: {request.remote_addr}")
-    print(f"Detected client_ip: {client_ip}")
-    print(f"Headers: {dict(request.headers)}")
-    print(f"==== END REQUEST INFO ====")
     
     
     # Try to get TTL value (may require additional privileges)
     ttl = get_ttl_value(client_ip)
-    
     # Store request data with thread safety
     with data_lock:
         ip_data = ip_stats[client_ip]
@@ -184,7 +186,7 @@ def analyze_request():
         # First request from this IP
         if ip_data["first_seen"] == 0:
             ip_data["first_seen"] = request_time
-            ip_data["is_residential"] = not is_datacenter_ip(client_ip)
+            ip_data["is_residential"] = True
         
         # Update statistics
         ip_data["last_seen"] = request_time
@@ -200,16 +202,13 @@ def analyze_request():
         
         # Check if important headers are missing or invalid
         ip_data["headers_present"] = bool(user_agent and not(is_suspicious(user_agent, request.headers)))
-        print(ip_data["headers_present"])
+      
         # Store TTL if available
         if ttl:
             ip_data["ttl_values"].add(ttl)
             if ttl in TTL_SUSPICIOUS_VALUES:
-                ip_data["ttl_obfuscation"] = True
-    print("----------------")           
-    print(ip_data["headers_present"])
-    print("----------------")    
-    # Store start time for response time tracking
+                ip_data["ttl_obfuscation"] = True  
+              
     g.start_time = time.time()
 
 @app.after_request
@@ -231,16 +230,13 @@ def after_request(response):
     return response
 
 def is_suspicious(user_agent, headers):
-    print("Checking if user agent or headers are suspicious...")
     ua = (user_agent or "").lower()
 
     # Partial match: check if any suspicious string appears in the UA
     for bad_ua in SUSPICIOUS_USER_AGENTS:
         if bad_ua and bad_ua in ua:
-            print(f"Suspicious user agent detected: {ua} contains {bad_ua}")
             return True
         if not bad_ua and ua.strip() == "":
-            print("Suspicious user agent detected: empty UA")
             return True  # Empty UA
 
     # Check for suspicious headers presence or emptiness
@@ -248,30 +244,8 @@ def is_suspicious(user_agent, headers):
         if header in headers:
             val = headers[header]
             if val is None or val.strip() == "":
-                print(f"Suspicious header detected: {header} is empty or missing")
                 return True
-    print("No suspicious user agent or headers detected.")
     return False
-
-
-# Add a route to manually check an IP
-@app.route('/check/<ip>')
-def check_ip(ip):
-    try:
-        ipaddress.ip_address(ip)  # Validate IP format
-        results = analyze_traffic(ip)
-        if ip in results:
-            return jsonify(results[ip])
-        else:
-            return jsonify({"error": "No data for this IP"}), 404
-    except ValueError:
-        return jsonify({"error": "Invalid IP address"}), 400
-
-# Add a route to get traffic analysis for all IPs
-@app.route('/analysis')
-def get_analysis():
-    results = analyze_traffic()
-    return jsonify(results)
 
 @app.route('/api/start-analyzer', methods=['GET'])
 def start_analyzer_endpoint():
@@ -297,16 +271,6 @@ def start_analyzer_endpoint():
     
     return jsonify({'status': 'verification required'}), 403
 
-@app.route('/analyze_me')
-def analyze_me():
-    client_ip = request.remote_addr
-    results = analyze_traffic(client_ip)
-    if client_ip in results:
-        return jsonify(results[client_ip])
-    else:
-        return jsonify({"error": "No data for your IP yet"}), 404
-
-
 
 # Modify your pow_submit route to mark verification and start analyzer
 @app.route('/api/pow-submit', methods=['POST'])
@@ -314,11 +278,11 @@ def pow_submit():
     data = request.json
     challenge = data.get('challenge')
     nonce = str(data.get('nonce'))
+    print(f"Received PoW submission: challenge={challenge}, nonce={nonce}")
 
     if verify_pow_challenge(challenge, str(nonce)):
         # Mark this client as verified
         client_ip = request.remote_addr
-        print(client_ip + 'verified pow')
         
         if not hasattr(app, 'verified_clients'):
             app.verified_clients = set()
@@ -331,35 +295,8 @@ def pow_submit():
 @app.route('/api/pow-challenge')
 def pow_challenge():
         challenge, difficulty = generate_challenge()
-        return jsonify({'challenge': challenge, 'difficulty': difficulty})
-  
-# Add an endpoint that will analyze and return results
-@app.route('/api/check_request', methods=['GET', 'POST'])
-def check_request():
-    client_ip = request.remote_addr
-    
-    # Analyze this IP
-    results = analyze_traffic(client_ip)
-    
-    if client_ip in results:
-        # Return the analysis results
-        return jsonify({
-            "syn_flood": False,  # Can't detect in web app context
-            "high_rpm": results[client_ip]["traffic_indicators"]["high_request_rate"],
-            "script_hits": results[client_ip]["traffic_indicators"]["suspicious_user_agent"] or 
-                          results[client_ip]["traffic_indicators"]["missing_headers"],
-            "ttl_obfuscation": results[client_ip]["packet_indicators"]["ttl_obfuscation"]
-        })
-    else:
-        # Default response if no data yet
-        return jsonify({
-            "syn_flood": False,
-            "high_rpm": False,
-            "script_hits": False,
-            "ttl_obfuscation": False
-        })
-        
-@app.route("/bot-details")
+        return jsonify({'challenge': challenge, 'difficulty': difficulty})       
+@app.route("/api/bot-details")
 def bot_details():
     json_path = os.path.join(os.path.dirname(__file__), "bot_profiles.json")
     try:
@@ -369,7 +306,6 @@ def bot_details():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 def periodic_analyzer(client_ip):
-    """Run periodic analysis of traffic"""
     while True:
         try:
             time.sleep(ANALYSIS_WINDOW)
@@ -390,8 +326,7 @@ def periodic_analyzer(client_ip):
         except Exception as e:
             logger.error(f"Error in periodic analyzer: {e}")
             
-            
-            
+
 # Decorator function to do the pow analysis            
 def pow_required(f):
     @wraps(f)
@@ -425,122 +360,6 @@ def pow_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-# function to connect with other applications
-
-
-@app.route('/api/analyze', methods=['GET', 'POST'])
-def analyze_request_api():
-    # process the request and extract client IP
-    client_ip = request.remote_addr
-    
-    # Track request processing time
-    g.start_time = time.time()
-    
-    # Extract useful request information
-    user_agent = request.headers.get('User-Agent', '')
-    referrer = request.headers.get('Referer', '')
-    endpoint = request.path
-    
-    # Get the actual IP if behind a proxy
-    if request.headers.get('X-Forwarded-For'):
-        forwarded_ips = request.headers.get('X-Forwarded-For').split(',')
-        client_ip = forwarded_ips[0].strip()
-    elif request.headers.get('X-Real-IP'):
-        client_ip = request.headers.get('X-Real-IP')
-    print(f"Client IP: {client_ip}")
-    print(f"User-Agent: {user_agent}")
-    print('----------End Of initial inference---------------')
-    print('----------Start Of Part one---------------')
-    # PART 1: Check PoW verification
-    pow_status = {}
-    if not hasattr(app, 'verified_clients'):
-        app.verified_clients = set()
-    
-    if client_ip not in app.verified_clients:
-        # Client needs to complete PoW
-        print('----------doing Pow---------------')
-        challenge, difficulty = generate_challenge();
-        print(f"Generated challenge: {challenge} with difficulty {difficulty} inside analyze_request_api")
-        print('----------done Pow---------------')
-        pow_status = {
-            'verified': verify_pow_challenge(challenge, str(difficulty)),
-            'challenge': challenge,
-            'difficulty': difficulty,
-            'message': 'Proof of work verification required'
-        }
-    else:
-        # Client already verified
-        print('----------done before Pow---------------')
-        pow_status = {
-            'verified': True,
-            'message': 'Proof of work previously verified'
-        }
-    print('----------End Of Part one---------------')
-    # PART 2: Analyze traffic patterns
-    # Also check if the current request's headers are suspicious
-    headers_suspicious = is_suspicious(user_agent, request.headers)
-    
-    # Run the full traffic analysis
-    results = analyze_traffic(client_ip)
-    
-    traffic_status = {}
-    if client_ip in results:
-        is_suspicious_ip = results[client_ip]["is_suspicious"]
-        
-        # Get specific reasons for suspicious activity
-        reasons = []
-        
-        # Check traffic indicators
-        traffic_indicators = results[client_ip]["traffic_indicators"]
-        for indicator, value in traffic_indicators.items():
-            if value:
-                reasons.append(f"traffic:{indicator}")
-        
-        # Check packet indicators
-        packet_indicators = results[client_ip]["packet_indicators"]
-        for indicator, value in packet_indicators.items():
-            if value:
-                reasons.append(f"packet:{indicator}")
-        
-        traffic_status = {
-            'is_suspicious': is_suspicious_ip,
-            'current_request_suspicious': headers_suspicious,
-            'reasons': reasons if is_suspicious_ip else [],
-            'traffic_indicators': traffic_indicators,
-            'packet_indicators': packet_indicators,
-            'metadata': results[client_ip]["metadata"]
-        }
-    else:
-        # No previous data for this IP
-        traffic_status = {
-            'is_suspicious': False,
-            'current_request_suspicious': headers_suspicious,
-            'reasons': ['current_request_suspicious'] if headers_suspicious else [],
-            'traffic_indicators': {},
-            'packet_indicators': {},
-            'metadata': {}
-        }
-    
-    # Calculate response time
-    response_time = time.time() - g.start_time
-    
-    # Determine if access would be granted
-    access_granted = pow_status.get('verified', False) and not traffic_status.get('is_suspicious', True) and not headers_suspicious
-    
-    # Return combined results
-    return jsonify({
-        'access_granted': access_granted,
-        'pow_status': pow_status,
-        'traffic_status': traffic_status,
-        'client_ip': client_ip,
-        'response_time_ms': round(response_time * 1000, 2),
-        'request_details': {
-            'user_agent': user_agent,
-            'referrer': referrer,
-            'endpoint': endpoint
-        }
-    })
-
 
 # Decorator function to protect routes with traffic analysis
 def traffic_protected(f):
@@ -564,12 +383,13 @@ def traffic_protected(f):
             for indicator, value in packet_indicators.items():
                 if value:
                     reasons.append(f"packet:{indicator}")
-            
+
             # Log detailed suspicious activity
             logger.warning(f"Blocked suspicious request from {client_ip}. Reasons: {', '.join(reasons)}")
             
             # Add detailed info to the response so you can see it
             return jsonify({
+                "ip"    : client_ip,
                 "error": "Access denied due to suspicious activity", 
                 "reasons": reasons,
                 "details": {
@@ -578,7 +398,7 @@ def traffic_protected(f):
                     "metadata": results[client_ip]["metadata"]
                 }
             }), 403
-        
+        score_save_bot(results)
         return f(*args, **kwargs)
     return decorated_function
 
@@ -615,6 +435,6 @@ def index():
 if __name__ == "__main__":
     # Start the Flask app
     # schedule_extraction()
-    app.run(host="0.0.0.0", port=8080, debug=False)
+    app.run(host="0.0.0.0", port=8081, debug=False)
     
     
