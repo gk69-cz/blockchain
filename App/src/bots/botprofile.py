@@ -1,14 +1,11 @@
 # bot_profile.py
 import json
 import os
-from typing import Any, Dict
 from uuid import uuid4
 from collections import defaultdict, deque
 import threading
-import requests
-import hashlib
 
-from blockchain.blockchain_blueprint import search_unconfirmed_for_ip
+from blockchain.blockchain_module import Blockchain
 from server.to_blockchain import submit_transaction_to_blockchain
 
 # File to store bot profiles
@@ -43,6 +40,7 @@ def load_bot_profiles():
         return {}
 
 def save_bot_profiles(profiles):
+    
     try:
         # Convert sets to lists for JSON serialization
         serializable_profiles = {}
@@ -65,7 +63,6 @@ def save_bot_profiles(profiles):
             json.dump(serializable_profiles, f, indent=2)
     except IOError as e:
         print(f"Error saving bot profiles: {e}")
-
 
 def generate_bot_profile(ip, data):
     
@@ -222,31 +219,21 @@ def score_save_bot(bot):
     print(bot)
     ip = list(bot.keys())[0]
     data = bot[ip]
+    
     result = {
             "ip": data.get("ip"),
-            "headers_present": data.get("missing_headers", "unknown"),  
+            "headers_present": data.get("missing_headers", "False"),  
             "ttl_obfuscation": data.get("ttl_obfuscation", None),
             "legitimacy_score": final_score,
             "is_trustworthy": final_score >= 5
     }
     
-    search_result = json.loads(search_unconfirmed_for_ip(data.get("ip")))
-
-    if search_result.get("found"):
-        return 
-    
-    submit_transaction_to_blockchain(
-    ip_address=result["ip"],
-    headers_present=result["headers_present"], 
-    ttl_obfuscation=result["ttl_obfuscation"],
-    legitimacy_score=result["legitimacy_score"],
-    is_trustworthy=result["is_trustworthy"]
-)
+    print("Transaction result:", result)   
     with file_lock, open(BLOCK_PROFILES_FILE, 'w') as f:
         json.dump(result, f, indent=2)
         
     print(f"Bot profile for {ip} scored: {final_score} is scored and added to the pending transactions list.")
-
+    return final_score
 
 
 

@@ -1,0 +1,603 @@
+2025-07-14 16:44:19,207 - traffic_analyzer - INFO - Request from 192.168.0.119 to / with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:19,571 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-challenge with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:19,612 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-submit with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:19,624 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:27,774 - traffic_analyzer - INFO - Request from 192.168.0.119 to / with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:27,971 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-challenge with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:27,981 - traffic_analyzer - INFO - Request from 192.168.0.119 to /favicon.ico with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:27,991 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-submit with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:28,008 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:28,015 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/mine with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-14 16:44:38,858 - traffic_analyzer - INFO - Request from 192.168.0.119 to / with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 16:44:38,943 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-challenge with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 16:44:38,968 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-submit with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 16:44:38,985 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 16:44:38,999 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 16:44:51,867 - traffic_analyzer - INFO - Request from 192.168.0.119 to /protected with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 16:45:06,872 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:45:21,881 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:45:36,890 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:45:51,907 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:46:06,917 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:46:21,925 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:46:36,934 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:46:51,942 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:47:06,946 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:47:21,958 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:47:36,965 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:47:51,975 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:48:06,991 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:48:22,004 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:48:37,019 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:48:52,036 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:49:07,052 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:49:22,061 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:49:37,064 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:49:52,071 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:50:07,075 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 16:50:22,083 - traffic_analyzer - ERROR - Error in periodic analyzer: '192.168.0.119'
+2025-07-14 19:22:48,193 - traffic_analyzer - INFO - Request from 192.168.0.119 to /protected with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:22:48,835 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-challenge with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:22:48,886 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-submit with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:22:48,924 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:22:48,955 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:23:01,654 - traffic_analyzer - INFO - Request from 192.168.0.119 to / with user agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.4652
+2025-07-14 19:23:25,605 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:23:30,219 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:23:32,205 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:24:09,832 - traffic_analyzer - INFO - Request from 192.168.0.119 to / with user agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.4652
+2025-07-14 19:24:13,528 - traffic_analyzer - INFO - Request from 192.168.0.119 to / with user agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.4652
+2025-07-14 19:28:28,522 - traffic_analyzer - INFO - Request from 192.168.0.119 to / with user agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.4652
+2025-07-14 19:34:30,614 - traffic_analyzer - INFO - Request from 192.168.0.119 to / with user agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.4652
+2025-07-14 19:35:53,060 - traffic_analyzer - INFO - Request from 192.168.0.119 to /protected with user agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.4652
+2025-07-14 19:36:43,266 - traffic_analyzer - INFO - Request from 192.168.0.119 to /protected with user agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.4652
+2025-07-14 19:37:06,514 - traffic_analyzer - INFO - Request from 192.168.0.119 to / with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:37:06,872 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-challenge with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:37:06,939 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-submit with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:37:06,985 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:37:07,026 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:37:14,310 - traffic_analyzer - INFO - Request from 192.168.0.119 to /protected with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:37:14,316 - traffic_analyzer - INFO - Received request fromeeeeeeeeeee 192.168.0.119
+2025-07-14 19:37:14,318 - traffic_analyzer - INFO - Started background analyzer for IP: 192.168.0.119
+2025-07-14 19:37:14,341 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 174, in analyze_traffic
+    generate_bot_profile(ip,results);
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\bots\botprofile.py", line 143, in generate_bot_profile
+    score_save_bot(profiles)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\bots\botprofile.py", line 239, in score_save_bot
+    results = BlockchainInterface.submit_transaction(result)
+TypeError: BlockchainInterface.submit_transaction() missing 1 required positional argument: 'tx_data'
+2025-07-14 19:37:29,360 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:37:44,371 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:37:59,381 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:38:14,388 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:38:29,401 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:38:44,405 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:38:59,420 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:39:14,427 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:39:29,447 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:39:44,462 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:39:59,480 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:40:14,501 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:40:29,512 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:40:44,518 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:40:59,523 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:41:14,534 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:41:29,540 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:41:44,553 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:41:59,564 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:42:14,582 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:42:29,589 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:42:44,615 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:42:59,625 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:43:14,639 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:43:29,652 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:43:44,667 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:43:59,677 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+    print(results[ip]["is_suspicious"])
+KeyError: '192.168.0.119'
+2025-07-14 19:44:14,682 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+KeyError: '192.168.0.119'
+2025-07-14 19:44:29,689 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+KeyError: '192.168.0.119'
+2025-07-14 19:44:44,703 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 168, in analyze_traffic
+KeyError: '192.168.0.119'
+2025-07-14 19:45:07,710 - traffic_analyzer - INFO - Request from 192.168.0.119 to /protected with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:45:08,043 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-challenge with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:45:08,104 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-submit with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:45:08,140 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:45:08,171 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:45:53,495 - traffic_analyzer - INFO - Request from 192.168.0.119 to /protected with user agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.4652
+2025-07-14 19:45:53,495 - traffic_analyzer - INFO - Received request fromeeeeeeeeeee 192.168.0.119
+2025-07-14 19:45:53,495 - traffic_analyzer - ERROR - Error in periodic analyzer
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 332, in periodic_analyzer
+    results = analyze_traffic(client_ip)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\pow\js_threshhold_logic.py", line 119, in analyze_traffic
+    intervals = [t2 - t1 for t1, t2 in zip(data["last_requests"][:-1], data["last_requests"][1:])]
+TypeError: sequence index must be integer, not 'slice'
+2025-07-14 19:45:53,495 - traffic_analyzer - INFO - Started background analyzer for IP: 192.168.0.119
+2025-07-14 19:46:08,516 - traffic_analyzer - INFO - Skipping 192.168.0.119: inactive beyond analysis window.
+2025-07-14 19:46:23,526 - traffic_analyzer - INFO - Skipping 192.168.0.119: inactive beyond analysis window.
+2025-07-14 19:46:38,531 - traffic_analyzer - INFO - Skipping 192.168.0.119: inactive beyond analysis window.
+2025-07-14 19:46:53,543 - traffic_analyzer - INFO - Skipping 192.168.0.119: inactive beyond analysis window.
+2025-07-14 19:47:08,558 - traffic_analyzer - INFO - Skipping 192.168.0.119: inactive beyond analysis window.
+2025-07-14 19:47:34,617 - traffic_analyzer - INFO - Request from 192.168.0.119 to /protected with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:47:34,723 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-challenge with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:47:34,776 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/pow-submit with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:47:34,819 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:47:34,835 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 19:48:38,402 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:05:11,907 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:05:12,069 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:05:12,073 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:05:12,102 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:05:12,103 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:05:42,338 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:05:42,338 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:05:42,360 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:05:42,362 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:06:12,333 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:06:12,339 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:06:12,364 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:06:12,364 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:06:42,339 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:06:42,341 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:06:42,361 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:06:42,361 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:07:12,329 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:07:12,329 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:07:12,347 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:07:12,347 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:07:42,337 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:07:42,337 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:07:42,369 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:07:42,371 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:08:12,346 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:08:12,346 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:08:12,372 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:08:12,372 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:08:44,338 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:08:44,340 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:08:44,357 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:08:44,357 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:09:44,338 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:09:44,338 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:09:44,361 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:09:44,361 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:10:44,334 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:10:44,334 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:10:44,363 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:10:44,371 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:11:16,531 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:11:16,532 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:11:16,557 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:11:16,559 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:11:42,332 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:11:42,332 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:11:42,345 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:11:42,345 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:12:12,328 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:12:12,328 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:12:12,340 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:12:12,340 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:12:44,330 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:12:44,330 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:12:44,339 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:12:44,341 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:13:44,337 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:13:44,337 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:13:44,347 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:13:44,347 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:14:44,329 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:14:44,329 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:14:44,341 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:14:44,342 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:15:44,341 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:15:44,341 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:15:44,345 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:15:44,345 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:16:44,332 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:16:44,332 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:16:44,343 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:16:44,344 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:17:44,347 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:17:44,347 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:17:44,358 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:17:44,358 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:18:44,342 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:18:44,342 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:18:44,354 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:18:44,354 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:19:44,333 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:19:44,333 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:19:44,342 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:19:44,342 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:44,334 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:44,334 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:44,349 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:44,349 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:48,911 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:48,964 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:48,964 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:48,978 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:48,981 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:53,502 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:53,544 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:53,547 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:53,562 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:23:53,563 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:24:24,332 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:24:24,332 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:24:24,343 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:24:24,344 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:24:43,644 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:24:57,695 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:01,686 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:04,431 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:04,432 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:04,445 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:04,446 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:24,332 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:24,333 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:24,344 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:24,345 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:54,333 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:54,333 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:54,351 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:54,351 - traffic_analyzer - INFO - Request from 192.168.0.119 to /blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:56,344 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:56,411 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:56,411 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:56,433 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:25:56,434 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:10,173 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:17,902 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/search/1212121 with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:17,905 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/search with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:26,438 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:26,439 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:26,452 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:26,453 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:57,334 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:57,335 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:57,344 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:26:57,345 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending_tx with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:27:19,452 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:27:19,518 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:27:19,518 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:27:19,527 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:27:19,533 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:27:49,574 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:27:49,575 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:27:49,586 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:27:49,586 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:28:19,583 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:28:19,584 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:28:19,596 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:28:19,597 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:28:49,569 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:28:49,569 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:28:49,579 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:28:49,581 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:29:19,586 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:29:19,586 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:29:19,597 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:29:19,597 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:29:49,575 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:29:49,576 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:29:49,586 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:29:49,586 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:19,576 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:19,577 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:19,588 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:19,590 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:38,372 - traffic_analyzer - INFO - Request from 192.168.0.119 to /protected with user agent: Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.4652
+2025-07-14 20:30:50,328 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:50,328 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:50,337 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:50,337 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:56,885 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:56,926 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:56,927 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:56,940 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:30:56,942 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:26,969 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:26,969 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:26,981 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:26,981 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:30,009 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:32,004 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:32,009 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:32,013 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:32,019 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:34,306 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:40,365 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:40,370 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:40,375 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:40,379 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:56,965 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:56,965 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:56,980 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:31:56,981 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:32:14,446 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/new_transaction with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:33:43,803 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:33:43,803 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:33:43,815 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:33:43,816 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:33:45,182 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/new_transaction with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:33:58,111 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:33:58,128 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:33:58,138 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:33:58,345 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:34:07,510 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/new_transaction with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:34:27,340 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:34:27,340 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:34:27,352 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:34:27,352 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:34:56,967 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:34:56,968 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:34:56,978 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:34:56,980 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:27,342 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:27,342 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:27,350 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:27,350 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:34,084 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:34,133 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:34,134 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:34,146 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:34,147 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:35,333 - traffic_analyzer - INFO - Request from 192.168.0.119 to /home with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:35,375 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:35,375 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:35,390 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:35,391 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:53,718 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/add-transaction with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:55,313 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:55,315 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:55,323 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:55,328 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:35:58,377 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:36:05,414 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:36:05,415 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:36:05,426 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:36:05,426 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:36:10,698 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:36:35,421 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:36:35,422 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:36:35,433 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:36:35,435 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:37:05,423 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:37:05,424 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:37:05,434 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:37:05,437 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:37:35,416 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:37:35,417 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:37:35,427 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:37:35,428 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:05,419 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:05,421 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:05,430 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:05,431 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:24,287 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/mine with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:26,334 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:26,339 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:26,348 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:26,350 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:36,139 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:36,140 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:36,152 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:38:36,154 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:39:05,408 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:39:05,408 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:39:05,419 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:39:05,420 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:39:35,418 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:39:35,420 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:39:35,438 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:39:35,439 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:40:05,421 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:40:05,421 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:40:05,444 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:40:05,446 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:40:35,421 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:40:35,424 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:40:35,447 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:40:35,451 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:41:05,425 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:41:05,427 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:41:05,451 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:41:05,458 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:41:35,414 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:41:35,414 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:41:35,441 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-14 20:41:35,445 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-15 23:20:01,055 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-15 23:20:01,055 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-15 23:20:01,088 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-15 23:20:01,097 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+2025-07-15 23:20:35,593 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-15 23:20:35,593 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-15 23:20:35,611 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-15 23:20:35,611 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-15 23:20:36,001 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/mine with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-15 23:20:38,269 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-15 23:20:38,271 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-15 23:20:38,288 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/chain with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-15 23:20:38,290 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+2025-07-15 23:20:40,621 - traffic_analyzer - INFO - Request from 192.168.0.119 to /api/blockchain/pending with user agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36

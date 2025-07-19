@@ -1,34 +1,46 @@
 {
   "192.168.0.119": {
     "ip": "192.168.0.119",
-    "id": "bot-56cdc8a2",
-    "first_seen": 1752287976.7443373,
-    "last_seen": 1752287984.8307323,
-    "request_count": 9,
-    "rpm": 66.78,
-    "rps": 1.11,
-    "endpoints_accessed": [
-      "/blockchain/pending_tx",
-      "/api/pow-challenge",
-      "/api/pow-submit",
-      "/",
-      "/protected"
-    ],
-    "user_agents": [
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
-    ],
-    "referrers": [
-      "http://192.168.0.119:8081/"
-    ],
-    "headers_present": true,
     "is_residential": true,
-    "ttl_values": [
-      128
-    ],
-    "ttl_obfuscation": false,
-    "last_requests": [],
-    "response_codes": {
-      "200": 8
+    "traffic_indicators": {
+      "high_request_rate": false,
+      "sudden_traffic_spike": false,
+      "unusual_traffic_distribution": false,
+      "missing_headers": false,
+      "suspicious_user_agent": false
+    },
+    "packet_indicators": {
+      "ttl_obfuscation": false,
+      "error_response_rate": false
+    },
+    "metadata": {
+      "request_count": 24,
+      "rpm": 52.98,
+      "rps": 0.88,
+      "first_seen": 1752842907.545307,
+      "last_seen": 1752842934.7256954,
+      "ttl_values": [
+        128
+      ],
+      "endpoints_accessed": [
+        "/protected",
+        "/api/pow-submit",
+        "/api/pow-challenge",
+        "/api/blockchain/chain",
+        "/api/blockchain/mine",
+        "/api/blockchain/pending"
+      ],
+      "user_agents": [
+        "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+      ],
+      "referrers": [
+        "http://192.168.0.119:8081/home",
+        "http://192.168.0.119:8081/protected"
+      ],
+      "response_codes": {
+        "200": 1
+      }
     },
     "is_suspicious": false
   }

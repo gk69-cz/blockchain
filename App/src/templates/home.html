@@ -90,6 +90,11 @@
             color: white;
         }
 
+        .status-offline {
+            background: var(--danger);
+            color: white;
+        }
+
         .main-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -218,7 +223,7 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1rem;
-            min-width: 200px;
+            min-width: 250px;
             transition: all 0.2s;
             cursor: pointer;
         }
@@ -291,6 +296,11 @@
             transform: translateY(-1px);
         }
 
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .button.danger {
             background-color: var(--danger);
         }
@@ -335,6 +345,70 @@
             opacity: 0.8;
         }
 
+        .error-message {
+            color: var(--danger);
+            text-align: center;
+            padding: 1rem;
+            font-style: italic;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 1rem;
+            color: var(--info);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--card);
+            color: var(--text);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: var(--card);
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: var(--text);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--danger);
+        }
+
         @media (max-width: 768px) {
             .main-container {
                 grid-template-columns: 1fr;
@@ -361,7 +435,7 @@
     <div class="header">
         <h1>Traffic Log Analyzer</h1>
         <div class="header-controls">
-            <span class="status-badge status-online">System Online</span>
+            <span id="status-badge" class="status-badge status-offline">Connecting...</span>
             <button id="theme-toggle" class="theme-toggle">Toggle Theme</button>
         </div>
     </div>
@@ -370,81 +444,74 @@
         <!-- Statistics Grid -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-value" style="color: var(--success);">247</div>
-                <div class="stat-label">Total Requests</div>
+                <div class="stat-value" style="color: var(--success);" id="total-blocks">0</div>
+                <div class="stat-label">Total Blocks</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" style="color: var(--danger);">12</div>
+                <div class="stat-value" style="color: var(--info);" id="pending-tx">0</div>
+                <div class="stat-label">Pending Transactions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--warning);" id="total-transactions">0</div>
+                <div class="stat-label">Total Transactions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--danger);" id="blocked-ips">0</div>
                 <div class="stat-label">Blocked IPs</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" style="color: var(--warning);">5</div>
-                <div class="stat-label">Suspicious</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" style="color: var(--info);">15.2</div>
-                <div class="stat-label">Avg RPM</div>
             </div>
         </div>
 
-        <!-- Traffic Logs Section -->
+        <!-- Pending Transactions Section -->
         <div class="traffic-section">
             <div class="section-header">
-                <h2 class="section-title">Traffic Logs</h2>
+                <h2 class="section-title">Pending Transactions</h2>
                 <div class="controls">
-                    <div class="select-wrapper">
-                        <select id="statusFilter">
-                            <option value="all">All Status</option>
-                            <option value="pass">Allowed</option>
-                            <option value="fail">Blocked</option>
-                            <option value="suspicious">Suspicious</option>
-                        </select>
-                    </div>
-                    <button class="button success" onclick="refreshLogs()">
-                        <span id="refresh-icon">Refresh</span>
+                    <button class="button success" onclick="refreshPendingTransactions()">
+                        <span id="refresh-pending-icon">Refresh</span>
                     </button>
+                    <button class="button" onclick="showAddTransactionModal()">Add Transaction</button>
                 </div>
             </div>
             <div class="table-container">
-                <table id="trafficTable">
+                <table id="pendingTable">
                     <thead>
                         <tr>
                             <th>IP Address</th>
-                            <th>Status</th>
-                            <th>Endpoint</th>
-                            <th>User Agent</th>
+                            <th>Score</th>
+                            <th>Trustworthy</th>
+                            <th>TTL Obfuscation</th>
                             <th>Timestamp</th>
                         </tr>
                     </thead>
-                    <tbody id="trafficTableBody">
-                        <!-- Dynamic content will be loaded here -->
+                    <tbody id="pendingTableBody">
+                        <tr><td colspan="5" class="loading">Loading pending transactions...</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- Analysis Section -->
+        <!-- Search Section -->
         <div class="traffic-section">
             <div class="section-header">
-                <h2 class="section-title">Analysis Dashboard</h2>
+                <h2 class="section-title">Search Blockchain</h2>
                 <div class="controls">
-                    <button class="button warning" onclick="runAnalysis()">Run Analysis</button>
-                    <button class="button danger" onclick="clearLogs()">Clear All</button>
+                    <input type="text" id="searchInput" placeholder="Search for IP address..." style="min-width: 200px;">
+                    <button class="button warning" onclick="searchBlockchain()">Search</button>
                 </div>
             </div>
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
+                            <th>Block Index</th>
                             <th>IP Address</th>
-                            <th>Requests</th>
-                            <th>RPM</th>
-                            <th>Risk Level</th>
-                            <th>Action</th>
+                            <th>Score</th>
+                            <th>Trustworthy</th>
+                            <th>Timestamp</th>
                         </tr>
                     </thead>
-                    <tbody id="analysisTableBody">
-                        <!-- Analysis results will be loaded here -->
+                    <tbody id="searchResultsBody">
+                        <tr><td colspan="5" class="loading">Enter search term to find transactions</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -455,236 +522,593 @@
             <div class="section-header">
                 <h2 class="section-title">Blockchain Viewer</h2>
                 <div class="controls">
-                    <button class="button" onclick="addBlock()">Add Block</button>
+                    <button class="button danger" onclick="mineBlock()">Mine Block</button>
                     <button class="button success" onclick="refreshBlockchain()">Refresh</button>
                 </div>
             </div>
             <div class="blockchain-container" id="blockchainContainer">
-                <!-- Blockchain blocks will be loaded here -->
+                <div class="loading">Loading blockchain...</div>
             </div>
         </div>
     </div>
 
-    <script>
-        // Theme Management
-        document.addEventListener('DOMContentLoaded', () => {
-            const saved = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', saved);
-            updateThemeIcon(saved);
+    <!-- Add Transaction Modal -->
+    <div id="addTransactionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddTransactionModal()">&times;</span>
+            <h3>Add New Transaction</h3>
+            <form id="addTransactionForm">
+                <div class="form-group">
+                    <label for="txIp">IP Address:</label>
+                    <input type="text" id="txIp" required placeholder="192.168.1.100">
+                </div>
+                <div class="form-group">
+                    <label for="txScore">Legitimacy Score:</label>
+                    <input type="number" id="txScore" min="0" max="100" required placeholder="85.5">
+                </div>
+                <div class="form-group">
+                    <label for="txTrustworthy">Is Trustworthy:</label>
+                    <select id="txTrustworthy" required>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="txTtlObfuscation">TTL Obfuscation:</label>
+                    <select id="txTtlObfuscation" required>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="txHeaders">Headers Present:</label>
+                    <input type="text" id="txHeaders" placeholder="User-Agent,Accept,Host" required>
+                </div>
+                <div class="controls">
+                    <button type="submit" class="button success">Add Transaction</button>
+                    <button type="button" class="button" onclick="closeAddTransactionModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script>
+    // Configuration
+const API_BASE_URL = 'http://192.168.0.119:8081/api/blockchain';
+let isConnected = true;
+
+// =============================================================================
+// INITIALIZATION
+// =============================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeTheme();
+    initializeEventListeners();
+    initializeDashboard();
+});
+
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+}
+
+function initializeEventListeners() {
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.onclick = toggleTheme;
+    }
+
+    // Search on Enter key
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchBlockchain();
+            }
         });
+    }
 
-        document.getElementById('theme-toggle').onclick = () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const theme = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            updateThemeIcon(theme);
-        };
+    // Add transaction form
+    const addTransactionForm = document.getElementById('addTransactionForm');
+    if (addTransactionForm) {
+        addTransactionForm.addEventListener('submit', handleAddTransaction);
+    }
+}
 
-        function updateThemeIcon(theme) {
-            const toggle = document.getElementById('theme-toggle');
-            toggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
-        }
-
-        // Sample data based on your logs
-        const sampleTrafficData = [
-            {
-                ip: '192.168.0.119',
-                status: 'pass',
-                endpoint: '/',
-                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                timestamp: '2025-07-12 07:48:36'
-            },
-            {
-                ip: '192.168.0.119',
-                status: 'pass',
-                endpoint: '/api/pow-challenge',
-                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                timestamp: '2025-07-12 07:48:36'
-            },
-            {
-                ip: '10.0.0.15',
-                status: 'fail',
-                endpoint: '/admin',
-                userAgent: 'sqlmap/1.6.12',
-                timestamp: '2025-07-12 07:45:22'
-            },
-            {
-                ip: '172.16.0.8',
-                status: 'suspicious',
-                endpoint: '/api/users',
-                userAgent: 'curl/7.68.0',
-                timestamp: '2025-07-12 07:44:15'
-            }
-        ];
-
-        const sampleAnalysisData = [
-            { ip: '192.168.0.119', requests: 15, rpm: 12.5, risk: 'Low', action: 'Monitor' },
-            { ip: '10.0.0.15', requests: 45, rpm: 32.1, risk: 'High', action: 'Block' },
-            { ip: '172.16.0.8', requests: 8, rpm: 6.2, risk: 'Medium', action: 'Flag' }
-        ];
-
-        const sampleBlockchainData = [
-            {
-                id: 0,
-                hash: 'abc123...',
-                data: 'Genesis Block',
-                timestamp: '2025-07-12 07:00:00',
-                transactions: 0
-            },
-            {
-                id: 1,
-                hash: 'def456...',
-                data: 'Traffic Log #1',
-                timestamp: '2025-07-12 07:15:00',
-                transactions: 5
-            },
-            {
-                id: 2,
-                hash: 'ghi789...',
-                data: 'Security Event',
-                timestamp: '2025-07-12 07:30:00',
-                transactions: 3
-            }
-        ];
-
-        // Load Traffic Data
-        function loadTrafficData(filter = 'all') {
-            const tbody = document.getElementById('trafficTableBody');
-            tbody.innerHTML = '';
-            
-            const filteredData = filter === 'all' 
-                ? sampleTrafficData 
-                : sampleTrafficData.filter(item => item.status === filter);
-
-            filteredData.forEach(item => {
-                const row = document.createElement('tr');
-                row.className = item.status;
-                
-                const statusText = {
-                    'pass': 'Allowed',
-                    'fail': 'Blocked',
-                    'suspicious': 'Suspicious'
-                }[item.status];
-
-                row.innerHTML = `
-                    <td class="ip-address">${item.ip}</td>
-                    <td>${statusText}</td>
-                    <td class="endpoint">${item.endpoint}</td>
-                    <td class="user-agent" title="${item.userAgent}">${item.userAgent}</td>
-                    <td class="timestamp">${item.timestamp}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Load Analysis Data
-        function loadAnalysisData() {
-            const tbody = document.getElementById('analysisTableBody');
-            tbody.innerHTML = '';
-
-            sampleAnalysisData.forEach(item => {
-                const row = document.createElement('tr');
-                
-                const riskClass = {
-                    'Low': 'success',
-                    'Medium': 'warning',
-                    'High': 'danger'
-                }[item.risk];
-
-                row.innerHTML = `
-                    <td class="ip-address">${item.ip}</td>
-                    <td>${item.requests}</td>
-                    <td>${item.rpm}</td>
-                    <td><span class="status-badge ${riskClass}">${item.risk}</span></td>
-                    <td>
-                        <button class="button" style="padding: 0.2rem 0.4rem; font-size: 10px;">
-                            ${item.action}
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Load Blockchain Data
-        function loadBlockchainData() {
-            const container = document.getElementById('blockchainContainer');
-            container.innerHTML = '';
-
-            sampleBlockchainData.forEach(block => {
-                const blockElement = document.createElement('div');
-                blockElement.className = 'block';
-                blockElement.innerHTML = `
-                    <div class="block-title">Block #${block.id}</div>
-                    <div class="block-info">
-                        <strong>Hash:</strong> ${block.hash}<br>
-                        <strong>Data:</strong> ${block.data}<br>
-                        <strong>Transactions:</strong> ${block.transactions}<br>
-                        <strong>Time:</strong> ${block.timestamp}
-                    </div>
-                `;
-                container.appendChild(blockElement);
-            });
-        }
-
-        // Event Handlers
-        function refreshLogs() {
-            const icon = document.getElementById('refresh-icon');
-            icon.classList.add('refresh-indicator');
-            
-            // Simulate API call
-            setTimeout(() => {
-                loadTrafficData();
-                icon.classList.remove('refresh-indicator');
-            }, 1000);
-        }
-
-        function runAnalysis() {
-            // Simulate analysis
-            loadAnalysisData();
-            alert('Analysis completed! Check the Analysis Dashboard for results.');
-        }
-
-        function clearLogs() {
-            if (confirm('Are you sure you want to clear all logs?')) {
-                document.getElementById('trafficTableBody').innerHTML = '';
-                document.getElementById('analysisTableBody').innerHTML = '';
-            }
-        }
-
-        function addBlock() {
-            // Simulate adding a new block
-            const newBlock = {
-                id: sampleBlockchainData.length,
-                hash: 'new' + Math.random().toString(36).substr(2, 6) + '...',
-                data: 'New Traffic Log',
-                timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                transactions: Math.floor(Math.random() * 10) + 1
-            };
-            sampleBlockchainData.push(newBlock);
-            loadBlockchainData();
-        }
-
-        function refreshBlockchain() {
-            loadBlockchainData();
-        }
-
-        // Filter Event
-        document.getElementById('statusFilter').addEventListener('change', (e) => {
-            loadTrafficData(e.target.value);
-        });
-
-        // Initialize Dashboard
-        loadTrafficData();
-        loadAnalysisData();
-        loadBlockchainData();
-
+async function initializeDashboard() {
+    try {
+        updateConnectionStatus(true);
+        await refreshAllData();
         // Auto-refresh every 30 seconds
-        setInterval(() => {
-            loadTrafficData();
-            loadAnalysisData();
-        }, 30000);
-    </script>
+        setInterval(refreshAllData, 30000);
+    } catch (error) {
+        console.error('Dashboard initialization failed:', error);
+        updateConnectionStatus(false);
+    }
+}
+
+// =============================================================================
+// THEME MANAGEMENT
+// =============================================================================
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const newTheme = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+}
+
+function updateThemeIcon(theme) {
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+        toggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    }
+}
+
+// =============================================================================
+// API FUNCTIONS
+// =============================================================================
+
+async function apiCall(endpoint, options = {}) {
+    try {
+        const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            return await response.json();
+        } else {
+            return await response.text();
+        }
+    } catch (error) {
+        console.error('API call failed:', error);
+        throw error;
+    }
+}
+
+async function getBlockchain() {
+    return await apiCall('/chain');
+}
+
+async function getPendingTransactions() {
+    return await apiCall('/pending');
+}
+
+async function addTransaction(txData) {
+    return await apiCall('/add-transaction', {
+        method: 'POST',
+        body: JSON.stringify(txData)
+    });
+}
+
+async function mineBlockchain() {
+    return await apiCall('/mine');
+}
+
+async function searchBlockchainByTerm(searchTerm) {
+    return await apiCall('/search', {
+        method: 'POST',
+        body: JSON.stringify({ search_term: searchTerm })
+    });
+}
+
+async function searchPendingTransactions(searchTerm) {
+    return await apiCall(`/search/${searchTerm}`);
+}
+
+// =============================================================================
+// DATA PROCESSING
+// =============================================================================
+
+async function getBlockchainStats() {
+    try {
+        const [blockchainData, pendingTxData] = await Promise.all([
+            getBlockchain(),
+            getPendingTransactions()
+        ]);
+        
+        let totalTransactions = 0;
+        let blockedIPs = 0;
+        let trustworthyIPs = 0;
+        
+        if (blockchainData.chain) {
+            blockchainData.chain.forEach(block => {
+                if (block.transactions) {
+                    totalTransactions += block.transactions.length;
+                    block.transactions.forEach(tx => {
+                        if (tx.is_trustworthy === false) {
+                            blockedIPs++;
+                        } else if (tx.is_trustworthy === true) {
+                            trustworthyIPs++;
+                        }
+                    });
+                }
+            });
+        }
+        
+        return {
+            totalBlocks: blockchainData.length || 0,
+            pendingTransactions: pendingTxData.length || 0,
+            totalTransactions,
+            blockedIPs,
+            trustworthyIPs
+        };
+    } catch (error) {
+        console.error('Failed to get blockchain stats:', error);
+        return {
+            totalBlocks: 0,
+            pendingTransactions: 0,
+            totalTransactions: 0,
+            blockedIPs: 0,
+            trustworthyIPs: 0
+        };
+    }
+}
+
+async function searchAllTransactions(searchTerm) {
+    try {
+        const [blockchainResults, pendingResults] = await Promise.all([
+            searchBlockchainByTerm(searchTerm),
+            searchPendingTransactions(searchTerm)
+        ]);
+        
+        return {
+            blockchain: blockchainResults,
+            pending: pendingResults
+        };
+    } catch (error) {
+        console.error('Search failed:', error);
+        throw error;
+    }
+}
+
+// =============================================================================
+// UI UPDATE FUNCTIONS
+// =============================================================================
+
+function updateConnectionStatus(connected) {
+    isConnected = connected;
+    const statusBadge = document.getElementById('status-badge');
+    if (statusBadge) {
+        if (connected) {
+            statusBadge.textContent = 'System Online';
+            statusBadge.className = 'status-badge status-online';
+        } else {
+            statusBadge.textContent = 'System Offline';
+            statusBadge.className = 'status-badge status-offline';
+        }
+    }
+}
+
+function updateStatistics(stats) {
+    const elements = {
+        'total-blocks': stats.totalBlocks,
+        'pending-tx': stats.pendingTransactions,
+        'total-transactions': stats.totalTransactions,
+        'blocked-ips': stats.blockedIPs
+    };
+    
+    Object.entries(elements).forEach(([id, value]) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = value || 0;
+        }
+    });
+}
+
+function loadPendingTransactions(data) {
+    const tbody = document.getElementById('pendingTableBody');
+    if (!tbody) return;
+
+    tbody.innerHTML = '';
+
+    // ✅ Check for the correct property
+    if (!data || !Array.isArray(data.pending_transactions)) {
+        console.warn("Invalid or missing pending_transactions in data:", data);
+        tbody.innerHTML = '<tr><td colspan="6" class="loading">No pending transactions</td></tr>';
+        return;
+    }
+
+    const validTxs = data.pending_transactions.filter(tx => 'ip' in tx && 'is_trustworthy' in tx);
+
+    if (validTxs.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="loading">No pending transactions</td></tr>';
+        return;
+    }
+
+    validTxs.forEach(tx => {
+        const row = document.createElement('tr');
+        row.className = tx.is_trustworthy ? 'pass' : 'fail';
+
+        const timestamp = tx.timestamp
+            ? new Date(tx.timestamp * 1000).toLocaleString()
+            : 'N/A';
+
+        // Normalize headers_present
+        let headersPresent = 'N/A';
+        if (tx.headers_present) {
+            if (Array.isArray(tx.headers_present)) {
+                headersPresent = tx.headers_present.join(', ');
+            } else if (typeof tx.headers_present === 'string') {
+                headersPresent = tx.headers_present;
+            }
+        }
+
+        row.innerHTML = `
+            <td class="ip-address">${tx.ip || 'N/A'}</td>
+            <td>${tx.legitimacy_score ?? 'N/A'}</td>
+            <td>${tx.is_trustworthy ? 'Yes' : 'No'}</td>
+            <td>${tx.ttl_obfuscation ? 'Yes' : 'No'}</td>
+            <td>${headersPresent}</td>
+            <td class="timestamp">${timestamp}</td>
+        `;
+
+        tbody.appendChild(row);
+    });
+}
+
+
+
+
+function loadBlockchainData(blockchainData) {
+    const container = document.getElementById('blockchainContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+
+    if (!blockchainData || !blockchainData.chain || blockchainData.chain.length === 0) {
+        container.innerHTML = '<div class="loading">No blocks found</div>';
+        return;
+    }
+
+    blockchainData.chain.forEach(block => {
+        const blockElement = document.createElement('div');
+        blockElement.className = 'block';
+        
+        const timestamp = block.timestamp ? new Date(block.timestamp * 1000).toLocaleString() : 'N/A';
+        const transactionCount = block.transactions ? block.transactions.length : 0;
+        const shortHash = block.hash ? block.hash.substring(0, 12) + '...' : 'N/A';
+        
+        blockElement.innerHTML = `
+            <div class="block-title">Block #${block.index}</div>
+            <div class="block-info">
+                <strong>Hash:</strong> ${shortHash}<br>
+                <strong>Previous Hash:</strong> ${block.previous_hash ? block.previous_hash.substring(0, 12) + '...' : 'N/A'}<br>
+                <strong>Transactions:</strong> ${transactionCount}<br>
+                <strong>Nonce:</strong> ${block.nonce || 'N/A'}<br>
+                <strong>Time:</strong> ${timestamp}
+            </div>
+        `;
+        
+        blockElement.addEventListener('click', () => showBlockDetails(block));
+        container.appendChild(blockElement);
+    });
+}
+
+function loadSearchResults(results) {
+    const tbody = document.getElementById('searchResultsBody');
+    if (!tbody) return;
+    
+    tbody.innerHTML = '';
+    
+    let hasResults = false;
+    
+    // Add blockchain results
+    if (results.blockchain && results.blockchain.found && results.blockchain.results.length > 0) {
+        hasResults = true;
+        results.blockchain.results.forEach(result => {
+            const row = createSearchResultRow(result.transaction, `Block ${result.block_index}`);
+            tbody.appendChild(row);
+        });
+    }
+    
+    // Add pending transaction results
+    if (results.pending && results.pending.found && results.pending.results.length > 0) {
+        hasResults = true;
+        results.pending.results.forEach(tx => {
+            const row = createSearchResultRow(tx, 'Pending');
+            row.classList.add('pending');
+            tbody.appendChild(row);
+        });
+    }
+    
+    if (!hasResults) {
+        tbody.innerHTML = '<tr><td colspan="5" class="loading">No results found</td></tr>';
+    }
+}
+
+function createSearchResultRow(tx, blockInfo) {
+    const row = document.createElement('tr');
+    const statusClass = tx.is_trustworthy ? 'pass' : 'fail';
+    row.className = statusClass;
+    
+    const timestamp = tx.timestamp ? new Date(tx.timestamp * 1000).toLocaleString() : 'N/A';
+    
+    row.innerHTML = `
+        <td>${blockInfo}</td>
+        <td class="ip-address">${tx.ip || 'N/A'}</td>
+        <td>${tx.legitimacy_score || 'N/A'}</td>
+        <td>${tx.is_trustworthy ? 'Yes' : 'No'}</td>
+        <td class="timestamp">${timestamp}</td>
+    `;
+    
+    return row;
+}
+
+function showBlockDetails(block) {
+    const details = {
+        'Block Index': block.index,
+        'Hash': block.hash,
+        'Previous Hash': block.previous_hash,
+        'Nonce': block.nonce,
+        'Timestamp': block.timestamp ? new Date(block.timestamp * 1000).toLocaleString() : 'N/A',
+        'Transactions': block.transactions ? block.transactions.length : 0
+    };
+    
+    let message = 'Block Details:\n\n';
+    for (const [key, value] of Object.entries(details)) {
+        message += `${key}: ${value}\n`;
+    }
+    
+    if (block.transactions && block.transactions.length > 0) {
+        const trustworthy = block.transactions.filter(tx => tx.is_trustworthy).length;
+        const blocked = block.transactions.filter(tx => !tx.is_trustworthy).length;
+        
+        message += `\nTransaction Summary:\n`;
+        message += `- Trustworthy: ${trustworthy}\n`;
+        message += `- Blocked: ${blocked}\n\n`;
+        
+        message += 'Transaction Details:\n';
+        block.transactions.forEach((tx, index) => {
+            message += `${index + 1}. IP: ${tx.ip}, Score: ${tx.legitimacy_score}, Trustworthy: ${tx.is_trustworthy ? 'Yes' : 'No'}\n`;
+        });
+    }
+    
+    alert(message);
+}
+
+// =============================================================================
+// EVENT HANDLERS
+// =============================================================================
+
+async function refreshAllData() {
+    try {
+        const [blockchainData, pendingTxData, stats] = await Promise.all([
+            getBlockchain(),
+            getPendingTransactions(),
+            getBlockchainStats()
+        ]);
+        
+        loadBlockchainData(blockchainData);
+        loadPendingTransactions(pendingTxData);
+        updateStatistics(stats);
+        updateConnectionStatus(true);
+    } catch (error) {
+        console.error('Failed to refresh data:', error);
+        updateConnectionStatus(false);
+    }
+}
+
+async function refreshPendingTransactions() {
+    const icon = document.getElementById('refresh-pending-icon');
+    if (icon) icon.classList.add('refresh-indicator');
+    
+    try {
+        const pendingTx = await getPendingTransactions();
+        loadPendingTransactions(pendingTx);
+        updateConnectionStatus(true);
+    } catch (error) {
+        console.error('Failed to refresh pending transactions:', error);
+        updateConnectionStatus(false);
+        const tbody = document.getElementById('pendingTableBody');
+        if (tbody) {
+            tbody.innerHTML = '<tr><td colspan="5" class="error-message">Failed to load pending transactions</td></tr>';
+        }
+    } finally {
+        if (icon) icon.classList.remove('refresh-indicator');
+    }
+}
+
+async function mineBlock() {
+    const button = event.target;
+    const originalText = button.textContent;
+    
+    try {
+        button.textContent = 'Mining...';
+        button.disabled = true;
+        
+        const result = await mineBlockchain();
+        
+        if (result && result !== "No transactions to mine") {
+            alert('Block mined successfully!');
+            await refreshAllData();
+        } else {
+            alert('No transactions to mine');
+        }
+    } catch (error) {
+        console.error('Failed to mine block:', error);
+        alert('Failed to mine block: ' + error.message);
+    } finally {
+        button.textContent = originalText;
+        button.disabled = false;
+    }
+}
+
+async function searchBlockchain() {
+    const searchTerm = document.getElementById('searchInput').value.trim();
+    if (!searchTerm) {
+        alert('Please enter a search term');
+        return;
+    }
+    
+    try {
+        const results = await searchAllTransactions(searchTerm);
+        loadSearchResults(results);
+    } catch (error) {
+        console.error('Search failed:', error);
+        const tbody = document.getElementById('searchResultsBody');
+        if (tbody) {
+            tbody.innerHTML = '<tr><td colspan="5" class="error-message">Search failed</td></tr>';
+        }
+    }
+}
+
+async function handleAddTransaction(e) {
+    e.preventDefault();
+    
+    const txData = {
+        ip: document.getElementById('txIp').value,
+        legitimacy_score: parseFloat(document.getElementById('txScore').value),
+        is_trustworthy: document.getElementById('txTrustworthy').value === 'true',
+        ttl_obfuscation: document.getElementById('txTtlObfuscation').value === 'true',
+        headers_present: document.getElementById('txHeaders').value.split(',').map(h => h.trim())
+    };
+    
+    try {
+        await addTransaction(txData);
+        alert('Transaction added successfully!');
+        closeAddTransactionModal();
+        await refreshAllData();
+    } catch (error) {
+        console.error('Failed to add transaction:', error);
+        alert('Failed to add transaction: ' + error.message);
+    }
+}
+
+// =============================================================================
+// MODAL FUNCTIONS
+// =============================================================================
+
+function showAddTransactionModal() {
+    const modal = document.getElementById('addTransactionModal');
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}
+
+function closeAddTransactionModal() {
+    const modal = document.getElementById('addTransactionModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+    
+    const form = document.getElementById('addTransactionForm');
+    if (form) {
+        form.reset();
+    }
+}
+</script>
 </body>
 </html>
