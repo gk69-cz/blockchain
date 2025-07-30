@@ -2,6 +2,7 @@ from collections import defaultdict, deque
 import json
 from logging.handlers import RotatingFileHandler
 import os
+import subprocess
 from flask import Flask, render_template, request, jsonify, g, session
 import time
 import threading
@@ -144,100 +145,13 @@ app.config['REQUIRE_POW'] = True  # Set True if PoW is required
 # Setup Logger
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("TrafficAnalyzer")
-# to update 
-# Run setup code with app context
-@app.before_request
-# def ensure_initialized():
-#     if not app.config.get('INITIALIZED', False):
-        
-#         # Check if PoW verification is needed
-#         if app.config.get('REQUIRE_POW', True):
-#             app.config['POW_REQUIRED'] = True
-#             app.config['INITIALIZED'] = True
-#         else:
-#             analyzer_thread = threading.Thread(target=periodic_analyzer(client_ip), daemon=True)
-#             analyzer_thread.start()
-            
-#         app.config['INITIALIZED'] = True
-
-# # Traffic analysis middleware
-# @app.before_request
-# def analyze_request():
-#     # Get client IP
-#     client_ip = request.remote_addr
-    
-#     # Get request timestamp
-#     request_time = time.time()
-    
-#     # Extract useful request information
-#     user_agent = request.headers.get('User-Agent', '')
-#     referrer = request.headers.get('Referer', '')
-#     endpoint = request.path
-    
-#     if is_suspicious(user_agent, request.headers):
-#         # Log suspicious request
-#         # logger.warning(f"Suspicious request detected from {client_ip} with user agent: {user_agent}")
-#         try:
-#             transaction_data = {
-#                 "ip": "192.168.1.1",
-#                 "headers_present": True,
-#                 "ttl_obfuscation": False,
-#                 "legitimacy_score": 0.85,
-#                 "is_trustworthy": True
-#             }
-#             result = BlockchainInterface.submit_transaction(transaction_data)
-#             print("Transaction result:", result)
-#         except ValueError as e:
-#             print("Error:", e)
-    
-#     if request.headers.get('X-Forwarded-For'):
-#         forwarded_ips = request.headers.get('X-Forwarded-For').split(',')
-#         client_ip = forwarded_ips[0].strip()
-#     elif request.headers.get('X-Real-IP'):
-#         client_ip = request.headers.get('X-Real-IP')
-    
-    
-#     # Try to get TTL value (may require additional privileges)
-#     ttl = get_ttl_value(client_ip)
-#     # Store request data with thread safety
-#     with data_lock:
-#         ip_data = ip_stats[client_ip]
-        
-#         # First request from this IP
-#         if ip_data["first_seen"] == 0:
-#             ip_data["first_seen"] = request_time
-#             ip_data["is_residential"] = True
-        
-#         # Update statistics
-#         ip_data["last_seen"] = request_time
-#         ip_data["request_count"] += 1
-#         ip_data["endpoints_accessed"].add(endpoint)
-#         ip_data["last_requests"].append(request_time)
-        
-#         # Check headers
-#         if user_agent:
-#             ip_data["user_agents"].add(user_agent)
-#         if referrer:
-#             ip_data["referrers"].add(referrer)
-        
-#         # Check if important headers are missing or invalid
-#         ip_data["headers_present"] = bool(user_agent and not(is_suspicious(user_agent, request.headers)))
-      
-#         # Store TTL if available
-#         if ttl:
-#             ip_data["ttl_values"].add(ttl)
-#             if ttl in TTL_SUSPICIOUS_VALUES:
-#                 ip_data["ttl_obfuscation"] = True  
-#         # print(ip_data)
-        # generate_bot_profile(client_ip,ip_data)  
-#     g.start_time = time.time()
-    
-#  to update finished        
 
 
 def start_global_analyzer():
     stop_event = threading.Event()
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    user_agent = request.headers.get('User-Agent', '').lower()
+    print(f"Starting global analyzer for IP: {client_ip} with User-Agent: {user_agent}")
     if blockchain.check_ip_exists(client_ip):
             logger.info(f"Analyzer already running for IP: {client_ip}")
             return 
@@ -259,6 +173,15 @@ def unified_before_request():
 
     # Get client IP
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    print(f"iiiiiii")
+    print(f"iiiiiii")
+    print(f"iiiiiii")
+    print(f"iiiiiii")
+    print(f"Received request from {client_ip}")
+    print(f"iiiiiii")
+    print(f"iiiiiii")
+    print(f"iiiiiii")
+    print(f"iiiiiii")
     request_time = time.time()
     user_agent = request.headers.get('User-Agent', '')
     referrer = request.headers.get('Referer', '')
@@ -275,13 +198,12 @@ def unified_before_request():
                 "ttl_obfuscation": False,
                 "legitimacy_score": 0.0,
                 "is_trustworthy": False
+
             }
             blockchain.add_transaction(transaction_data)
             logger.info(f"Suspicious transaction submitted to blockchain for {client_ip}")
         except ValueError as e:
-            logger.error(f"Failed to submit suspicious transaction for {client_ip}: {e}")
-
-        
+            logger.error(f"Failed to submit suspicious transaction for {client_ip}: {e}")    
 
     ttl = get_ttl_value(client_ip)
 
@@ -323,6 +245,7 @@ def unified_before_request():
         logger.debug(f"Stats updated for {client_ip}: {stats}")
 
     g.start_time = time.time()
+    analyze_traffic(client_ip)
 
 
 @app.after_request
@@ -418,6 +341,116 @@ def api_search_by_ip():
 # -----------------------------
 # Run Server
 # -----------------------------
+
+# for quick action
+@app.route('/api/analyze-now-small', methods=['GET'])
+def api_analyze_now():
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    user_agent = request.headers.get('User-Agent', '').lower()
+    all_headers = dict(request.headers)
+    try:
+        # Run traffic analysis directly (synchronous)
+        results = analyze_traffic(client_ip)
+        
+        if client_ip in results:
+            verdict = results[client_ip].get("is_suspicious", False)
+            return jsonify({
+                "ip": client_ip,
+                "is_suspicious": verdict,
+                "details": results[client_ip]
+            }), 200
+        else:
+            return jsonify({
+                "ip": client_ip,
+                "error": "IP not found in analysis results."
+            }), 404
+
+    except Exception as e:
+        logger.error(f"Error in real-time analysis for {client_ip}: {e}")
+        return jsonify({"error": str(e)}), 500
+
+def detect_syn_flood(threshold=100):
+    while True:
+        try:
+            # Count connections in SYN_RECV state
+            result = subprocess.run(
+                ["netstat", "-ant"], capture_output=True, text=True
+            )
+            syn_recv_count = sum(1 for line in result.stdout.splitlines() if "SYN_RECV" in line)
+            if syn_recv_count > threshold:
+                logger.warning(f"Possible SYN flood detected! SYN_RECV count: {syn_recv_count}")
+        except Exception as e:
+            logger.error(f"SYN flood detection error: {e}")
+        time.sleep(5)  # Check every 5 seconds
+
+# Start SYN flood detection in a background thread
+threading.Thread(target=detect_syn_flood, daemon=True).start()
+
+# for deep analysis
+@app.route('/api/analyze-now', methods=['GET'])
+def api_deep_analyze():
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    user_agent = request.headers.get('User-Agent', '').lower()
+
+    try:
+        logger.info(f"Starting deep analysis for IP: {client_ip} (may take time)")
+        syn_flood_threshold = 100
+        result = subprocess.run(
+            ["netstat", "-ant"], capture_output=True, text=True
+        )
+        syn_recv_count = sum(1 for line in result.stdout.splitlines() if "SYN_RECV" in line)
+        if syn_recv_count > syn_flood_threshold:
+            logger.warning(f"SYN flood detected during analyze-now! SYN_RECV count: {syn_recv_count}")
+            transaction_data = {
+                "ip": client_ip,
+                "attack_type": "SYN_FLOOD",
+                "syn_recv_count": syn_recv_count,
+                "headers_present": False,
+                "ttl_obfuscation": False,
+                "legitimacy_score": 0.0,
+                "is_trustworthy": False
+            }
+            result = blockchain.add_transaction(transaction_data)
+            logger.info(f"SYN flood transaction submitted for {client_ip}: {result}")
+
+        # Run full analysis (blocking call)
+        results = analyze_traffic(client_ip)
+
+        if client_ip in results:
+            analysis_result = results[client_ip]
+            verdict = analysis_result.get("is_suspicious", False)
+
+            logger.info(f"Deep analysis complete for {client_ip}. Verdict: {'SUSPICIOUS' if verdict else 'CLEAN'}")
+            results[client_ip].is_suspicious
+            transaction_data = {
+                                    "ip": client_ip,
+                                    "headers_present": results[client_ip]["traffic_indicators"].get("missing_headers") is False,
+                                    "ttl_obfuscation": results[client_ip]["packet_indicators"].get("ttl_obfuscation", False),
+                                    "legitimacy_score": score_save_bot(results[client_ip]),  
+                                    "is_trustworthy": False
+                    }
+            logger.info(f"Blockchain transaction banger10")
+            result = blockchain.add_transaction(transaction_data)
+            logger.info(f"Blockchain transaction submitted for {client_ip}: {result}")
+            return jsonify({
+                "ip": client_ip,
+                "user_agent": user_agent,
+                "analysis": analysis_result,
+                "is_suspicious": verdict
+            }), 200
+            
+
+        else:
+            return jsonify({
+                "ip": client_ip,
+                "error": "No analysis data found for IP."
+            }), 404
+
+    except Exception as e:
+        logger.exception(f"Deep analysis failed for {client_ip}: {e}")
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route('/api/start-analyzer', methods=['GET'])
 def start_analyzer_endpoint():
     # Check if PoW has been verified from session
@@ -434,9 +467,10 @@ def start_analyzer_endpoint():
         # Start analyzer thread if not already started
         if not app.config.get('ANALYZER_STARTED', False):
             stop_event = threading.Event()
+            print(f"Starting analyzer for client IP777777777777777777: {client_ip}")
             analyzer_thread = threading.Thread(target=periodic_analyzer, args=(client_ip, stop_event), daemon=True)
             analyzer_thread.start()
-            # # logger.info("Traffic analyzer started after PoW v")
+            # logger.info("Traffic analyzer started after PoW v")
             app.config['ANALYZER_STARTED'] = True
             return jsonify({'status': 'analyzer started'})
         return jsonify({'status': 'analyzer already running'})
@@ -481,6 +515,7 @@ def periodic_analyzer(client_ip, stop_event):
     while not stop_event.is_set():
         try:
             if client_ip:
+                logger.info(f"Running periodic analyzer for IP: {client_ip}")
                 results = analyze_traffic(client_ip)
                 if client_ip in results and results[client_ip]["is_suspicious"]:
                     logger.warning(f"Detected suspicious activity from {client_ip}")
@@ -491,10 +526,10 @@ def periodic_analyzer(client_ip, stop_event):
                                     "ip": ip,
                                     "headers_present": results[ip]["traffic_indicators"].get("missing_headers") is False,
                                     "ttl_obfuscation": results[ip]["packet_indicators"].get("ttl_obfuscation", False),
-                                    "legitimacy_score": score_save_bot(results[ip]),  # Because it's suspicious (0% legitimate)
-                                    "is_trustworthy": False
+                                    "legitimacy_score": score_save_bot(results[ip]),  
+                                    "is_trustworthy": not bool(data["is_suspicious"])
                                 }
-
+                                logger.info(f"Blockchain transaction banger1")
                                 result = blockchain.add_transaction(transaction_data)
                                 logger.info(f"Blockchain transaction submitted for {ip}: {result}")
                                 break
@@ -508,9 +543,10 @@ def periodic_analyzer(client_ip, stop_event):
                                     "headers_present": results[ip]["traffic_indicators"].get("missing_headers") is False,
                                     "ttl_obfuscation": results[ip]["packet_indicators"].get("ttl_obfuscation", False),
                                     "legitimacy_score": score_save_bot(results[ip]),  
-                                    "is_trustworthy": False
-                                }
+                                    "is_trustworthy": not bool(data["is_suspicious"])
 
+                                }
+                                logger.info(f"Blockchain transaction banger2 data: {data}")
                                 result = blockchain.add_transaction(transaction_data)
                                 logger.info(f"Blockchain transaction submitted for {ip}: {result}")
                                 break
@@ -519,6 +555,7 @@ def periodic_analyzer(client_ip, stop_event):
                                 logger.info(f"No suspicious activity detected for {client_ip}")
                     # time.sleep(60)  
             else:
+                logger.info("Error in periodic analyzer5656")
                 results = analyze_traffic()
                 suspicious_count = sum(1 for ip, data in results.items() if data["is_suspicious"])
                 if suspicious_count > 0:
@@ -530,9 +567,10 @@ def periodic_analyzer(client_ip, stop_event):
                                     "headers_present": results[ip]["traffic_indicators"].get("missing_headers") is False,
                                     "ttl_obfuscation": results[ip]["packet_indicators"].get("ttl_obfuscation", False),
                                     "legitimacy_score": score_save_bot(results[ip]),   # Because it's suspicious (0% legitimate)
-                                    "is_trustworthy": False
+                                    "is_trustworthy": bool(data["is_suspicious"])
+
                                 }
-                                
+                                logger.info(f"Blockchain transaction banger3 ")
                                 result = blockchain.add_transaction(transaction_data)
                                 logger.info(f"Blockchain transaction submitted for {ip}: {result}")
                             except Exception:
@@ -582,7 +620,7 @@ def traffic_protected(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         client_ip = request.remote_addr
-        # logger.info(f"Received request fromeeeeeeeeeee {client_ip}")
+        logger.info(f"Received request fromeeeeeeeeeee {client_ip}")
         # Start analyzer thread only if not already running for this IP
         if blockchain.check_ip_exists(client_ip):
             logger.info(f"Analyzer already running for IP: {client_ip}")
@@ -590,8 +628,7 @@ def traffic_protected(f):
         else:
             if client_ip not in running_analyzers:
                 start_global_analyzer()
-                # logger.info(f"Started background analyzer for IP: {client_ip}")
-
+                logger.info(f"Started background analyzer for IP: {client_ip}")
             # Perform immediate analysis to block suspicious traffic
             results = analyze_traffic(client_ip)
 
@@ -658,14 +695,7 @@ def index():
     """
 
 if __name__ == "__main__":
-    # Start the Flask app
-    # schedule_extraction()
-    # Initialize rate limiter for per-IP tracking
-    # limiter = Limiter(
-    #     get_remote_address,
-    #     app=app,
-    #     default_limits=["100 per minute"]  # global limit per IP
-    # )
+    schedule_extraction()   
     app.run(host="0.0.0.0", port=8081, debug=False)
     
     

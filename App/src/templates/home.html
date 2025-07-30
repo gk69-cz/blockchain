@@ -697,16 +697,22 @@ async function mineBlockchain() {
     return await apiCall('/mine');
 }
 
-async function searchBlockchainByTerm(searchTerm) {
+async function searchBlockchainByTerm(ipAddress) {
     return await apiCall('/search', {
         method: 'POST',
-        body: JSON.stringify({ search_term: searchTerm })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ip: ipAddress })
     });
 }
 
-async function searchPendingTransactions(searchTerm) {
-    return await apiCall(`/search/${searchTerm}`);
+async function searchPendingTransactions(ipAddress) {
+    return await apiCall('/search', {   // adjust endpoint as needed
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ip: ipAddress })
+    });
 }
+
 
 // =============================================================================
 // DATA PROCESSING
@@ -830,7 +836,7 @@ function loadPendingTransactions(data) {
 
     validTxs.forEach(tx => {
         const row = document.createElement('tr');
-        row.className = tx.is_trustworthy ? 'pass' : 'fail';
+        row.className = tx.is_trustworthy ? 'fail' : 'pass';
 
         const timestamp = tx.timestamp
             ? new Date(tx.timestamp * 1000).toLocaleString()
@@ -1086,10 +1092,6 @@ async function handleAddTransaction(e) {
         alert('Failed to add transaction: ' + error.message);
     }
 }
-
-// =============================================================================
-// MODAL FUNCTIONS
-// =============================================================================
 
 function showAddTransactionModal() {
     const modal = document.getElementById('addTransactionModal');

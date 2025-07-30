@@ -47,7 +47,7 @@ class Block:
 
 
 class Blockchain:
-    def __init__(self, blockchain_file="blockchain.json", difficulty=4):
+    def __init__(self, blockchain_file="blockchain.json", difficulty=5):
         self.blockchain_file = blockchain_file
         self.difficulty = difficulty
         self.unconfirmed_transactions = []
@@ -127,6 +127,7 @@ class Blockchain:
         return False
     def add_transaction(self, transaction):
         """Add a new transaction to the pending transactions"""
+        print(f"Transaction got: {transaction}")
         required_fields = ["ip", "headers_present", "ttl_obfuscation", "legitimacy_score", "is_trustworthy"]
         for field in required_fields:
             if field not in transaction:
@@ -168,12 +169,11 @@ class Blockchain:
             ip = tx.get("ip")
             if ip:
                 if ip in seen_ips:
-                    continue  # skip duplicates
-                if self.check_ip_exists(ip):  # redundant since it's from unconfirmed
+                    continue  
+                if self.check_ip_exists(ip):  
                     seen_ips.add(ip)
                     unique_transactions.append(tx)
             else:
-                # If transaction has no IP (like system/internal tx), always include
                 unique_transactions.append(tx)
 
         if not unique_transactions:
