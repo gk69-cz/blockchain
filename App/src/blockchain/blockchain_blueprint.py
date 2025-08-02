@@ -25,7 +25,7 @@ def api_add_transaction():
 
 @app.route('/api/blockchain/mine', methods=['GET'])
 def api_mine():
-    """Mine pending transactions into a block"""
+    # to add more logic
     result = blockchain.mine()
     if result:
         return jsonify({
@@ -35,10 +35,19 @@ def api_mine():
     else:
         return jsonify({"message": "No transactions to mine"}), 200
 
+@app.route('/api/blockchain/usermine', methods=['GET'])
+def api_mine():
+    result = blockchain.usermine()
+    if result:
+        return jsonify({
+            "message": f"Block #{result['index']} mined successfully",
+            "details": result
+        }), 201
+    else:
+        return jsonify({"message": "No transactions to mine"}), 200
 
 @app.route('/api/blockchain/chain', methods=['GET'])
 def api_get_chain():
-    """Get full blockchain"""
     chain = blockchain.get_chain()
     return jsonify(chain), 200
 

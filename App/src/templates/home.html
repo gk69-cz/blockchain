@@ -102,6 +102,7 @@
             height: calc(100vh - 80px);
             gap: 1rem;
             padding: 1rem;
+            overflow: scroll;
         }
 
         .stats-grid {
@@ -405,6 +406,30 @@
             cursor: pointer;
         }
 
+        .timer-display {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff6b35;
+    background: rgba(255, 107, 53, 0.1);
+   
+    border-radius: 6px;
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    margin-left: 10px;
+}
+
+.timer-display.warning {
+    color: #ff3333;
+    background: rgba(255, 51, 51, 0.1);
+    border-color: rgba(255, 51, 51, 0.3);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
         .close:hover {
             color: var(--danger);
         }
@@ -480,6 +505,7 @@
                             <th>Score</th>
                             <th>Trustworthy</th>
                             <th>TTL Obfuscation</th>
+                            <th>Headers Present</th>
                             <th>Timestamp</th>
                         </tr>
                     </thead>
@@ -517,6 +543,36 @@
             </div>
         </div>
 
+        <div class="traffic-section">
+        <div class="section-header">
+            <h2 class="section-title">User Created Blocks</h2>
+            <div class="controls">
+                <input type="text" id="searchInput" placeholder="Search for IP address..." style="min-width: 200px;">
+                <button class="button warning" onclick="searchUserBlocks()">Search</button>
+                <button class="button primary" onclick="refreshUserBlocks()">
+                    <span id="refresh-userblocks-icon">🔄</span> Refresh
+                </button>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>IP Address</th>
+                        <th>Hex Key</th>
+                        <th>Previous Hash</th>
+                        <th>Transactions</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="userBlocksTableBody">
+                    <tr><td colspan="6" class="loading">Loading user blocks...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
         <!-- Blockchain Section -->
         <div class="blockchain-section">
             <div class="section-header">
@@ -524,6 +580,8 @@
                 <div class="controls">
                     <button class="button danger" onclick="mineBlock()">Mine Block</button>
                     <button class="button success" onclick="refreshBlockchain()">Refresh</button>
+                    
+                         <div class="timer-display" id="timerDisplay">20:00</div>
                 </div>
             </div>
             <div class="blockchain-container" id="blockchainContainer">
@@ -577,14 +635,41 @@
 const API_BASE_URL = 'http://192.168.0.119:8081/api/blockchain';
 let isConnected = true;
 
-// =============================================================================
-// INITIALIZATION
-// =============================================================================
+let timeRemaining = 20 * 2; 
+let timerInterval;
+
+async function updateTimer() {
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    const timerElement = document.getElementById('timerDisplay');
+    timerElement.textContent = display;
+    
+    if (timeRemaining <= 60) {
+        timerElement.classList.add('warning');
+    }
+    
+    if (timeRemaining <= 0) {
+        clearInterval(timerInterval);
+        timerElement.textContent = "00:00";
+        mineBlockchain(); // Auto-mine when timer reaches 0
+        return;
+    }
+    
+    timeRemaining--;
+}
+
+window.addEventListener('load', function() {
+    timerInterval = setInterval(updateTimer, 1000);
+    updateTimer();
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeTheme();
     initializeEventListeners();
     initializeDashboard();
+
 });
 
 function initializeTheme() {
@@ -617,6 +702,7 @@ function initializeEventListeners() {
     }
 }
 
+
 async function initializeDashboard() {
     try {
         updateConnectionStatus(true);
@@ -629,9 +715,6 @@ async function initializeDashboard() {
     }
 }
 
-// =============================================================================
-// THEME MANAGEMENT
-// =============================================================================
 
 function toggleTheme() {
     const current = document.documentElement.getAttribute('data-theme');
@@ -647,10 +730,6 @@ function updateThemeIcon(theme) {
         toggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
     }
 }
-
-// =============================================================================
-// API FUNCTIONS
-// =============================================================================
 
 async function apiCall(endpoint, options = {}) {
     try {
@@ -681,6 +760,10 @@ async function apiCall(endpoint, options = {}) {
 async function getBlockchain() {
     return await apiCall('/chain');
 }
+async function getuserBlockchain() {
+    return await apiCall('/userblocks');
+}
+
 
 async function getPendingTransactions() {
     return await apiCall('/pending');
@@ -714,14 +797,11 @@ async function searchPendingTransactions(ipAddress) {
 }
 
 
-// =============================================================================
-// DATA PROCESSING
-// =============================================================================
-
 async function getBlockchainStats() {
     try {
         const [blockchainData, pendingTxData] = await Promise.all([
             getBlockchain(),
+            getuserBlockchain(),
             getPendingTransactions()
         ]);
         
@@ -780,9 +860,6 @@ async function searchAllTransactions(searchTerm) {
     }
 }
 
-// =============================================================================
-// UI UPDATE FUNCTIONS
-// =============================================================================
 
 function updateConnectionStatus(connected) {
     isConnected = connected;
@@ -820,7 +897,7 @@ function loadPendingTransactions(data) {
 
     tbody.innerHTML = '';
 
-    // ✅ Check for the correct property
+    
     if (!data || !Array.isArray(data.pending_transactions)) {
         console.warn("Invalid or missing pending_transactions in data:", data);
         tbody.innerHTML = '<tr><td colspan="6" class="loading">No pending transactions</td></tr>';
@@ -842,8 +919,9 @@ function loadPendingTransactions(data) {
             ? new Date(tx.timestamp * 1000).toLocaleString()
             : 'N/A';
 
-        // Normalize headers_present
+        
         let headersPresent = 'N/A';
+        row.className = tx.headersPresent ? 'fail' : 'pass';
         if (tx.headers_present) {
             if (Array.isArray(tx.headers_present)) {
                 headersPresent = tx.headers_present.join(', ');
@@ -857,13 +935,137 @@ function loadPendingTransactions(data) {
             <td>${tx.legitimacy_score ?? 'N/A'}</td>
             <td>${tx.is_trustworthy ? 'Yes' : 'No'}</td>
             <td>${tx.ttl_obfuscation ? 'Yes' : 'No'}</td>
-            <td>${headersPresent}</td>
+            <td>${tx.headersPresent ? 'Yes' : 'No'}</td>
+            
             <td class="timestamp">${timestamp}</td>
         `;
 
         tbody.appendChild(row);
     });
 }
+
+async function getUserBlocks() {
+            try {
+                const response = await fetch('/api/blockchain/userblocks');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching user blocks:', error);
+                throw error;
+            }
+        }
+
+        // Load and display user blocks
+        function loadUserBlocks(data) {
+            const tbody = document.getElementById('userBlocksTableBody');
+            
+            if (!data.success || !data.data || data.data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="loading">No user blocks found</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = '';
+            
+            data.data.forEach(block => {
+                const row = document.createElement('tr');
+                
+                // Format timestamp
+                const timestamp = new Date(block.timestamp * 1000).toLocaleString();
+                
+                // Format previous hash (show first 10 chars + ...)
+                const prevHash = block.previous_hash ? 
+                    (block.previous_hash.length > 10 ? 
+                        block.previous_hash.substring(0, 10) + '...' : 
+                        block.previous_hash) : 
+                    'N/A';
+                
+                // Format transactions count
+                const transactionCount = block.transactions_data ? block.transactions_data.length : 0;
+                
+                row.innerHTML = `
+                    <td>${block.index || 'N/A'}</td>
+                    <td>${block.ip_address || 'N/A'}</td>
+                    <td><span class="hex-key">${block.mined_hex_key || 'N/A'}</span></td>
+                    <td><span class="hash-display" title="${block.previous_hash || 'N/A'}">${prevHash}</span></td>
+                    <td>${transactionCount} transaction(s)</td>
+                    <td>${timestamp}</td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        // Search functionality
+        function searchUserBlocks() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            const rows = document.querySelectorAll('#userBlocksTableBody tr');
+            
+            if (!searchTerm) {
+                // Show all rows if search is empty
+                rows.forEach(row => {
+                    row.style.display = '';
+                });
+                return;
+            }
+            
+            let foundResults = false;
+            
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let rowText = '';
+                
+                cells.forEach(cell => {
+                    rowText += cell.textContent.toLowerCase() + ' ';
+                });
+                
+                if (rowText.includes(searchTerm)) {
+                    row.style.display = '';
+                    foundResults = true;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            if (!foundResults && searchTerm) {
+                const tbody = document.getElementById('userBlocksTableBody');
+                tbody.innerHTML = '<tr><td colspan="6" class="loading">No results found for your search</td></tr>';
+            }
+        }
+
+        // Refresh user blocks
+        async function refreshUserBlocks() {
+            const icon = document.getElementById('refresh-userblocks-icon');
+            if (icon) icon.classList.add('refresh-indicator');
+            
+            try {
+                const userData = await getUserBlocks();
+                loadUserBlocks(userData);
+                console.log('User blocks refreshed successfully');
+            } catch (error) {
+                console.error('Failed to refresh user blocks:', error);
+                const tbody = document.getElementById('userBlocksTableBody');
+                if (tbody) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="error-message">Failed to load user blocks</td></tr>';
+                }
+            } finally {
+                if (icon) icon.classList.remove('refresh-indicator');
+            }
+        }
+
+        // Auto-load user blocks when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshUserBlocks();
+        });
+
+        // Allow Enter key to trigger search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchUserBlocks();
+            }
+        });
 
 
 
@@ -999,6 +1201,7 @@ async function refreshAllData() {
         
         loadBlockchainData(blockchainData);
         loadPendingTransactions(pendingTxData);
+
         updateStatistics(stats);
         updateConnectionStatus(true);
     } catch (error) {
@@ -1028,7 +1231,7 @@ async function refreshPendingTransactions() {
 }
 
 async function mineBlock() {
-    const button = event.target;
+    const button = event.target? event.target : document.querySelector('.button.danger');
     const originalText = button.textContent;
     
     try {

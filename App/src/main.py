@@ -20,7 +20,7 @@ from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPI
 
 # blockchain 
 
-blockchain = Blockchain(difficulty=3)
+blockchain = Blockchain(difficulty=4)
 
 # blockchain logics
 
@@ -29,8 +29,6 @@ pow_script = """
 async function updateStatus(message) {
     document.getElementById('status').innerText = message;
 }
-
-
 
 async function solvePow(challenge, difficulty) {
     updateStatus('Solving proof of work challenge (difficulty: ' + difficulty + ')...');
@@ -58,7 +56,6 @@ window.onload = async function () {
     try {
         updateStatus('Checking for pending transactions...');
      
-
         const challengeResp = await fetch('/api/pow-challenge');
         const challengeData = await challengeResp.json();
 
@@ -84,27 +81,53 @@ window.onload = async function () {
         const pendingTx = await pendingResp.json();
 
         if (!pendingTx || pendingTx.length === 0) {
-            updateStatus('No pending transactions. Nothing to mine. proceding to next step...');
-
+            updateStatus('No pending transactions. Nothing to mine. proceeding to next step...');
+        }
+,
+        if (localStorage.getItem('minedKey')) {
+            updateStatus('You have already mined a block. Mining skipped.');
+            return;
         }
 
-        if (localStorage.getItem('minedKey')) {
-    updateStatus('You have already mined a block. Mining skipped.');
-    return;
-}
+        updateStatus('Verification successful. Starting continuous mining for 15 seconds...');
+        
+        // Continuous mining for 15 seconds
+        const miningStartTime = Date.now();
+        const miningDuration = 15000; // 15 seconds
+        let miningAttempts = 0;
+        let lastMineResult = '';
 
-updateStatus('Verification successful. Mining block...');
-const mineResp = await fetch('api/blockchain/mine');
-const mineText = await mineResp.text();
+        while (Date.now() - miningStartTime < miningDuration) {
+            try {
+                miningAttempts++;
+                const timeRemaining = Math.ceil((miningDuration - (Date.now() - miningStartTime)) / 1000);
+                updateStatus(`Mining attempt ${miningAttempts}... ${timeRemaining} seconds remaining`);
+                
+                const mineResp = await fetch('api/blockchain/usermine');
+                const mineText = await mineResp.text();
+                lastMineResult = mineText;
 
-if (mineText.toLowerCase().includes("mined")) {
-    const hexKey = [...crypto.getRandomValues(new Uint8Array(8))]
-        .map(b => b.toString(16).padStart(2, '0')).join('');
-    localStorage.setItem('minedKey', hexKey);
-    updateStatus(mineText + ' Key stored: ' + hexKey);
-} else {
-    updateStatus('Mining failed: ' + mineText);
-}
+                if (mineText.toLowerCase().includes("mined")) {
+                    const hexKey = [...crypto.getRandomValues(new Uint8Array(8))]
+                        .map(b => b.toString(16).padStart(2, '0')).join('');
+                    localStorage.setItem('minedKey', hexKey);
+                    updateStatus(`${mineText} Key stored: ${hexKey} (attempt ${miningAttempts})`);
+                    break; // Exit if successfully mined
+                }
+
+                // Small delay between requests to prevent overwhelming the server
+                await new Promise(resolve => setTimeout(resolve, 100));
+                
+            } catch (err) {
+                console.error('Mining attempt failed:', err);
+                updateStatus(`Mining attempt ${miningAttempts} failed: ${err.message}`);
+            }
+        }
+
+        // Final status update
+        if (!localStorage.getItem('minedKey')) {
+            updateStatus(`Mining completed after ${miningAttempts} attempts. Final result: ${lastMineResult}`);
+        }
 
     } catch (err) {
         updateStatus('Error: ' + err.message);
@@ -173,22 +196,14 @@ def unified_before_request():
 
     # Get client IP
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
-    print(f"iiiiiii")
-    print(f"iiiiiii")
-    print(f"iiiiiii")
-    print(f"iiiiiii")
     print(f"Received request from {client_ip}")
-    print(f"iiiiiii")
-    print(f"iiiiiii")
-    print(f"iiiiiii")
-    print(f"iiiiiii")
     request_time = time.time()
     user_agent = request.headers.get('User-Agent', '')
     referrer = request.headers.get('Referer', '')
     endpoint = request.path
 
     suspicious_request = is_suspicious(user_agent, request.headers)
-
+    print(suspicious_request)
     if suspicious_request:
         logger.warning(f"Suspicious request detected from {client_ip}. User-Agent: {user_agent}")
         try:
@@ -319,10 +334,14 @@ def api_get_chain():
     chain = blockchain.get_chain()
     return jsonify(chain), 200
 
+@app.route('/api/blockchain/userblocks', methods=['GET'])
+def api_get_userblocks():
+    """Get user mined blocks"""
+    blocks = blockchain.get_user_mined_data()
+    return jsonify(blocks), 200
 
 @app.route('/api/blockchain/pending', methods=['GET'])
 def api_get_pending_transactions():
-    """Get all pending transactions"""
     pending = blockchain.get_pending_transactions()
     return jsonify(pending), 200
 
@@ -338,36 +357,25 @@ def api_search_by_ip():
     result = blockchain.search_by_ip(ip)
     return jsonify(result), 200
 
+@app.route('/api/blockchain/search-ip', methods=['POST'])
+def api_search_ip():
+    """Search for transactions using an IP"""
+    data = request.get_json()
+    ip = data.get("ip")
+    if not ip:
+        return jsonify({"error": "Missing 'ip' field in request"}), 400
+
+    result = blockchain.search_by_ip(ip)
+    return jsonify(result), 200
 # -----------------------------
 # Run Server
 # -----------------------------
 
 # for quick action
-@app.route('/api/analyze-now-small', methods=['GET'])
+@app.route('/api/analyze-block', methods=['GET'])
 def api_analyze_now():
-    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
-    user_agent = request.headers.get('User-Agent', '').lower()
-    all_headers = dict(request.headers)
-    try:
-        # Run traffic analysis directly (synchronous)
-        results = analyze_traffic(client_ip)
-        
-        if client_ip in results:
-            verdict = results[client_ip].get("is_suspicious", False)
-            return jsonify({
-                "ip": client_ip,
-                "is_suspicious": verdict,
-                "details": results[client_ip]
-            }), 200
-        else:
-            return jsonify({
-                "ip": client_ip,
-                "error": "IP not found in analysis results."
-            }), 404
-
-    except Exception as e:
-        logger.error(f"Error in real-time analysis for {client_ip}: {e}")
-        return jsonify({"error": str(e)}), 500
+   client_ip = request.remote_addr
+   result = blockchain.search_by_ip(client_ip)
 
 def detect_syn_flood(threshold=100):
     while True:
@@ -387,68 +395,6 @@ def detect_syn_flood(threshold=100):
 threading.Thread(target=detect_syn_flood, daemon=True).start()
 
 # for deep analysis
-@app.route('/api/analyze-now', methods=['GET'])
-def api_deep_analyze():
-    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
-    user_agent = request.headers.get('User-Agent', '').lower()
-
-    try:
-        logger.info(f"Starting deep analysis for IP: {client_ip} (may take time)")
-        syn_flood_threshold = 100
-        result = subprocess.run(
-            ["netstat", "-ant"], capture_output=True, text=True
-        )
-        syn_recv_count = sum(1 for line in result.stdout.splitlines() if "SYN_RECV" in line)
-        if syn_recv_count > syn_flood_threshold:
-            logger.warning(f"SYN flood detected during analyze-now! SYN_RECV count: {syn_recv_count}")
-            transaction_data = {
-                "ip": client_ip,
-                "attack_type": "SYN_FLOOD",
-                "syn_recv_count": syn_recv_count,
-                "headers_present": False,
-                "ttl_obfuscation": False,
-                "legitimacy_score": 0.0,
-                "is_trustworthy": False
-            }
-            result = blockchain.add_transaction(transaction_data)
-            logger.info(f"SYN flood transaction submitted for {client_ip}: {result}")
-
-        # Run full analysis (blocking call)
-        results = analyze_traffic(client_ip)
-
-        if client_ip in results:
-            analysis_result = results[client_ip]
-            verdict = analysis_result.get("is_suspicious", False)
-
-            logger.info(f"Deep analysis complete for {client_ip}. Verdict: {'SUSPICIOUS' if verdict else 'CLEAN'}")
-            results[client_ip].is_suspicious
-            transaction_data = {
-                                    "ip": client_ip,
-                                    "headers_present": results[client_ip]["traffic_indicators"].get("missing_headers") is False,
-                                    "ttl_obfuscation": results[client_ip]["packet_indicators"].get("ttl_obfuscation", False),
-                                    "legitimacy_score": score_save_bot(results[client_ip]),  
-                                    "is_trustworthy": False
-                    }
-            logger.info(f"Blockchain transaction banger10")
-            result = blockchain.add_transaction(transaction_data)
-            logger.info(f"Blockchain transaction submitted for {client_ip}: {result}")
-            return jsonify({
-                "ip": client_ip,
-                "user_agent": user_agent,
-                "analysis": analysis_result,
-                "is_suspicious": verdict
-            }), 200
-            
-
-        else:
-            return jsonify({
-                "ip": client_ip,
-                "error": "No analysis data found for IP."
-            }), 404
-
-    except Exception as e:
-        logger.exception(f"Deep analysis failed for {client_ip}: {e}")
-        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/api/start-analyzer', methods=['GET'])
@@ -585,7 +531,7 @@ def pow_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         client_ip = request.remote_addr
-        
+        print(f"Client IP powdone: {client_ip}")
         # Check if PoW has been verified for this client
         if not hasattr(app, 'verified_clients'):
             app.verified_clients = set()
@@ -620,7 +566,6 @@ def traffic_protected(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         client_ip = request.remote_addr
-        logger.info(f"Received request fromeeeeeeeeeee {client_ip}")
         # Start analyzer thread only if not already running for this IP
         if blockchain.check_ip_exists(client_ip):
             logger.info(f"Analyzer already running for IP: {client_ip}")
@@ -663,6 +608,71 @@ def traffic_protected(f):
 
             return f(*args, **kwargs)
     return decorated_function
+ 
+
+@app.route('/api/analyze-now', methods=['GET'])
+def api_deep_analyze():
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    user_agent = request.headers.get('User-Agent', '').lower()
+    
+    try:
+        logger.info(f"Starting deep analysis for IP: {client_ip} (may take time)")
+        syn_flood_threshold = 100
+        result = subprocess.run(
+            ["netstat", "-ant"], capture_output=True, text=True
+        )
+        syn_recv_count = sum(1 for line in result.stdout.splitlines() if "SYN_RECV" in line)
+        if syn_recv_count > syn_flood_threshold:
+            logger.warning(f"SYN flood detected during analyze-now! SYN_RECV count: {syn_recv_count}")
+            transaction_data = {
+                "ip": client_ip,
+                "attack_type": "SYN_FLOOD",
+                "syn_recv_count": syn_recv_count,
+                "headers_present": False,
+                "ttl_obfuscation": False,
+                "legitimacy_score": 0.0,
+                "is_trustworthy": False
+            }
+            result = blockchain.add_transaction(transaction_data)
+            logger.info(f"SYN flood transaction submitted for {client_ip}: {result}")
+
+        # Run full analysis (blocking call)
+        results = analyze_traffic(client_ip)
+
+        if client_ip in results:
+            analysis_result = results[client_ip]
+            verdict = analysis_result.get("is_suspicious", False)
+            print(f"Deep analysis complete for {client_ip}. Verdict: {'SUSPICIOUS' if verdict else 'CLEAN'}")
+            logger.info(f"Deep analysis complete for {client_ip}. Verdict: {'SUSPICIOUS' if verdict else 'CLEAN'}")
+            transaction_data = {
+                                    "ip": client_ip,
+                                    "headers_present": results[client_ip]["traffic_indicators"].get("missing_headers") is False,
+                                    "ttl_obfuscation": results[client_ip]["packet_indicators"].get("ttl_obfuscation", False),
+                                    "legitimacy_score": score_save_bot(results[client_ip]),  
+                                    "is_trustworthy": not bool(analysis_result["is_suspicious"])
+                    }
+            logger.info(f"Blockchain transaction ")
+            result = blockchain.add_transaction(transaction_data)
+            logger.info(f"Blockchain transaction submitted for {client_ip}: {result}")
+            if not bool(analysis_result["is_suspicious"]):
+                blockchain.usermine()
+            return jsonify({
+                "ip": client_ip,
+                "user_agent": user_agent,
+                "analysis": analysis_result,
+                "is_suspicious": verdict
+            }), 200
+            
+
+        else:
+            return jsonify({
+                "ip": client_ip,
+                "error": "No analysis data found for IP."
+            }), 404
+
+    except Exception as e:
+        logger.exception(f"Deep analysis failed for {client_ip}: {e}")
+        return jsonify({"error": str(e)}), 500
     
 @app.route('/protected')
 @pow_required
@@ -695,7 +705,8 @@ def index():
     """
 
 if __name__ == "__main__":
-    schedule_extraction()   
+    schedule_extraction()
+       
     app.run(host="0.0.0.0", port=8081, debug=False)
     
     

@@ -1,14 +1,7 @@
 {
-  "chain": [
-    {
-      "index": 0,
-      "transactions": [],
-      "timestamp": 1753860750.739698,
-      "previous_hash": "0",
-      "nonce": 20914,
-      "hash": "00072c49ee8104d4b4b753887c704e7f8d4e2de3996fb79c3982cfc7f40abdb5"
-    }
-  ],
-  "pending_transactions": [],
-  "last_updated": 1753860750.8760138
+  "ip": "192.168.23.1",
+  "headers_present": true,
+  "ttl_obfuscation": false,
+  "legitimacy_score": 9,
+  "is_trustworthy": true
 }
