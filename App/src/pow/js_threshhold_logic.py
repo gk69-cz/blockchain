@@ -1,6 +1,4 @@
 import datetime
-import json
-import logging
 import os
 import re
 import hashlib, random, string
@@ -14,7 +12,7 @@ import threading
 from datetime import datetime
 from collections import defaultdict, deque
 
-from utils.shared_data import ip_stats, data_lock, challenge_store, dc_ranges
+from utils.shared_data import SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
 from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SYN_FLOOD_THRESHOLD
 from utils.shared_data import SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
 
@@ -27,7 +25,7 @@ def generate_challenge():
 
 def get_dynamic_difficulty():
     return 2
-#  "python-requests",
+
 def verify_pow_challenge(challenge, nonce):
     """Verify a proof of work challenge"""
     if not challenge or not nonce:
@@ -84,95 +82,122 @@ def checksum(data):
     res += res >> 16
     return (~res) & 0xffff
 
-def analyze_traffic(ip):
+def analyze_traffic(ip=None):
     results = {}
     current_time = time.time()
-    logger.info(f"Traffic analysis Started for {ip}")
+
+  
     with data_lock:
-        ips_to_analyze = [ip] if ip else ip_stats.keys()
-        logger.info(f"data_lock started{ip}")
-       
-        for ip in ips_to_analyze:
-            if ip not in ip_stats:
+        ips_to_analyze = [ip] if ip else list(ip_stats.keys())
+
+    for target_ip in ips_to_analyze:
+        with data_lock:
+            if target_ip not in ip_stats:
                 continue
-            data = ip_stats[ip]
-            if current_time - data["last_seen"] > ANALYSIS_WINDOW:
-                continue
-            time_window = data["last_seen"] - data["first_seen"]
-            
-            if time_window > 0:
-                data["rpm"] = (data["request_count"] / time_window) * 60
-                data["rps"] = data["request_count"] / time_window
-            logger.info(f"time Window calculation checked for {ip}")
-            # Check for sudden traffic spikes
-            is_spiking = False
-          
-            if len(data["last_requests"]) >= 3:
-                # Check intervals between last requests
-                intervals = []
-                prev_time = None
-                for req_time in data["last_requests"]:
-                    if prev_time:
-                        intervals.append(req_time - prev_time)
-                    prev_time = req_time
-                
-                # If average interval is very short, that's a spike
-                if intervals and sum(intervals) / len(intervals) < 0.5:  # Less than 0.5 seconds between requests
-                    is_spiking = True
-            logger.info(f"sudden traffic spikes Check completed for {ip}")
-            # Check for suspicious user agent
-            has_suspicious_ua = False
-            for ua in data["user_agents"]:
+            data = ip_stats[target_ip].copy()  
+
+        if current_time - data["last_seen"] > ANALYSIS_WINDOW:
+            logger.info(f"Skipping {target_ip}: inactive beyond analysis window.")
+            continue
+
+        # Calculate time window safely
+        time_window = max(data["last_seen"] - data["first_seen"], 0.01)
+
+        # Avoid inflated RPM/RPS for too-short windows
+        if time_window >= 1.0:
+            rpm = (data["request_count"] / time_window) * 60
+            rps = data["request_count"] / time_window
+        else:
+            rpm, rps = 0, 0
+
+        # Sudden traffic spike detection
+        is_spiking = False
+        # if len(data["last_requests"]) >= 3:
+        #     intervals = [t2 - t1 for t1, t2 in zip(data["last_requests"][:-1], data["last_requests"][1:])]
+        #     avg_interval = sum(intervals) / len(intervals) if intervals else float('inf')
+        #     is_spiking = avg_interval < 0.5  # Adjustable threshold
+
+        # Suspicious UA detection
+        ua = data.get("user_agents")
+        def has_suspicious_ua(ua_input):
+            """Check if any UA in the input is suspicious. Accepts string or list."""
+            user_agents = []
+
+            if isinstance(ua_input, str):
+                user_agents = [ua_input.strip()]
+            elif isinstance(ua_input, (list, set, tuple)):
+                user_agents = [str(ua).strip() for ua in ua_input if isinstance(ua, str) and ua.strip()]
+            else:
+                return True, f"Invalid UA input type: {type(ua_input).__name__}"
+
+            for ua in user_agents:
+                if not ua:
+                    continue  # skip blank strings
+
+                ua_lower = ua.lower()
+
+                for keyword in SUSPICIOUS_USER_AGENTS:
+                    if keyword and keyword.lower() in ua_lower:
+                        return True, f"Matched suspicious keyword: '{keyword}'"
+
                 for pattern in SUSPICIOUS_UA_PATTERNS:
-                    if re.search(pattern, ua, re.I):
-                        has_suspicious_ua = True
-                        logger.warning(f"Suspicious ua found for {ip}")
-                        break
-            logger.info(f"Suspicious ua Check completed for {ip}")
-            # Create the results structure with security indicators
-          
-            results[ip] = {
-                "ip": ip,
-                "is_residential": data["is_residential"],
-                "traffic_indicators": {
-                    "high_request_rate": data["rpm"] > HIGH_RPM_THRESHOLD,
-                    "sudden_traffic_spike": is_spiking,
-                    "unusual_traffic_distribution": len(data["endpoints_accessed"]) > 8,
-                    "missing_headers": not data["headers_present"] or len(data["user_agents"]) == 0,
-                    "suspicious_user_agent": has_suspicious_ua
-                },
-                "packet_indicators": {
-                    "ttl_obfuscation": data["ttl_obfuscation"],
-                    "error_response_rate": data["response_codes"].get(404, 0) > 5 or 
-                                         data["response_codes"].get(403, 0) > 3
-                },
-                "metadata": {
-                    "request_count": data["request_count"],
-                    "rpm": round(data["rpm"], 2),
-                    "rps": round(data["rps"], 2),
-                    "first_seen": data["first_seen"],
-                    "last_seen": data["last_seen"], 
-                    "ttl_values": list(data["ttl_values"]),
-                    "endpoints_accessed": list(data["endpoints_accessed"]),
-                    "user_agents": list(data["user_agents"]),
-                    "referrers": list(data["referrers"]),
-                    "response_codes": dict(data["response_codes"])
-                }
+                    if re.search(pattern, ua, re.IGNORECASE):
+                        return True, f"Matched suspicious regex pattern: '{pattern}'"
+
+            return False
+
+        
+        result = {
+            "ip": target_ip,
+            "is_residential": data.get("is_residential", False),
+            "traffic_indicators": {
+                "high_request_rate": rpm > HIGH_RPM_THRESHOLD,
+                "sudden_traffic_spike": is_spiking,
+                "unusual_traffic_distribution": len(data["endpoints_accessed"]) > 18,
+                "missing_headers": not data.get("headers_present", True) or len(data["user_agents"]) == 0,
+                "suspicious_user_agent": has_suspicious_ua(data.get("user_agents"))
+            },
+            "packet_indicators": {
+                "ttl_obfuscation": data.get("ttl_obfuscation", False),
+                "error_response_rate": (
+                    # data["response_codes"].get(404, 0) > 5 or
+                    # data["response_codes"].get(403, 0) > 3
+                )
+            },
+            "metadata": {
+                "request_count": data["request_count"],
+                "rpm": round(rpm, 2),
+                "rps": round(rps, 2),
+                "first_seen": data["first_seen"],
+                "last_seen": data["last_seen"],
+                "ttl_values": list(data["ttl_values"]),
+                "endpoints_accessed": list(data["endpoints_accessed"]),
+                "user_agents": list(data["user_agents"]),
+                "referrers": list(data["referrers"]),
+                # "response_codes": dict(data["response_codes"])
             }
-            # Add summary flags
-            results[ip]["is_suspicious"] = any(results[ip]["traffic_indicators"].values()) or \
-                                         any(results[ip]["packet_indicators"].values())
-    logger.info(f"Analysis completed for {ip} with results: {results[ip]}")
-    print(results[ip]["is_suspicious"])
-    print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
-    print(f"Time window for {ip}: {time_window} seconds")
-    print(results)
-    if(results !={} and time_window >.01 ):
-        print("generatebotprofile1  ")
-        generate_bot_profile(ip,results);
-        score_save_bot(results)
-    
+        }
+
+        # Suspicious summary flag
+        result["is_suspicious"] = (
+            any(result["traffic_indicators"].values()) or
+            any(result["packet_indicators"].values()) or
+            result["metadata"]["rpm"] > HIGH_RPM_THRESHOLD or
+            result["metadata"]["ttl_values"] and
+            any(ttl in TTL_SUSPICIOUS_VALUES for ttl in result["metadata"]["ttl_values"])
+            or result["metadata"]["endpoints_accessed"] and
+            len(result["metadata"]["endpoints_accessed"]) > 8
+            or result["metadata"]["user_agents"] and
+            any(re.search(pattern, ua, re.I) for pattern in SUSPICIOUS_UA_PATTERNS for ua in result["metadata"]["user_agents"])
+        )
+
+        results[target_ip] = result
+        print(f"Analyzed {target_ip}: {result}")
+        # Log analysis result summary
+        logger.info(f"Analyzed {target_ip}: Suspicious={result['is_suspicious']}, RPM={result['metadata']['rpm']}, RPS={result['metadata']['rps']}")
+
     return results
+
 def save_results(results):
     if not results:
         return  

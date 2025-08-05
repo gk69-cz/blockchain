@@ -1,0 +1,53 @@
+sequenceDiagram
+    participant Client
+    participant Flask_App
+    participant PoW_System
+    participant Traffic_Analyzer
+    participant Blockchain
+    participant Protection_Engine
+
+    Note over Client,Protection_Engine: Initial Request Phase
+    Client->>Flask_App: HTTP Request
+    Flask_App->>Traffic_Analyzer: Extract IP, Headers, UA
+    Traffic_Analyzer->>Traffic_Analyzer: Check suspicious patterns
+    
+    alt Suspicious Request Detected
+        Traffic_Analyzer->>Blockchain: Add suspicious transaction
+        Traffic_Analyzer-->>Client: 403 Forbidden
+    else Clean Request
+        Flask_App->>PoW_System: Check PoW verification
+    end
+
+    Note over Client,Protection_Engine: PoW Challenge Phase
+    alt PoW Not Verified
+        PoW_System->>Client: Generate PoW challenge
+        Client->>Client: Solve PoW (JavaScript)
+        Client->>PoW_System: Submit solution
+        PoW_System->>PoW_System: Verify solution
+        
+        alt Valid Solution
+            PoW_System->>Flask_App: Mark client verified
+            Flask_App->>Traffic_Analyzer: Start background analyzer
+        else Invalid Solution
+            PoW_System-->>Client: 403 Forbidden
+        end
+    end
+
+    Note over Client,Protection_Engine: Continuous Monitoring Phase
+    loop Every 15 seconds
+        Traffic_Analyzer->>Traffic_Analyzer: Analyze traffic patterns
+        Traffic_Analyzer->>Blockchain: Submit analysis results
+        
+        alt Suspicious Behavior
+            Traffic_Analyzer->>Protection_Engine: Block/Limit client
+            Protection_Engine-->>Client: Rate limited/Blocked
+        else Normal Behavior
+            Traffic_Analyzer->>Blockchain: Record legitimate transaction
+        end
+    end
+
+    Note over Client,Protection_Engine: Blockchain Mining Phase
+    alt Mining Conditions Met
+        Blockchain->>Blockchain: Mine transactions into blocks
+        Blockchain->>Blockchain: Update reputation scores
+    end

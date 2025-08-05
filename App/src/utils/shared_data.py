@@ -15,26 +15,22 @@ ANALYSIS_WINDOW = 15
 HIGH_RPM_THRESHOLD = 90  
 SYN_FLOOD_THRESHOLD = 20  
 SUSPICIOUS_UA_PATTERNS = [
-    r'^\s*$',  # Empty user agent
-    r'(bot|crawl|spider)',  # Known bot patterns
-    r'(nmap|nikto|gobuster|dirb)',  # Security tools
-    r'(curl|wget|python-requests)',  # Scripting tools
+    r'^\s*$', 
+    r'(bot|crawl|spider)', 
+    r'(nmap|nikto|gobuster|dirb)', 
+    r'(curl|wget)', 
+    # r'(curl|wget|python-requests)',  
 ]
 TTL_SUSPICIOUS_VALUES = [
-    0,     # Invalid
-    1, 2, 3, 4, 5,     # Unusually low - could indicate crafted packets
-    6, 7, 8, 9, 10,    # Below typical hop limits
-    32, 36,            # Rare but occasionally used in obfuscated attacks
-    100,               # Not typical for major OS defaults
-    192, 200, 222,     # Often seen in spoofed packets
-    255                # Possible router or forged header
+    0,     
+    1, 2, 3, 4, 5,     
+    6, 7, 8, 9, 10,    
+    32, 36,            
+    100,              
+    192, 200, 222,     
+    255                
 ]
 
-# Suspicious User Agents (consolidated from suspheader.json)
-# Sources: 
-# - OWASP: https://owasp.org/www-project-web-security-testing-guide/
-# - Security Scanner Documentation: https://tools.kali.org/
-# - Common Attack Tools: https://github.com/topics/security-scanner
 SUSPICIOUS_USER_AGENTS = [
     "sqlmap",           # SQL injection testing tool
     "nmap",             # Network mapping tool
@@ -52,7 +48,8 @@ SUSPICIOUS_USER_AGENTS = [
     "axios",            # JavaScript HTTP client
     "go-http-client",   # Go HTTP client
     "okhttp",           # Android/Java HTTP client
-    "ApacheBench",      # Apache HTTP server benchmarking tool
+    "ApacheBench",
+    "WindowsPowerShell",# Apache HTTP server benchmarking tool
     ""                  # Empty user agent
 ]
 
