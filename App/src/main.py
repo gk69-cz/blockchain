@@ -483,7 +483,6 @@ def unified_before_request():
 
 @app.before_request
 def batch_rate_limiter():
-    """Simple batch rate limiter - add this to your existing before_request"""
     
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
     user_agent = request.headers.get('User-Agent', '')
@@ -723,7 +722,7 @@ def periodic_analyzer(client_ip, stop_event):
                                     "legitimacy_score": score_save_bot(results[ip]),  
                                     "is_trustworthy": not bool(data["is_suspicious"])
                                 }
-                                logger.info(f"Blockchain transaction banger1")
+                                logger.info(f"Blockchain transaction banger")
                                 result = blockchain.add_transaction(transaction_data)
                                 logger.info(f"Blockchain transaction submitted for {ip}: {result}")
                                 break
