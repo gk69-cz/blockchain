@@ -1,4 +1,5 @@
 from collections import defaultdict, deque
+import datetime
 import json
 from logging.handlers import RotatingFileHandler
 import os
@@ -150,6 +151,216 @@ file_handler = RotatingFileHandler(
     maxBytes=10*1024*1024,  # 10MB
     backupCount=5
 )
+
+# incode rate limiters 
+
+# Simple configuration
+BATCH_SIZE = 20
+ANALYSIS_WINDOW = 60  
+BLOCK_DURATION = 300
+
+# Simple dictionaries to track IPs
+ip_requests = {}  
+blocked_ips = {} 
+analysis_results = {}  
+
+
+def load_ip_data():
+    """Load IP data from JSON file"""
+    try:
+        if os.path.exists('ip_tracking.json'):
+            with open('ip_tracking.json', 'r') as f:
+                data = json.load(f)
+                return data.get('ip_requests', {}), data.get('blocked_ips', {}), data.get('analysis_results', {})
+    except:
+        pass
+    return {}, {}, {}
+
+def save_ip_data():
+    """Save IP data to JSON file"""
+    try:
+        data = {
+            'ip_requests': ip_requests,
+            'blocked_ips': blocked_ips,
+            'analysis_results': analysis_results,
+            'last_updated': datetime.now().isoformat()
+        }
+        with open('ip_tracking.json', 'w') as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        logger.error(f"Failed to save IP data: {e}")
+
+# Load data on startup
+ip_requests, blocked_ips, analysis_results = load_ip_data()
+
+def is_ip_blocked(client_ip):
+    """Check if IP is currently blocked"""
+    if client_ip in blocked_ips:
+        block_until = blocked_ips[client_ip]
+        if time.time() < block_until:
+            return True, int(block_until - time.time())
+        else:
+            # Block expired, remove it
+            del blocked_ips[client_ip]
+            save_ip_data()
+    return False, 0
+
+
+
+
+def add_request_to_batch(client_ip, user_agent, headers):
+    """Add request to IP's batch and check if ready for analysis"""
+    current_time = time.time()
+    
+    # Initialize IP if not exists
+    if client_ip not in ip_requests:
+        ip_requests[client_ip] = []
+    
+    # Clean old requests (older than ANALYSIS_WINDOW)
+    cutoff_time = current_time - ANALYSIS_WINDOW
+    ip_requests[client_ip] = [req for req in ip_requests[client_ip] 
+                              if req['timestamp'] > cutoff_time]
+    
+    # Add current request with headers for is_suspicious function
+    request_data = {
+        'timestamp': current_time,
+        'user_agent': user_agent,
+        'path': request.path,
+        'method': request.method,
+        'referer': headers.get('Referer', ''),
+        'accept': headers.get('Accept', ''),
+        'accept_language': headers.get('Accept-Language', ''),
+        'accept_encoding': headers.get('Accept-Encoding', '')
+    }
+    ip_requests[client_ip].append(request_data)
+    
+    # Check if batch is ready for analysis
+    batch_size = len(ip_requests[client_ip])
+    print(f"[BATCH TRACKING] {client_ip}: {batch_size}/{BATCH_SIZE} requests")
+    
+    if batch_size >= BATCH_SIZE:
+        return analyze_ip_batch(client_ip)
+    
+    return False  # Not suspicious yet
+def block_ip_simple(client_ip, reason):
+    """Block an IP with simple logic"""
+    block_until = time.time() + BLOCK_DURATION
+    blocked_ips[client_ip] = block_until
+    
+    # Progressive blocking for repeat offenders
+    if client_ip in analysis_results:
+        suspicious_ratio = (analysis_results[client_ip]['suspicious_count'] / 
+                          max(analysis_results[client_ip]['total_batches'], 1))
+        if suspicious_ratio > 0.5:  # More than 50% suspicious batches
+            blocked_ips[client_ip] = time.time() + (BLOCK_DURATION * 3)  # Triple block time
+            print(f"[EXTENDED BLOCK] {client_ip} - Repeat offender")
+    
+    print(f"[BLOCKED] {client_ip} - {reason} - Until: {datetime.fromtimestamp(blocked_ips[client_ip])}")
+    save_ip_data()
+    
+def analyze_ip_batch(client_ip):
+    """Analyze batch of requests from IP using existing is_suspicious function"""
+    try:
+        requests_batch = ip_requests[client_ip]
+        total_requests = len(requests_batch)
+        
+        print(f"[BATCH ANALYSIS] Analyzing {total_requests} requests from {client_ip}")
+        
+        # Use your existing is_suspicious function
+        suspicious_count = 0
+        
+        for req in requests_batch:
+            # Create mock headers dict for is_suspicious function
+            mock_headers = {
+                'User-Agent': req.get('user_agent', ''),
+                'Referer': req.get('referer', ''),
+                'Accept': req.get('accept', ''),
+                'Accept-Language': req.get('accept_language', ''),
+                'Accept-Encoding': req.get('accept_encoding', '')
+            }
+            
+            # Use your existing function
+            if is_suspicious(req.get('user_agent', ''), mock_headers):
+                suspicious_count += 1
+        
+        # Simple decision: if more than 50% of requests are suspicious
+        suspicious_ratio = suspicious_count / total_requests
+        is_batch_suspicious = suspicious_ratio > 0.5
+        
+        print(f"[ANALYSIS] {client_ip} - Suspicious: {suspicious_count}/{total_requests} ({suspicious_ratio:.1%})")
+        
+        # Additional check: Request frequency (too fast)
+        if total_requests >= BATCH_SIZE:
+            timestamps = [req['timestamp'] for req in requests_batch]
+            time_span = max(timestamps) - min(timestamps)
+            if time_span < 3:  # All requests in less than 3 seconds
+                is_batch_suspicious = True
+                print(f"[ANALYSIS] {client_ip} - Rapid fire: {total_requests} in {time_span:.2f}s")
+        
+        # Update analysis results
+        if client_ip not in analysis_results:
+            analysis_results[client_ip] = {'suspicious_count': 0, 'total_batches': 0}
+        
+        analysis_results[client_ip]['total_batches'] += 1
+        if is_batch_suspicious:
+            analysis_results[client_ip]['suspicious_count'] += 1
+        
+        # Block logic
+        if is_batch_suspicious:
+            block_ip_simple(client_ip, f"Batch analysis: {suspicious_count}/{total_requests} suspicious requests")
+            
+            # Add to blockchain using your existing format
+            try:
+                transaction_data = {
+                    "ip": client_ip,
+                    "batch_size": total_requests,
+                    "suspicious_requests": suspicious_count,
+                    "suspicious_ratio": suspicious_ratio,
+                    "analysis_type": "batch_analysis",
+                    "headers_present": suspicious_count < total_requests,  # Some headers were present
+                    "ttl_obfuscation": False,
+                    "legitimacy_score": 1.0 - suspicious_ratio,  # Higher score = more legitimate
+                    "is_trustworthy": False
+                }
+                blockchain.add_transaction(transaction_data)
+                print(f"[BLOCKCHAIN] Added suspicious batch transaction for {client_ip}")
+            except Exception as e:
+                print(f"[ERROR] Failed to add blockchain transaction: {e}")
+        else:
+            # Add positive transaction for clean batch
+            try:
+                transaction_data = {
+                    "ip": client_ip,
+                    "batch_size": total_requests,
+                    "suspicious_requests": suspicious_count,
+                    "suspicious_ratio": suspicious_ratio,
+                    "analysis_type": "batch_analysis",
+                    "headers_present": True,
+                    "ttl_obfuscation": False,
+                    "legitimacy_score": 1.0 - suspicious_ratio,
+                    "is_trustworthy": True
+                }
+                blockchain.add_transaction(transaction_data)
+                print(f"[BLOCKCHAIN] Added clean batch transaction for {client_ip}")
+            except Exception as e:
+                print(f"[ERROR] Failed to add blockchain transaction: {e}")
+        
+        # Clear the batch after analysis
+        ip_requests[client_ip] = []
+        save_ip_data()
+        
+        return is_batch_suspicious
+        
+    except Exception as e:
+        print(f"[ERROR] Batch analysis failed: {e}")
+        return True 
+    
+    
+    
+
+# incode
+
+
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(formatter)
 # logger.addHandler(file_handler)
@@ -166,7 +377,12 @@ app.config['INITIALIZED'] = False
 app.config['REQUIRE_POW'] = True  # Set True if PoW is required
 
 # Setup Logger
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    filename='app.log',             # Log file name
+    filemode='a',                   # 'a' = append mode, 'w' = overwrite
+    level=logging.INFO,             # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 logger = logging.getLogger("TrafficAnalyzer")
 
 
@@ -193,7 +409,9 @@ def unified_before_request():
             start_global_analyzer()
         app.config['INITIALIZED'] = True
         logger.info("Application initialized.")
-
+    batch_response = batch_rate_limiter()
+    if batch_response:
+        return batch_response
     # Get client IP
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
     print(f"Received request from {client_ip}")
@@ -262,6 +480,35 @@ def unified_before_request():
     g.start_time = time.time()
     analyze_traffic(client_ip)
 
+
+@app.before_request
+def batch_rate_limiter():
+    
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    user_agent = request.headers.get('User-Agent', '')
+    
+    # Check if IP is blocked
+    is_blocked, remaining_time = is_ip_blocked(client_ip)
+    if is_blocked:
+        print(f"[BLOCKED REQUEST] {client_ip} - {remaining_time}s remaining")
+        logging.critical(f"[BLOCKED REQUEST] {client_ip} - {remaining_time}s remaining")
+
+        return jsonify({
+            "error": "IP temporarily blocked",
+            "ip": client_ip,
+            "remaining_seconds": remaining_time,
+            "message": "Please wait before making more requests"
+        }), 429
+    
+    # Add request to batch and check if suspicious
+    is_suspicious_batch = add_request_to_batch(client_ip, user_agent, request.headers)
+    if is_suspicious_batch:
+        print(f"[SUSPICIOUS BATCH] {client_ip} - Blocking immediately")
+        return jsonify({
+            "error": "Suspicious activity detected",
+            "ip": client_ip,
+            "message": "Your requests have been flagged for suspicious behavior"
+        }), 403
 
 @app.after_request
 def after_request(response):
@@ -475,7 +722,7 @@ def periodic_analyzer(client_ip, stop_event):
                                     "legitimacy_score": score_save_bot(results[ip]),  
                                     "is_trustworthy": not bool(data["is_suspicious"])
                                 }
-                                logger.info(f"Blockchain transaction banger1")
+                                logger.info(f"Blockchain transaction banger")
                                 result = blockchain.add_transaction(transaction_data)
                                 logger.info(f"Blockchain transaction submitted for {ip}: {result}")
                                 break
@@ -591,7 +838,7 @@ def traffic_protected(f):
                         reasons.append(f"packet:{indicator}")
 
                 # logger.warning(f"Blocked suspicious request from {client_ip}. Reasons: {', '.join(reasons)}")
-
+                logging.warning(f"[suspicious REQUEST] {client_ip} - {remaining_time}s remaining")
                 return jsonify({
                     "ip": client_ip,
                     "error": "Access denied due to suspicious activity",
@@ -616,14 +863,14 @@ def api_deep_analyze():
     user_agent = request.headers.get('User-Agent', '').lower()
     
     try:
-        logger.info(f"Starting deep analysis for IP: {client_ip} (may take time)")
+        logging.info(f"Starting deep analysis for IP: {client_ip} (may take time)")
         syn_flood_threshold = 100
         result = subprocess.run(
             ["netstat", "-ant"], capture_output=True, text=True
         )
         syn_recv_count = sum(1 for line in result.stdout.splitlines() if "SYN_RECV" in line)
         if syn_recv_count > syn_flood_threshold:
-            logger.warning(f"SYN flood detected during analyze-now! SYN_RECV count: {syn_recv_count}")
+            logging.warning(f"SYN flood detected during analyze-now! SYN_RECV count: {syn_recv_count}")
             transaction_data = {
                 "ip": client_ip,
                 "attack_type": "SYN_FLOOD",
@@ -654,16 +901,13 @@ def api_deep_analyze():
             logger.info(f"Blockchain transaction ")
             result = blockchain.add_transaction(transaction_data)
             logger.info(f"Blockchain transaction submitted for {client_ip}: {result}")
-            if not bool(analysis_result["is_suspicious"]):
-                blockchain.usermine()
+            blockchain.usermine()
             return jsonify({
                 "ip": client_ip,
                 "user_agent": user_agent,
                 "analysis": analysis_result,
                 "is_suspicious": verdict
             }), 200
-            
-
         else:
             return jsonify({
                 "ip": client_ip,
