@@ -283,7 +283,7 @@ class Blockchain:
         
         # Save to file
         try:
-            with open(file_path, 'w') as f:
+            with open(file_path, 'a') as f:
                 json.dump(mined_blocks, f, indent=2)
             
             print(f"Mining record saved successfully. Total records: {len(mined_blocks)}")

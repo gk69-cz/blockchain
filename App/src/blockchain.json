@@ -1,7 +1,7 @@
 {
-  "ip": "192.168.23.1",
+  "ip": "192.168.50.200",
   "headers_present": true,
   "ttl_obfuscation": false,
-  "legitimacy_score": 9,
-  "is_trustworthy": true
+  "legitimacy_score": 4,
+  "is_trustworthy": false
 }
