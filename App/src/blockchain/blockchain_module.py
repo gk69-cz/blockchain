@@ -89,33 +89,66 @@ class Blockchain:
                 with open(self.blockchain_file, 'r') as f:
                     blockchain_data = json.load(f)
                 
-                # Fix: Access the 'chain' key, not the root object
-                if isinstance(blockchain_data, dict) and 'chain' in blockchain_data:
-                    chain_data = blockchain_data['chain']
-                    self.unconfirmed_transactions = blockchain_data.get('pending_transactions', [])
+                
+                # Handle different data formats
+                if isinstance(blockchain_data, dict):
+                    if 'chain' in blockchain_data:
+                        # New format with wrapper object
+                        chain_data = blockchain_data['chain']
+                        self.unconfirmed_transactions = blockchain_data.get('pending_transactions', [])
+                    elif all(key in blockchain_data for key in ['index', 'transactions', 'timestamp', 'previous_hash']):
+                        # Single block object - convert to list
+                        chain_data = [blockchain_data]
+                        self.unconfirmed_transactions = []
+                    else:
+                        print(f"{blockchain_data}")
+                        if len(blockchain_data) > 0:
+                            first_key = next(iter(blockchain_data))
+                            if isinstance(blockchain_data[first_key], dict) and 'index' in blockchain_data[first_key]:
+                                # Dict with numbered keys containing blocks
+                                chain_data = list(blockchain_data.values())
+                                self.unconfirmed_transactions = []
+                            else:
+                                print(f"empty blockchain {list(blockchain_data.keys())}")
+                                self.create_genesis_block()
+                                return
+                        else:
+                            print("Empty dictionary found")
+                            self.create_genesis_block()
+                            return
+                            
                 elif isinstance(blockchain_data, list):
-                    # Handle old format if needed
                     chain_data = blockchain_data
                     self.unconfirmed_transactions = []
                 else:
                     print(f"Unexpected data format: {type(blockchain_data)}")
+                    print(f"Data content: {blockchain_data}")
                     self.create_genesis_block()
                     return
                 
                 # Load blocks
                 self.chain = []
-                for block_data in chain_data:  # Now iterating over the actual chain array
-                    block = Block.from_dict(block_data)
-                    self.chain.append(block)
-                    
-                print(f"Blockchain loaded: {len(self.chain)} blocks")
+                for i, block_data in enumerate(chain_data):
+                    try:
+                        block = Block.from_dict(block_data)
+                        self.chain.append(block)
+                    except Exception as e:
+                        print(f"Error loading block {i}: {e}")
+                        print(f"Block data: {block_data}")
+                        self.create_genesis_block()
+                        return
+                        
+                print(f"Blockchain loaded successfully: {len(self.chain)} blocks")
                 
             except (json.JSONDecodeError, FileNotFoundError) as e:
-                print(f"Error loading blockchain: {e}")
+                print(f"Error loading blockchain file: {e}")
+                self.create_genesis_block()
+            except Exception as e:
+                print(f"Unexpected error loading blockchain: {e}")
                 self.create_genesis_block()
         else:
+            print("Blockchain file not found, creating genesis block")
             self.create_genesis_block()
-
 
     def save_blockchain(self):
         try:
@@ -283,7 +316,7 @@ class Blockchain:
         
         # Save to file
         try:
-            with open(file_path, 'a') as f:
+            with open(file_path, 'w') as f:
                 json.dump(mined_blocks, f, indent=2)
             
             print(f"Mining record saved successfully. Total records: {len(mined_blocks)}")
@@ -333,7 +366,7 @@ class Blockchain:
         print(f"Selected IP for mining: {target_ip} (occurs {ip_count[target_ip]} times)")
 
         # Get all matching blocks
-        matching_blocks = [block for block in mined_blocks if block.get("ip_address") == target_ip]
+        matching_blocks = [block for block in mined_blocks if block.get("ip_address")]
         if not matching_blocks:
             print("No matching blocks found. Aborting.")
             return False
@@ -358,11 +391,25 @@ class Blockchain:
             removed_count = original_count - len(mined_blocks)
 
             
-            # Save the updated data
-            with open("blockchain.json", "w") as f:
-               json.dump([block.to_dict() for block in self.chain], f, indent=2)
+            try:
+                with open(file_path, "w") as f:
+                    json.dump(mined_blocks, f, indent=2)
+                    print(f"updated usermined.json")
+            except Exception as e:
+                print(f"Error updating usermined.json: {e}")
             
-            
+            try:
+
+                # Prepare IP score list from ip_count
+                ip_score_list = [[ip, count] for ip, count in ip_count.items()]
+
+                # Save to to_block.json
+                with open("to_block.json", "w") as f:
+                    json.dump(ip_score_list, f, indent=2)
+                    print("updated to_block.json")
+
+            except Exception as e:
+                print(f"Error updating JSON files: {e}")
 
             print(f"Block added for IP {target_ip}")
             print(f"Removed {removed_count} blocks with IP {target_ip}")
@@ -378,8 +425,6 @@ class Blockchain:
         else:
             print("Failed to add block to blockchain.")
             return False
-
-        
 
     def get_user_mined_data(self):
         

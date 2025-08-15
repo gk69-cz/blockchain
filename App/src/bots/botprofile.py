@@ -5,15 +5,11 @@ from uuid import uuid4
 from collections import defaultdict, deque
 import threading
 
-from blockchain.blockchain_module import Blockchain
-from server.to_blockchain import submit_transaction_to_blockchain
-
-# File to store bot profiles
 BOT_PROFILES_FILE = "bot_profiles.json"
 BLOCK_PROFILES_FILE = 'blockchain.json'
 BOT_FILE = 'bot_profiles.json'
 TO_BLOCK_FILE = 'to_block.json'
-# Lock for thread-safe file operations
+
 file_lock = threading.Lock()
 number = 1
 def load_bot_profiles():
