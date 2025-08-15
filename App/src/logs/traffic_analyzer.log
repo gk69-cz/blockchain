@@ -1,0 +1,74 @@
+2025-08-14 20:28:31,529 - TrafficAnalyzer - INFO - [main.py:377] - PoW required. No analyzer started.
+2025-08-14 20:28:31,529 - TrafficAnalyzer - INFO - [main.py:381] - Application initialized.
+2025-08-14 20:28:31,544 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 192.168.1.100
+2025-08-14 20:28:31,594 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 192.168.1.100. Verdict: SUSPICIOUS
+2025-08-14 20:28:31,597 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:31,597 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 192.168.1.100: True
+2025-08-14 20:28:31,633 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 10.0.0.15
+2025-08-14 20:28:31,674 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 10.0.0.15. Verdict: SUSPICIOUS
+2025-08-14 20:28:31,677 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:31,678 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 10.0.0.15: True
+2025-08-14 20:28:31,704 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 172.16.0.45
+2025-08-14 20:28:31,741 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 172.16.0.45. Verdict: SUSPICIOUS
+2025-08-14 20:28:31,745 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:31,745 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 172.16.0.45: True
+2025-08-14 20:28:31,769 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 203.0.113.12
+2025-08-14 20:28:31,803 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 203.0.113.12. Verdict: SUSPICIOUS
+2025-08-14 20:28:31,804 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:31,804 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 203.0.113.12: True
+2025-08-14 20:28:31,834 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 198.51.100.8
+2025-08-14 20:28:31,880 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 198.51.100.8. Verdict: SUSPICIOUS
+2025-08-14 20:28:31,882 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:31,883 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 198.51.100.8: True
+2025-08-14 20:28:31,910 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 192.0.2.150
+2025-08-14 20:28:31,944 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 192.0.2.150. Verdict: SUSPICIOUS
+2025-08-14 20:28:31,946 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:31,947 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 192.0.2.150: True
+2025-08-14 20:28:31,968 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 10.10.10.25
+2025-08-14 20:28:32,001 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 10.10.10.25. Verdict: SUSPICIOUS
+2025-08-14 20:28:32,004 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:32,004 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 10.10.10.25: True
+2025-08-14 20:28:34,025 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 172.31.255.1
+2025-08-14 20:28:34,071 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 172.31.255.1. Verdict: SUSPICIOUS
+2025-08-14 20:28:34,074 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:34,074 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 172.31.255.1: True
+2025-08-14 20:28:34,101 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 192.168.100.50
+2025-08-14 20:28:34,139 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 192.168.100.50. Verdict: SUSPICIOUS
+2025-08-14 20:28:34,142 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:34,145 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 192.168.100.50: True
+2025-08-14 20:28:34,170 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 203.0.113.200
+2025-08-14 20:28:34,204 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 203.0.113.200. Verdict: SUSPICIOUS
+2025-08-14 20:28:34,209 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:34,209 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 203.0.113.200: True
+2025-08-14 20:28:34,232 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 198.51.100.99
+2025-08-14 20:28:34,264 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 198.51.100.99. Verdict: SUSPICIOUS
+2025-08-14 20:28:34,274 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:34,274 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 198.51.100.99: True
+2025-08-14 20:28:34,306 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 192.0.2.75
+2025-08-14 20:28:34,344 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 192.0.2.75. Verdict: SUSPICIOUS
+2025-08-14 20:28:34,344 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:34,344 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 192.0.2.75: True
+2025-08-14 20:28:34,374 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 10.255.255.100
+2025-08-14 20:28:34,424 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 10.255.255.100. Verdict: SUSPICIOUS
+2025-08-14 20:28:34,424 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:34,424 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 10.255.255.100: True
+2025-08-14 20:28:34,464 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 172.20.0.33
+2025-08-14 20:28:34,513 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 172.20.0.33. Verdict: SUSPICIOUS
+2025-08-14 20:28:34,513 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:34,516 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 172.20.0.33: True
+2025-08-14 20:28:34,541 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 192.168.50.200
+2025-08-14 20:28:34,593 - TrafficAnalyzer - INFO - [main.py:862] - Deep analysis complete for 192.168.50.200. Verdict: SUSPICIOUS
+2025-08-14 20:28:34,593 - TrafficAnalyzer - INFO - [main.py:870] - Blockchain transaction 
+2025-08-14 20:28:34,593 - TrafficAnalyzer - INFO - [main.py:872] - Blockchain transaction submitted for 192.168.50.200: True
+2025-08-14 20:31:24,592 - TrafficAnalyzer - INFO - [main.py:430] - New IP seen: 192.168.0.119
+2025-08-15 21:08:58,860 - TrafficAnalyzer - INFO - [main.py:375] - PoW required. No analyzer started.
+2025-08-15 21:08:58,861 - TrafficAnalyzer - INFO - [main.py:375] - PoW required. No analyzer started.
+2025-08-15 21:08:58,861 - TrafficAnalyzer - INFO - [main.py:375] - PoW required. No analyzer started.
+2025-08-15 21:08:58,862 - TrafficAnalyzer - INFO - [main.py:375] - PoW required. No analyzer started.
+2025-08-15 21:08:58,862 - TrafficAnalyzer - INFO - [main.py:375] - PoW required. No analyzer started.
+2025-08-15 21:08:58,865 - TrafficAnalyzer - INFO - [main.py:379] - Application initialized.
+2025-08-15 21:08:58,865 - TrafficAnalyzer - INFO - [main.py:379] - Application initialized.
+2025-08-15 21:08:58,866 - TrafficAnalyzer - INFO - [main.py:379] - Application initialized.
+2025-08-15 21:08:58,866 - TrafficAnalyzer - INFO - [main.py:379] - Application initialized.
+2025-08-15 21:08:58,867 - TrafficAnalyzer - INFO - [main.py:379] - Application initialized.
+2025-08-15 21:08:58,880 - TrafficAnalyzer - INFO - [main.py:428] - New IP seen: 192.168.0.119

@@ -935,7 +935,7 @@ function loadPendingTransactions(data) {
             <td>${tx.legitimacy_score ?? 'N/A'}</td>
             <td>${tx.is_trustworthy ? 'Yes' : 'No'}</td>
             <td>${tx.ttl_obfuscation ? 'Yes' : 'No'}</td>
-            <td>${tx.headersPresent ? 'Yes' : 'No'}</td>
+            <td>${tx.headersPresent ? 'Yes' : tx.headersPresent}</td>
             
             <td class="timestamp">${timestamp}</td>
         `;

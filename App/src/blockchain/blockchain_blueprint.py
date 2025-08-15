@@ -36,7 +36,7 @@ def api_mine():
         return jsonify({"message": "No transactions to mine"}), 200
 
 @app.route('/api/blockchain/usermine', methods=['GET'])
-def api_mine():
+def api_usermine():
     result = blockchain.usermine()
     if result:
         return jsonify({
@@ -70,9 +70,6 @@ def api_search_by_ip():
     result = blockchain.search_by_ip(ip)
     return jsonify(result), 200
 
-# -----------------------------
-# Run Server
-# -----------------------------
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

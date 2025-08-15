@@ -8,6 +8,7 @@ from flask import Flask, render_template, request, jsonify, g, session
 import time
 import threading
 import logging
+from logging_fix import setup_logging
 from functools import wraps
 
 
@@ -139,20 +140,7 @@ window.onload = async function () {
 """
 
 
-
-
-# Remove any existing handlers
-if logger.handlers:
-     logger.handlers.clear()
-
-# Add a rotating file handler
-file_handler = RotatingFileHandler(
-    'traffic_analyzer.log',
-    maxBytes=10*1024*1024,  # 10MB
-    backupCount=5
-)
-
-# incode rate limiters 
+logger = setup_logging()
 
 # Simple configuration
 BATCH_SIZE = 20
@@ -166,7 +154,6 @@ analysis_results = {}
 
 
 def load_ip_data():
-    """Load IP data from JSON file"""
     try:
         if os.path.exists('ip_tracking.json'):
             with open('ip_tracking.json', 'r') as f:
@@ -177,13 +164,11 @@ def load_ip_data():
     return {}, {}, {}
 
 def save_ip_data():
-    """Save IP data to JSON file"""
     try:
         data = {
             'ip_requests': ip_requests,
             'blocked_ips': blocked_ips,
-            'analysis_results': analysis_results,
-            'last_updated': datetime.now().isoformat()
+            'last_updated': datetime.datetime.now().isoformat()
         }
         with open('ip_tracking.json', 'w') as f:
             json.dump(data, f, indent=2)
@@ -205,13 +190,10 @@ def is_ip_blocked(client_ip):
             save_ip_data()
     return False, 0
 
-
-
-
 def add_request_to_batch(client_ip, user_agent, headers):
     """Add request to IP's batch and check if ready for analysis"""
     current_time = time.time()
-    
+    print(client_ip, user_agent, headers)
     # Initialize IP if not exists
     if client_ip not in ip_requests:
         ip_requests[client_ip] = []
@@ -241,9 +223,8 @@ def add_request_to_batch(client_ip, user_agent, headers):
     if batch_size >= BATCH_SIZE:
         return analyze_ip_batch(client_ip)
     
-    return False  # Not suspicious yet
+    return False 
 def block_ip_simple(client_ip, reason):
-    """Block an IP with simple logic"""
     block_until = time.time() + BLOCK_DURATION
     blocked_ips[client_ip] = block_until
     
@@ -255,10 +236,11 @@ def block_ip_simple(client_ip, reason):
             blocked_ips[client_ip] = time.time() + (BLOCK_DURATION * 3)  # Triple block time
             print(f"[EXTENDED BLOCK] {client_ip} - Repeat offender")
     
-    print(f"[BLOCKED] {client_ip} - {reason} - Until: {datetime.fromtimestamp(blocked_ips[client_ip])}")
+    print(f"[BLOCKED] {client_ip} - {reason} - Until: {datetime(blocked_ips[client_ip])}")
     save_ip_data()
     
 def analyze_ip_batch(client_ip):
+    print(client_ip)
     """Analyze batch of requests from IP using existing is_suspicious function"""
     try:
         requests_batch = ip_requests[client_ip]
@@ -361,13 +343,8 @@ def analyze_ip_batch(client_ip):
 # incode
 
 
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-# logger.addHandler(file_handler)
-
 # Add console handler if you still want console output
 console_handler = logging.StreamHandler()
-console_handler.setFormatter(formatter)
 # logger.addHandler(console_handler)
 
 # Initialize Flask app
@@ -375,15 +352,6 @@ app = Flask(__name__)
 # Configuration Defaults
 app.config['INITIALIZED'] = False
 app.config['REQUIRE_POW'] = True  # Set True if PoW is required
-
-# Setup Logger
-logging.basicConfig(
-    filename='app.log',             # Log file name
-    filemode='a',                   # 'a' = append mode, 'w' = overwrite
-    level=logging.INFO,             # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger("TrafficAnalyzer")
 
 
 def start_global_analyzer():
@@ -486,7 +454,7 @@ def batch_rate_limiter():
     
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
     user_agent = request.headers.get('User-Agent', '')
-    
+    print(f"Received request from {client_ip} with User-Agent: {user_agent}")
     # Check if IP is blocked
     is_blocked, remaining_time = is_ip_blocked(client_ip)
     if is_blocked:
@@ -838,7 +806,6 @@ def traffic_protected(f):
                         reasons.append(f"packet:{indicator}")
 
                 # logger.warning(f"Blocked suspicious request from {client_ip}. Reasons: {', '.join(reasons)}")
-                logging.warning(f"[suspicious REQUEST] {client_ip} - {remaining_time}s remaining")
                 return jsonify({
                     "ip": client_ip,
                     "error": "Access denied due to suspicious activity",
