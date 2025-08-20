@@ -160,6 +160,23 @@
       "previous_hash": "0000db179c10a6989809dea9c0929d8417674145a96725b92e0d08b994055997",
       "nonce": 61593,
       "hash": "00006f00ac511f7a2e02296d00c1197fbf44da70f96368c4055ca7cdb4ac5e71"
+    },
+    {
+      "index": 10,
+      "transactions": [
+        {
+          "ip": "172.31.255.1",
+          "headers_present": true,
+          "ttl_obfuscation": false,
+          "legitimacy_score": 2,
+          "is_trustworthy": false,
+          "timestamp": 1755013010.8327243
+        }
+      ],
+      "timestamp": 1755682208.4487033,
+      "previous_hash": "00006f00ac511f7a2e02296d00c1197fbf44da70f96368c4055ca7cdb4ac5e71",
+      "nonce": 53240,
+      "hash": "00000fa3c00faaf26d9386b97544e581edf2485bc19364670f857782d4c15da6"
     }
   ],
   "pending_transactions": [
@@ -1326,7 +1343,31 @@
       "legitimacy_score": 1.0,
       "is_trustworthy": true,
       "timestamp": 1755272403.8216708
+    },
+    {
+      "ip": "192.168.0.119",
+      "batch_size": 20,
+      "suspicious_requests": 2,
+      "suspicious_ratio": 0.1,
+      "analysis_type": "batch_analysis",
+      "headers_present": true,
+      "ttl_obfuscation": false,
+      "legitimacy_score": 0.9,
+      "is_trustworthy": true,
+      "timestamp": 1755682198.15872
+    },
+    {
+      "ip": "192.168.0.119",
+      "batch_size": 22,
+      "suspicious_requests": 2,
+      "suspicious_ratio": 0.09090909090909091,
+      "analysis_type": "batch_analysis",
+      "headers_present": true,
+      "ttl_obfuscation": false,
+      "legitimacy_score": 0.9090909090909091,
+      "is_trustworthy": true,
+      "timestamp": 1755682198.1627553
     }
   ],
-  "last_updated": 1755272414.23235
+  "last_updated": 1755682210.2996008
 }

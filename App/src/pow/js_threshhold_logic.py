@@ -11,7 +11,7 @@ import struct
 import threading
 from datetime import datetime
 from collections import defaultdict, deque
-
+import psutil
 from utils.shared_data import SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
 from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SYN_FLOOD_THRESHOLD
 from utils.shared_data import SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
@@ -24,20 +24,47 @@ def generate_challenge():
     return challenge, difficulty
 
 def get_dynamic_difficulty():
-    return 2
+    load_score, cpu, mem = get_server_load()
+    attack = is_under_attack()
+
+    if attack:
+        return min(6, int(load_score * 2) + 1) 
+    return max(1, int(load_score)) 
+
+def get_server_load():
+    load = psutil.getloadavg()[0]  # 1 minute load average
+    cpu = psutil.cpu_percent(interval=1)
+    mem = psutil.virtual_memory().percent
+
+    load_score = min(10, max(0, load / psutil.cpu_count()))
+    
+    return load_score, cpu, mem
+def is_under_attack():
+    cpu_usage = psutil.cpu_percent(interval=1)
+    mem_usage = psutil.virtual_memory().percent
+
+    if cpu_usage > 80 or mem_usage > 80:
+        return True
+    
+    # Check for high number of connections
+    connections = psutil.net_connections(kind='inet')
+    if len(connections) > 1000:  # Arbitrary threshold
+        return True
+    
+    return False
+
 
 def verify_pow_challenge(challenge, nonce):
-    """Verify a proof of work challenge"""
     if not challenge or not nonce:
         return False
-    print(f"Verifying challenge: {challenge} with nonce: {nonce}")  
+    
     difficulty = challenge_store.get(challenge)
-      
     if not difficulty:
         return False
+    
+    # Actually verify the hash meets difficulty
     test_hash = hashlib.sha256((challenge + str(nonce)).encode()).hexdigest()
- 
-    if challenge in challenge_store:
+    if test_hash.startswith('0' * difficulty):
         del challenge_store[challenge]
         return True
     return False
@@ -85,11 +112,8 @@ def checksum(data):
 def analyze_traffic(ip=None):
     results = {}
     current_time = time.time()
-
-  
     with data_lock:
         ips_to_analyze = [ip] if ip else list(ip_stats.keys())
-
     for target_ip in ips_to_analyze:
         with data_lock:
             if target_ip not in ip_stats:
@@ -99,43 +123,28 @@ def analyze_traffic(ip=None):
         if current_time - data["last_seen"] > ANALYSIS_WINDOW:
             logger.info(f"Skipping {target_ip}: inactive beyond analysis window.")
             continue
-
-        # Calculate time window safely
         time_window = max(data["last_seen"] - data["first_seen"], 0.01)
-
-        # Avoid inflated RPM/RPS for too-short windows
         if time_window >= 1.0:
             rpm = (data["request_count"] / time_window) * 60
             rps = data["request_count"] / time_window
         else:
             rpm, rps = 0, 0
 
-        # Sudden traffic spike detection
         is_spiking = False
-        # if len(data["last_requests"]) >= 3:
-        #     intervals = [t2 - t1 for t1, t2 in zip(data["last_requests"][:-1], data["last_requests"][1:])]
-        #     avg_interval = sum(intervals) / len(intervals) if intervals else float('inf')
-        #     is_spiking = avg_interval < 0.5  # Adjustable threshold
-
-        # Suspicious UA detection
         ua = data.get("user_agents")
         def has_suspicious_ua(ua_input):
             """Check if any UA in the input is suspicious. Accepts string or list."""
             user_agents = []
-
             if isinstance(ua_input, str):
                 user_agents = [ua_input.strip()]
             elif isinstance(ua_input, (list, set, tuple)):
                 user_agents = [str(ua).strip() for ua in ua_input if isinstance(ua, str) and ua.strip()]
             else:
                 return True, f"Invalid UA input type: {type(ua_input).__name__}"
-
             for ua in user_agents:
                 if not ua:
-                    continue  # skip blank strings
-
+                    continue  
                 ua_lower = ua.lower()
-
                 for keyword in SUSPICIOUS_USER_AGENTS:
                     if keyword and keyword.lower() in ua_lower:
                         return True, f"Matched suspicious keyword: '{keyword}'"
@@ -143,10 +152,7 @@ def analyze_traffic(ip=None):
                 for pattern in SUSPICIOUS_UA_PATTERNS:
                     if re.search(pattern, ua, re.IGNORECASE):
                         return True, f"Matched suspicious regex pattern: '{pattern}'"
-
             return False
-
-        
         result = {
             "ip": target_ip,
             "is_residential": data.get("is_residential", False),
@@ -174,7 +180,6 @@ def analyze_traffic(ip=None):
                 "endpoints_accessed": list(data["endpoints_accessed"]),
                 "user_agents": list(data["user_agents"]),
                 "referrers": list(data["referrers"]),
-                # "response_codes": dict(data["response_codes"])
             }
         }
 

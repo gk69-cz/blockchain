@@ -19,10 +19,10 @@ SUSPICIOUS_UA_PATTERNS = [
     r'(bot|crawl|spider)', 
     r'(nmap|nikto|gobuster|dirb)', 
     r'(curl|wget)', 
-    # r'(curl|wget|python-requests)',  
+    r'(curl|wget|python-requests)',  
 ]
 TTL_SUSPICIOUS_VALUES = [
-    0,     
+    0,
     1, 2, 3, 4, 5,     
     6, 7, 8, 9, 10,    
     32, 36,            

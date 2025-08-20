@@ -72,3 +72,9 @@
 2025-08-15 21:08:58,866 - TrafficAnalyzer - INFO - [main.py:379] - Application initialized.
 2025-08-15 21:08:58,867 - TrafficAnalyzer - INFO - [main.py:379] - Application initialized.
 2025-08-15 21:08:58,880 - TrafficAnalyzer - INFO - [main.py:428] - New IP seen: 192.168.0.119
+2025-08-20 14:59:27,071 - TrafficAnalyzer - INFO - [main.py:369] - PoW required. No analyzer started.
+2025-08-20 14:59:27,074 - TrafficAnalyzer - INFO - [main.py:373] - Application initialized.
+2025-08-20 14:59:27,081 - TrafficAnalyzer - INFO - [main.py:420] - New IP seen: 192.168.0.119
+2025-08-20 15:02:01,004 - TrafficAnalyzer - INFO - [main.py:368] - PoW required. No analyzer started.
+2025-08-20 15:02:01,004 - TrafficAnalyzer - INFO - [main.py:372] - Application initialized.
+2025-08-20 15:02:01,011 - TrafficAnalyzer - INFO - [main.py:419] - New IP seen: 192.168.0.119
