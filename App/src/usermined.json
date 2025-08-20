@@ -18,23 +18,6 @@
   },
   {
     "index": 2,
-    "ip_address": "192.168.100.50",
-    "transactions_data": [
-      {
-        "ip": "192.168.100.50",
-        "headers_present": true,
-        "ttl_obfuscation": false,
-        "legitimacy_score": 4,
-        "is_trustworthy": false,
-        "timestamp": 1755013010.894287
-      }
-    ],
-    "timestamp": 1755015322.1157408,
-    "previous_hash": "00003dd64f372f34f878c3dc2e069d81c096b520f25ae7bf08aeabea430056a1",
-    "mined_hex_key": "5c6d312162788405"
-  },
-  {
-    "index": 2,
     "ip_address": "172.20.0.33",
     "transactions_data": [
       {
@@ -83,23 +66,6 @@
     "timestamp": 1755015482.1715155,
     "previous_hash": "000074721a5b47fb5559f1613c16a46de98f4d8f0c496c0293859c5e6efcbe0e",
     "mined_hex_key": "80e7490800bd47ac"
-  },
-  {
-    "index": 3,
-    "ip_address": "192.168.100.50",
-    "transactions_data": [
-      {
-        "ip": "192.168.100.50",
-        "headers_present": true,
-        "ttl_obfuscation": false,
-        "legitimacy_score": 4,
-        "is_trustworthy": false,
-        "timestamp": 1755013010.894287
-      }
-    ],
-    "timestamp": 1755015482.4387407,
-    "previous_hash": "000074721a5b47fb5559f1613c16a46de98f4d8f0c496c0293859c5e6efcbe0e",
-    "mined_hex_key": "a7332933868a2ddc"
   },
   {
     "index": 3,
@@ -170,23 +136,6 @@
     "mined_hex_key": "f287493f8f121af0"
   },
   {
-    "index": 3,
-    "ip_address": "192.168.100.50",
-    "transactions_data": [
-      {
-        "ip": "192.168.100.50",
-        "headers_present": true,
-        "ttl_obfuscation": false,
-        "legitimacy_score": 4,
-        "is_trustworthy": false,
-        "timestamp": 1755013010.894287
-      }
-    ],
-    "timestamp": 1755015485.007698,
-    "previous_hash": "000074721a5b47fb5559f1613c16a46de98f4d8f0c496c0293859c5e6efcbe0e",
-    "mined_hex_key": "0e60d29c8a61444e"
-  },
-  {
     "index": 1,
     "ip_address": "172.31.255.1",
     "transactions_data": [
@@ -219,23 +168,6 @@
     "timestamp": 1755018040.248607,
     "previous_hash": "0000fbb58cd65a2084b47575b444200a3d8ce8c2903502afcc274adda0fcbf21",
     "mined_hex_key": "dc6e094bec769df8"
-  },
-  {
-    "index": 1,
-    "ip_address": "192.168.100.50",
-    "transactions_data": [
-      {
-        "ip": "192.168.100.50",
-        "headers_present": true,
-        "ttl_obfuscation": false,
-        "legitimacy_score": 4,
-        "is_trustworthy": false,
-        "timestamp": 1755018040.0579474
-      }
-    ],
-    "timestamp": 1755018040.4542959,
-    "previous_hash": "0000fbb58cd65a2084b47575b444200a3d8ce8c2903502afcc274adda0fcbf21",
-    "mined_hex_key": "02dca1c53e74be83"
   },
   {
     "index": 1,
@@ -307,23 +239,6 @@
   },
   {
     "index": 1,
-    "ip_address": "192.168.100.50",
-    "transactions_data": [
-      {
-        "ip": "192.168.100.50",
-        "headers_present": true,
-        "ttl_obfuscation": false,
-        "legitimacy_score": 4,
-        "is_trustworthy": false,
-        "timestamp": 1755018040.0579474
-      }
-    ],
-    "timestamp": 1755018050.9340038,
-    "previous_hash": "0000fbb58cd65a2084b47575b444200a3d8ce8c2903502afcc274adda0fcbf21",
-    "mined_hex_key": "cf155dff9712d604"
-  },
-  {
-    "index": 1,
     "ip_address": "10.10.10.25",
     "transactions_data": [
       {
@@ -389,23 +304,6 @@
     "timestamp": 1755018082.9597242,
     "previous_hash": "0000fbb58cd65a2084b47575b444200a3d8ce8c2903502afcc274adda0fcbf21",
     "mined_hex_key": "b05ab964029dbce4"
-  },
-  {
-    "index": 1,
-    "ip_address": "192.168.100.50",
-    "transactions_data": [
-      {
-        "ip": "192.168.100.50",
-        "headers_present": true,
-        "ttl_obfuscation": false,
-        "legitimacy_score": 4,
-        "is_trustworthy": false,
-        "timestamp": 1755018040.0579474
-      }
-    ],
-    "timestamp": 1755018089.122411,
-    "previous_hash": "0000fbb58cd65a2084b47575b444200a3d8ce8c2903502afcc274adda0fcbf21",
-    "mined_hex_key": "f9342fb11ef06b1b"
   },
   {
     "index": 1,

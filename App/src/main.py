@@ -85,7 +85,7 @@ window.onload = async function () {
         if (!pendingTx || pendingTx.length === 0) {
             updateStatus('No pending transactions. Nothing to mine. proceeding to next step...');
         }
-,
+
         if (localStorage.getItem('minedKey')) {
             updateStatus('You have already mined a block. Mining skipped.');
             return;
@@ -142,7 +142,6 @@ window.onload = async function () {
 
 logger = setup_logging()
 
-# Simple configuration
 BATCH_SIZE = 20
 ANALYSIS_WINDOW = 60  
 BLOCK_DURATION = 300
@@ -244,27 +243,21 @@ def analyze_ip_batch(client_ip):
     """Analyze batch of requests from IP using existing is_suspicious function"""
     try:
         requests_batch = ip_requests[client_ip]
-        total_requests = len(requests_batch)
-        
+        total_requests = len(requests_batch)    
         print(f"[BATCH ANALYSIS] Analyzing {total_requests} requests from {client_ip}")
-        
-        # Use your existing is_suspicious function
+        # Using existing is_suspicious function
         suspicious_count = 0
-        
         for req in requests_batch:
-            # Create mock headers dict for is_suspicious function
             mock_headers = {
                 'User-Agent': req.get('user_agent', ''),
                 'Referer': req.get('referer', ''),
                 'Accept': req.get('accept', ''),
                 'Accept-Language': req.get('accept_language', ''),
                 'Accept-Encoding': req.get('accept_encoding', '')
-            }
-            
+            }   
             # Use your existing function
             if is_suspicious(req.get('user_agent', ''), mock_headers):
                 suspicious_count += 1
-        
         # Simple decision: if more than 50% of requests are suspicious
         suspicious_ratio = suspicious_count / total_requests
         is_batch_suspicious = suspicious_ratio > 0.5
@@ -389,7 +382,6 @@ def unified_before_request():
     endpoint = request.path
 
     suspicious_request = is_suspicious(user_agent, request.headers)
-    print(suspicious_request)
     if suspicious_request:
         logger.warning(f"Suspicious request detected from {client_ip}. User-Agent: {user_agent}")
         try:
@@ -422,11 +414,9 @@ def unified_before_request():
             "ttl_obfuscation": False,
             "is_residential": True
         })
-
         if stats["first_seen"] == 0:
             stats["first_seen"] = request_time
             logger.info(f"New IP seen: {client_ip}")
-
         stats["last_seen"] = request_time
         stats["request_count"] += 1
         stats["endpoints_accessed"].add(endpoint)
@@ -502,14 +492,14 @@ def after_request(response):
 def is_suspicious(user_agent, headers):
     ua = (user_agent or "").lower()
 
-    # Partial match: check if any suspicious string appears in the UA
+    # Checking if any suspicious string appears in the UA
     for bad_ua in SUSPICIOUS_USER_AGENTS:
         if bad_ua and bad_ua in ua:
             return True
         if not bad_ua and ua.strip() == "":
             return True  # Empty UA
 
-    # Check for suspicious headers presence or emptiness
+    # Check for suspicious headers presence or if header is empty
     for header in SUSPICIOUS_HEADERS:
         if header in headers:
             val = headers[header]
@@ -582,9 +572,6 @@ def api_search_ip():
 
     result = blockchain.search_by_ip(ip)
     return jsonify(result), 200
-# -----------------------------
-# Run Server
-# -----------------------------
 
 # for quick action
 @app.route('/api/analyze-block', methods=['GET'])
@@ -917,7 +904,6 @@ def index():
 
 if __name__ == "__main__":
     schedule_extraction()
-       
     app.run(host="0.0.0.0", port=8081, debug=False)
     
     

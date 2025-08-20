@@ -579,3 +579,39 @@
 2025-08-15 21:10:33,763 - traffic_analyzer - INFO - [js_threshhold_logic.py:197] - Analyzed 192.168.0.119: Suspicious=False, RPM=20.87, RPS=0.35
 2025-08-15 21:10:33,763 - traffic_analyzer - INFO - [js_threshhold_logic.py:197] - Analyzed 192.168.0.119: Suspicious=False, RPM=19.6, RPS=0.33
 2025-08-15 21:10:33,781 - traffic_analyzer - INFO - [js_threshhold_logic.py:197] - Analyzed 192.168.0.119: Suspicious=False, RPM=21.5, RPS=0.36
+2025-08-20 14:59:27,071 - TrafficAnalyzer - INFO - [main.py:369] - PoW required. No analyzer started.
+2025-08-20 14:59:27,074 - TrafficAnalyzer - INFO - [main.py:373] - Application initialized.
+2025-08-20 14:59:27,081 - TrafficAnalyzer - INFO - [main.py:420] - New IP seen: 192.168.0.119
+2025-08-20 14:59:27,086 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0, RPS=0
+2025-08-20 14:59:27,430 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0, RPS=0
+2025-08-20 14:59:27,430 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0, RPS=0
+2025-08-20 14:59:27,430 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0, RPS=0
+2025-08-20 14:59:27,479 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0, RPS=0
+2025-08-20 14:59:27,501 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0, RPS=0
+2025-08-20 14:59:27,502 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0, RPS=0
+2025-08-20 14:59:28,256 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=True, RPM=408.04, RPS=6.8
+2025-08-20 14:59:58,147 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=17.38, RPS=0.29
+2025-08-20 14:59:58,147 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=19.31, RPS=0.32
+2025-08-20 14:59:58,150 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=21.24, RPS=0.35
+2025-08-20 14:59:58,207 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=23.13, RPS=0.39
+2025-08-20 14:59:58,227 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=25.05, RPS=0.42
+2025-08-20 15:00:08,439 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=20.31, RPS=0.34
+2025-08-20 15:00:28,452 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=14.67, RPS=0.24
+2025-08-20 15:00:28,454 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=15.64, RPS=0.26
+2025-08-20 15:00:28,454 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=16.62, RPS=0.28
+2025-08-20 15:00:28,490 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=17.59, RPS=0.29
+2025-08-20 15:00:28,499 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=18.56, RPS=0.31
+2025-08-20 15:00:57,044 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=13.34, RPS=0.22
+2025-08-20 15:01:08,047 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=12.48, RPS=0.21
+2025-08-20 15:02:01,004 - TrafficAnalyzer - INFO - [main.py:368] - PoW required. No analyzer started.
+2025-08-20 15:02:01,004 - TrafficAnalyzer - INFO - [main.py:372] - Application initialized.
+2025-08-20 15:02:01,011 - TrafficAnalyzer - INFO - [main.py:419] - New IP seen: 192.168.0.119
+2025-08-20 15:02:01,013 - TrafficAnalyzer - INFO - [main.py:419] - New IP seen: 192.168.0.119
+2025-08-20 15:02:01,017 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0, RPS=0
+2025-08-20 15:02:01,280 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0, RPS=0
+2025-08-20 15:02:05,396 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=41.04, RPS=0.68
+2025-08-20 15:02:05,447 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=54.14, RPS=0.9
+2025-08-20 15:07:55,202 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=0.85, RPS=0.01
+2025-08-20 15:07:55,398 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=1.02, RPS=0.02
+2025-08-20 15:07:57,460 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=1.18, RPS=0.02
+2025-08-20 15:07:57,484 - traffic_analyzer - INFO - [js_threshhold_logic.py:202] - Analyzed 192.168.0.119: Suspicious=False, RPM=1.35, RPS=0.02
