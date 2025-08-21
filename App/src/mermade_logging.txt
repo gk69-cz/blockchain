@@ -1,0 +1,38 @@
+---
+config:
+  theme: mc
+  look: neo
+---
+graph TD
+    A[Client Request] --> B[Flask Application]
+    B --> C{Request Processing}
+    C --> D[Batch Rate Limiter]
+    C --> E[PoW Challenge]
+    C --> F[Traffic Analyzer]
+    C --> G[Blockchain Logger]
+    subgraph Logging System
+        direction LR
+        H[Console Handler] --> O[Console Output]
+        I[App Log Handler<br/>10MB, 5 backups] --> L[(app.log)]
+        J[Traffic Analyzer Handler<br/>5MB, 3 backups] --> M[(traffic_analyzer.log)]
+        K[Critical Log Handler<br/>2MB, 2 backups] --> N[(critical.log)]
+    end
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    D --> I
+    E --> I
+    G --> I
+    F --> J
+    D --> K
+    F --> K
+    G --> K
+    style K fill:#ff6b6b
+    style N fill:#ff6b6b
+    style J fill:#4ecdc4
+    style M fill:#4ecdc4
+    style I fill:#45b7d1
+    style L fill:#45b7d1
+    style H fill:#f7d794
+    style O fill:#f7d794

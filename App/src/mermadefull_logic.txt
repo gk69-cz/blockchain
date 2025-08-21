@@ -1,0 +1,115 @@
+---
+config:
+  theme: mc
+---
+flowchart TD
+    A[Client Request] --> B{PoW Required?}
+    B -->|Yes| C[Generate PoW Challenge]
+    B -->|No| D[Direct Access]
+    C --> E[Client Solves PoW]
+    E --> F{Valid Solution?}
+    F -->|No| G[Access Denied]
+    F -->|Yes| H[Add to Verified Clients]
+    H --> I[Batch Rate Limiter]
+    D --> I
+    I --> J{IP Blocked?}
+    J -->|Yes| K[Return 429 Error]
+    J -->|No| L[Add Request to Batch]
+    L --> M{Batch Size ≥ 20?}
+    M -->|No| N[Continue Processing]
+    M -->|Yes| O[Analyze IP Batch]
+    O --> P{Suspicious Ratio > 50%?}
+    P -->|Yes| Q[Block IP & Create Suspicious Transaction]
+    P -->|No| R[Create Clean Transaction]
+    N --> S[Unified Before Request]
+    Q --> S
+    R --> S
+    S --> T[Traffic Analysis]
+    T --> U{Is Suspicious?}
+    U -->|Yes| V[Create Suspicious Transaction]
+    U -->|No| W[Create Clean Transaction]
+    V --> X[Add to Pending Transactions]
+    W --> X
+    X --> Y[Periodic Analyzer Running]
+    Y --> Z{Analyzer Results}
+    Z -->|Suspicious| AA[Create Blockchain Transaction]
+    Z -->|Clean| BB[Create Positive Transaction]
+    AA --> CC[Transaction Pool]
+    BB --> CC
+    CC --> DD{User Mining Triggered?}
+    DD -->|Yes| EE[Select Random Transaction]
+    DD -->|No| FF[Wait for Mining]
+    EE --> GG[Generate Mining Record]
+    GG --> HH[Save to usermined.json]
+    HH --> II{Auto Mining Conditions?}
+    II -->|IP Count > 3| JJ[Democratic Mining Process]
+    II -->|No| KK[Wait for More Data]
+    JJ --> LL[Select Most Frequent IP]
+    LL --> MM[Create New Block]
+    MM --> NN[Proof of Work Mining]
+    NN --> OO{Valid Block Hash?}
+    OO -->|No| PP[Increment Nonce & Retry]
+    OO -->|Yes| QQ[Add Block to Chain]
+    PP --> NN
+    QQ --> RR[Remove IP from Mining Pool]
+    RR --> SS[Update Blockchain File]
+    SS --> TT[Block Successfully Added]
+    subgraph "PoW Challenge System"
+        C --> UU[Challenge: Random String + Difficulty]
+        UU --> VV[Client JS Brute Force]
+        VV --> WW[Find Nonce with Required Zeros]
+        WW --> E
+    end
+    subgraph "Batch Analysis"
+        O --> XX[Check User Agent Patterns]
+        XX --> YY[Check Request Frequency]
+        YY --> ZZ[Calculate Suspicious Ratio]
+        ZZ --> P
+    end
+    subgraph "Traffic Analysis Indicators"
+        T --> AAA[High Request Rate > 90 RPM]
+        T --> BBB[Missing Headers]
+        T --> CCC[Suspicious User Agents]
+        T --> DDD[TTL Obfuscation]
+        T --> EEE[Unusual Endpoint Distribution]
+        AAA --> U
+        BBB --> U
+        CCC --> U
+        DDD --> U
+        EEE --> U
+    end
+    subgraph "Democratic Mining Logic"
+        JJ --> FFF[Count IP Occurrences in Mining Pool]
+        FFF --> GGG{Any IP Count > 3?}
+        GGG -->|Yes| HHH[Select IP with Highest Count]
+        GGG -->|No| III[Return: No Mining Needed]
+        HHH --> JJJ[Get Random Block for Selected IP]
+        JJJ --> LL
+    end
+    subgraph "Block Validation"
+        MM --> KKK[Verify Previous Hash]
+        KKK --> LLL[Set Difficulty Level]
+        LLL --> NN
+        QQ --> MMM[Validate Block Structure]
+        MMM --> NNN[Verify Hash Chain]
+        NNN --> SS
+    end
+    subgraph "SYN Flood Detection"
+        Y --> OOO[Monitor netstat -ant]
+        OOO --> PPP{SYN_RECV > 100?}
+        PPP -->|Yes| QQQ[Create SYN Flood Transaction]
+        PPP -->|No| RRR[Continue Normal Analysis]
+        QQQ --> AA
+        RRR --> Z
+    end
+    TT --> SSS[Client Receives Response]
+    K --> SSS
+    G --> SSS
+    classDef suspicious fill:#ffcccc,stroke:#ff0000
+    classDef clean fill:#ccffcc,stroke:#00ff00
+    classDef mining fill:#ffffcc,stroke:#ffaa00
+    classDef pow fill:#ccccff,stroke:#0000ff
+    class Q,V,AA suspicious
+    class R,W,BB clean
+    class EE,GG,JJ,LL,MM,NN,QQ mining
+    class C,E,F,H pow
