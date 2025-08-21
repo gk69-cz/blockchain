@@ -1,0 +1,39 @@
+%% ---------------- PART 1 ----------------
+flowchart TD
+    A[Transaction Pool<br/>Pending Transactions] --> B{User Mining<br/>Triggered?}
+    
+    B -->|Yes| C[Select Random Transaction<br/>from Pool]
+    B -->|No| D[Automatic Mining<br/>Check Timer]
+    
+    C --> E[Generate Mining Record]
+    E --> F[Create Mining Entry:<br/>- Index<br/>- IP Address<br/>- Transaction Data<br/>- Timestamp<br/>- Previous Hash<br/>- Hex Key]
+    
+    F --> G[Save to usermined.json]
+    G --> H[Mining Record Saved]
+    
+    D --> I[Load usermined.json]
+    I --> J[Count IP Occurrences<br/>in Mining Records]
+    
+    J --> K{Any IP Count > 3?}
+    K -->|No| L[Return: No Mining Needed<br/>Wait for More Data]
+    K -->|Yes| M[Select IP with<br/>Highest Frequency]
+    
+    M --> N[Get All Blocks for<br/>Selected IP]
+    N --> O[Choose Random Block<br/>from Matching Set]
+    
+    O --> P[Extract Transaction Data<br/>from Selected Block]
+    P --> Q[Get Last Block from Chain]
+
+   
+
+    classDef pool fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef mining fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef decision fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef files fill:#fff8e1,stroke:#fbc02d,stroke-width:2px
+
+    class A,C pool
+    class E,F,G,H,M,N,O,P mining
+    class B,K decision
+    class I files
+
+
