@@ -4,6 +4,8 @@ import os
 import random
 import time
 
+
+from server.helpers.helpers import hash_ip
 class Block:
     def __init__(self, index, transactions, timestamp, previous_hash, nonce=0):
         self.index = index
@@ -293,7 +295,7 @@ class Blockchain:
         # Create mining record
         mining_record = {
             "index": last_block.index + 1,
-            "ip_address": transactions_to_mine[0].get("ip") if transactions_to_mine else None,
+            "ip_address": hash_ip(transactions_to_mine[0].get("ip")) if transactions_to_mine else None,
             "transactions_data": transactions_to_mine,
             "timestamp": time.time(),
             "previous_hash": last_block.hash,
@@ -324,8 +326,8 @@ class Blockchain:
             return {
                 "index": mining_record["index"],
                 "hex_key": hex_key,
-                "saved": True,
-                "total_records": len(mined_blocks)
+                "ip_address": hash_ip(transactions_to_mine[0].get("ip")) if transactions_to_mine else None,
+                "total_usermined_Blocks": len(mined_blocks)
             }
             
         except Exception as e:
@@ -337,7 +339,6 @@ class Blockchain:
         file_path = "usermined.json"
         mined_blocks = []
 
-        # Load JSON data if it exists
         if os.path.exists(file_path):
             try:
                 with open(file_path, 'r') as f:
@@ -389,7 +390,6 @@ class Blockchain:
             original_count = len(mined_blocks)
             mined_blocks = [block for block in mined_blocks if block.get("ip_address") != target_ip]
             removed_count = original_count - len(mined_blocks)
-
             
             try:
                 with open(file_path, "w") as f:
@@ -418,7 +418,7 @@ class Blockchain:
             return {
                 "index": new_block.index,
                 "hex_key": random_block.get("mined_hex_key"),
-                "ip_address": target_ip,
+                "ip_address": hash_ip(target_ip),
                 "blocks_removed": removed_count
             }
 
@@ -467,9 +467,6 @@ class Blockchain:
             "length": len(self.chain),
             "chain": [block.to_dict() for block in self.chain]
         }
-        
-   
-
     def get_pending_transactions(self):
         """Get all pending transactions"""
         return {
@@ -478,7 +475,6 @@ class Blockchain:
         }
 
     def search_by_ip(self, ip_address):
-        """Search for transactions containing a specific IP address"""
         matches = []
 
         # for tx in self.unconfirmed_transactions:
