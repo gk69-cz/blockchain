@@ -1,0 +1,123 @@
+2025-08-29 21:48:09,830 - root - WARNING - [main.py:299] - [BATCH ANALYSIS] Analyzing 12 requests from 127.0.0.1
+2025-08-29 21:49:22,757 - root - WARNING - [main.py:299] - [BATCH ANALYSIS] Analyzing 14 requests from 127.0.0.1
+2025-08-29 21:49:22,757 - root - CRITICAL - [main.py:325] - [ANALYSIS] 127.0.0.1 - Rapid fire: 14 in 0.76s
+2025-08-29 21:49:22,757 - root - CRITICAL - [main.py:380] - [ERROR] Batch analysis failed for 127.0.0.1: 'module' object is not callable
+2025-08-29 21:49:44,433 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 278s remaining
+2025-08-29 21:49:44,433 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 278s remaining
+2025-08-29 21:49:44,433 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 278s remaining
+2025-08-29 21:49:44,700 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 278s remaining
+2025-08-29 21:49:44,775 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 277s remaining
+2025-08-29 21:49:53,130 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 269s remaining
+2025-08-29 21:50:14,429 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 248s remaining
+2025-08-29 21:50:14,429 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 248s remaining
+2025-08-29 21:50:14,429 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 248s remaining
+2025-08-29 21:50:14,698 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 248s remaining
+2025-08-29 21:50:14,759 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 247s remaining
+2025-08-29 21:50:44,126 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 218s remaining
+2025-08-29 21:50:44,429 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 218s remaining
+2025-08-29 21:50:44,429 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 218s remaining
+2025-08-29 21:50:44,450 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 218s remaining
+2025-08-29 21:50:44,759 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 217s remaining
+2025-08-29 21:51:14,431 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 188s remaining
+2025-08-29 21:51:14,431 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 188s remaining
+2025-08-29 21:51:14,431 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 188s remaining
+2025-08-29 21:51:14,696 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 188s remaining
+2025-08-29 21:51:14,774 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 187s remaining
+2025-08-29 21:51:44,127 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 158s remaining
+2025-08-29 21:51:44,423 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 158s remaining
+2025-08-29 21:51:44,423 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 158s remaining
+2025-08-29 21:51:44,448 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 158s remaining
+2025-08-29 21:51:44,764 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 157s remaining
+2025-08-29 21:52:14,449 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 128s remaining
+2025-08-29 21:52:14,449 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 128s remaining
+2025-08-29 21:52:14,449 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 128s remaining
+2025-08-29 21:52:14,713 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 128s remaining
+2025-08-29 21:52:14,765 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 127s remaining
+2025-08-29 21:52:20,540 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 122s remaining
+2025-08-29 21:52:34,657 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 108s remaining
+2025-08-29 21:52:34,657 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 108s remaining
+2025-08-29 21:52:43,404 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 99s remaining
+2025-08-29 21:52:43,710 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 99s remaining
+2025-08-29 21:52:43,710 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 99s remaining
+2025-08-29 21:52:43,725 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 99s remaining
+2025-08-29 21:52:44,041 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 98s remaining
+2025-08-29 21:53:14,429 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 68s remaining
+2025-08-29 21:53:14,429 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 68s remaining
+2025-08-29 21:53:14,429 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 68s remaining
+2025-08-29 21:53:14,692 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 68s remaining
+2025-08-29 21:53:14,763 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 67s remaining
+2025-08-29 21:53:44,122 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 38s remaining
+2025-08-29 21:53:44,427 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 38s remaining
+2025-08-29 21:53:44,427 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 38s remaining
+2025-08-29 21:53:44,445 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 38s remaining
+2025-08-29 21:53:44,756 - root - CRITICAL - [main.py:497] - [BLOCKED REQUEST] 127.0.0.1 - 38s remaining
+2025-08-29 21:54:51,778 - root - WARNING - [main.py:319] - [BATCH ANALYSIS] Analyzing 12 requests from 127.0.0.1
+2025-08-29 21:57:36,382 - TrafficAnalyzer - WARNING - [main.py:746] - Detected suspicious activity from 127.0.0.1
+2025-08-29 21:57:41,444 - root - WARNING - [main.py:321] - [BATCH ANALYSIS] Analyzing 18 requests from 127.0.0.1
+2025-08-29 21:58:36,401 - TrafficAnalyzer - WARNING - [main.py:746] - Detected suspicious activity from 127.0.0.1
+2025-08-29 21:58:42,806 - root - WARNING - [main.py:321] - [BATCH ANALYSIS] Analyzing 16 requests from 127.0.0.1
+2025-08-29 21:58:42,806 - root - CRITICAL - [main.py:347] - [ANALYSIS] 127.0.0.1 - Rapid fire: 16 in 0.86s
+2025-08-29 21:58:42,806 - root - CRITICAL - [main.py:402] - [ERROR] Batch analysis failed for 127.0.0.1: 'module' object is not callable
+2025-08-29 21:59:03,988 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 278s remaining
+2025-08-29 21:59:03,988 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 278s remaining
+2025-08-29 21:59:03,988 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 278s remaining
+2025-08-29 21:59:04,250 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 278s remaining
+2025-08-29 21:59:04,314 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 278s remaining
+2025-08-29 21:59:12,990 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 269s remaining
+2025-08-29 21:59:26,772 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 256s remaining
+2025-08-29 21:59:26,772 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 256s remaining
+2025-08-29 21:59:33,686 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 249s remaining
+2025-08-29 21:59:33,991 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 248s remaining
+2025-08-29 21:59:33,991 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 248s remaining
+2025-08-29 21:59:34,007 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 248s remaining
+2025-08-29 21:59:34,319 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 248s remaining
+2025-08-29 22:00:04,011 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 218s remaining
+2025-08-29 22:00:04,011 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 218s remaining
+2025-08-29 22:00:04,011 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 218s remaining
+2025-08-29 22:00:04,258 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 218s remaining
+2025-08-29 22:00:04,327 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 218s remaining
+2025-08-29 22:00:34,138 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 188s remaining
+2025-08-29 22:00:34,447 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 188s remaining
+2025-08-29 22:00:34,447 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 188s remaining
+2025-08-29 22:00:34,468 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 188s remaining
+2025-08-29 22:00:34,780 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 188s remaining
+2025-08-29 22:01:04,436 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 158s remaining
+2025-08-29 22:01:04,436 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 158s remaining
+2025-08-29 22:01:04,436 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 158s remaining
+2025-08-29 22:01:04,702 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 158s remaining
+2025-08-29 22:01:04,769 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 158s remaining
+2025-08-29 22:01:11,703 - TrafficAnalyzer - WARNING - [main.py:746] - Detected suspicious activity from 192.168.0.192
+2025-08-29 22:01:17,157 - root - WARNING - [main.py:321] - [BATCH ANALYSIS] Analyzing 16 requests from 192.168.0.192
+2025-08-29 22:01:33,098 - root - WARNING - [main.py:321] - [BATCH ANALYSIS] Analyzing 2 requests from 192.168.0.192
+2025-08-29 22:01:33,098 - root - CRITICAL - [main.py:402] - [ERROR] Batch analysis failed for 192.168.0.192: 'module' object is not callable
+2025-08-29 22:01:33,691 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 129s remaining
+2025-08-29 22:01:34,008 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 128s remaining
+2025-08-29 22:01:34,008 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 128s remaining
+2025-08-29 22:01:34,008 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 128s remaining
+2025-08-29 22:01:34,340 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 128s remaining
+2025-08-29 22:01:39,588 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 123s remaining
+2025-08-29 22:01:39,905 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 122s remaining
+2025-08-29 22:01:46,814 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 115s remaining
+2025-08-29 22:01:46,866 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 115s remaining
+2025-08-29 22:02:06,916 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 95s remaining
+2025-08-29 22:02:07,227 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 95s remaining
+2025-08-29 22:02:10,397 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 262s remaining
+2025-08-29 22:02:37,076 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 236s remaining
+2025-08-29 22:04:22,599 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 130s remaining
+2025-08-29 22:04:36,243 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 116s remaining
+2025-08-29 22:05:01,280 - root - WARNING - [main.py:321] - [BATCH ANALYSIS] Analyzing 4 requests from 127.0.0.1
+2025-08-29 22:05:01,280 - root - CRITICAL - [main.py:402] - [ERROR] Batch analysis failed for 127.0.0.1: 'module' object is not callable
+2025-08-29 22:05:49,069 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 44s remaining
+2025-08-29 22:06:12,946 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 20s remaining
+2025-08-29 22:06:45,856 - root - WARNING - [main.py:321] - [BATCH ANALYSIS] Analyzing 2 requests from 192.168.0.192
+2025-08-29 22:06:45,864 - root - CRITICAL - [main.py:402] - [ERROR] Batch analysis failed for 192.168.0.192: 'module' object is not callable
+2025-08-29 22:15:04,669 - root - WARNING - [main.py:321] - [BATCH ANALYSIS] Analyzing 6 requests from 192.168.0.192
+2025-08-29 22:15:04,676 - root - CRITICAL - [main.py:402] - [ERROR] Batch analysis failed for 192.168.0.192: 'module' object is not callable
+2025-08-29 22:15:04,918 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 899s remaining
+2025-08-29 22:15:20,304 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 884s remaining
+2025-08-29 22:15:42,049 - root - WARNING - [main.py:321] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-29 22:15:42,049 - root - CRITICAL - [main.py:402] - [ERROR] Batch analysis failed for 127.0.0.1: 'module' object is not callable
+2025-08-29 22:15:43,475 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 898s remaining
+2025-08-29 22:19:24,859 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 639s remaining
+2025-08-29 22:19:40,783 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 661s remaining
+2025-08-29 22:19:40,856 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 661s remaining

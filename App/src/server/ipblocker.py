@@ -80,7 +80,6 @@ def schedule_extraction(interval=2000):
     def loop():
         while True:
             extract_and_save_ips()
-            
             time.sleep(interval)
             print("started extract_and_save_ips")
     threading.Thread(target=loop, daemon=True).start()

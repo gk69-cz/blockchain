@@ -1,4 +1,5 @@
 from collections import defaultdict, deque
+from concurrent.futures import ThreadPoolExecutor
 import datetime
 import json
 from logging.handlers import RotatingFileHandler
@@ -10,6 +11,8 @@ import threading
 import logging
 from logging_fix import setup_logging
 from functools import wraps
+import atexit
+
 
 
 from blockchain.blockchain_module import Blockchain
@@ -24,6 +27,9 @@ from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPI
 
 blockchain = Blockchain(difficulty=4)
 
+TIME_WINDOW = 10  # Time window in seconds to collect requests
+executor = ThreadPoolExecutor(max_workers=10)  # Thread pool for parallel analysis
+ip_batch_timers = {}  # Track timers for each IP
 # blockchain logics
 
 pow_script = """
@@ -87,9 +93,31 @@ window.onload = async function () {
         }
 
         if (localStorage.getItem('minedKey')) {
-            updateStatus('You have already mined a block. Mining skipped.');
-            return;
+            updateStatus('You have already mined a block. Checking IP records...');
+
+            try {
+                const resp = await fetch('/api/blockchain/search', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ip: '127.0.0.1' }) // replace with actual client IP
+                });
+
+                const result = await resp.json();
+                if (result && result.length > 0) {
+                    updateStatus('Search successful: IP found in blockchain records.');
+                    console.log(result);
+                } else {
+                    updateStatus('No records found for this IP.');
+                     setTimeout(() => {
+                        window.location.href = '/protected';
+                    }, 1500);
+                }
+            } catch (err) {
+                updateStatus('Error checking IP: ' + err.message);
+            }
+
         }
+
 
         updateStatus('Verification successful. Starting continuous mining for 15 seconds...');
         
@@ -178,7 +206,6 @@ def save_ip_data():
 ip_requests, blocked_ips, analysis_results = load_ip_data()
 
 def is_ip_blocked(client_ip):
-    """Check if IP is currently blocked"""
     if client_ip in blocked_ips:
         block_until = blocked_ips[client_ip]
         if time.time() < block_until:
@@ -190,14 +217,12 @@ def is_ip_blocked(client_ip):
     return False, 0
 
 def add_request_to_batch(client_ip, user_agent, headers):
-    """Add request to IP's batch and check if ready for analysis"""
     current_time = time.time()
     print(client_ip, user_agent, headers)
     # Initialize IP if not exists
     if client_ip not in ip_requests:
         ip_requests[client_ip] = []
     
-    # Clean old requests (older than ANALYSIS_WINDOW)
     cutoff_time = current_time - ANALYSIS_WINDOW
     ip_requests[client_ip] = [req for req in ip_requests[client_ip] 
                               if req['timestamp'] > cutoff_time]
@@ -217,12 +242,53 @@ def add_request_to_batch(client_ip, user_agent, headers):
     
     # Check if batch is ready for analysis
     batch_size = len(ip_requests[client_ip])
-    print(f"[BATCH TRACKING] {client_ip}: {batch_size}/{BATCH_SIZE} requests")
+    logger.info(f"[BATCH TRACKING] {client_ip}: {batch_size}/{BATCH_SIZE} requests")
     
+    # Schedule analysis if timer not already running for this IP
+    if client_ip not in ip_batch_timers or not ip_batch_timers[client_ip].is_alive():
+        timer = threading.Timer(TIME_WINDOW, lambda: schedule_batch_analysis(client_ip))
+        timer.daemon = True
+        timer.start()
+        ip_batch_timers[client_ip] = timer
+        logger.info(f"[TIMER] Started {TIME_WINDOW}s timer for {client_ip}")
+    
+   
     if batch_size >= BATCH_SIZE:
+        logger.info(f"[IMMEDIATE] {client_ip} hit batch size limit, analyzing now")
+        # Cancel timer since we're analyzing immediately
+        if client_ip in ip_batch_timers:
+            ip_batch_timers[client_ip].cancel()
+            del ip_batch_timers[client_ip]
         return analyze_ip_batch(client_ip)
-    
     return False 
+
+
+def schedule_batch_analysis(client_ip):
+    """Schedule batch analysis in a separate thread"""
+    logger.info(f"[SCHEDULER] Time window expired for {client_ip}, scheduling analysis")
+    
+    # Remove timer reference
+    if client_ip in ip_batch_timers:
+        del ip_batch_timers[client_ip]
+    
+    # Only analyze if there are requests
+    if client_ip in ip_requests and len(ip_requests[client_ip]) > 0:
+        # Submit to thread pool for parallel processing
+        future = executor.submit(analyze_ip_batch_threaded, client_ip)
+        logger.info(f"[THREAD] Submitted analysis for {client_ip} to thread pool")
+    else:
+        logger.info(f"[SCHEDULER] No requests to analyze for {client_ip}")
+
+
+def analyze_ip_batch_threaded(client_ip):
+    """Thread-safe wrapper for batch analysis"""
+    try:
+        logger.info(f"[THREAD] Starting threaded analysis for {client_ip}")
+        return analyze_ip_batch(client_ip)
+    except Exception as e:
+        logger.warning(f"[THREAD ERROR] Analysis failed for {client_ip}: {e}")
+        return False
+
 def block_ip_simple(client_ip, reason):
     block_until = time.time() + BLOCK_DURATION
     blocked_ips[client_ip] = block_until
@@ -235,16 +301,25 @@ def block_ip_simple(client_ip, reason):
             blocked_ips[client_ip] = time.time() + (BLOCK_DURATION * 3)  # Triple block time
             print(f"[EXTENDED BLOCK] {client_ip} - Repeat offender")
     
-    print(f"[BLOCKED] {client_ip} - {reason} - Until: {datetime(blocked_ips[client_ip])}")
+    logging.critical(f"[BLOCKED] {client_ip} - {reason} - Until: {datetime(blocked_ips[client_ip])}")
     save_ip_data()
     
 def analyze_ip_batch(client_ip):
-    print(client_ip)
     """Analyze batch of requests from IP using existing is_suspicious function"""
     try:
-        requests_batch = ip_requests[client_ip]
+        # Create a copy of requests to avoid race conditions
+        with data_lock:  # Use your existing data_lock
+            if client_ip not in ip_requests or not ip_requests[client_ip]:
+                print(f"[ANALYSIS] No requests found for {client_ip}")
+                return False
+                
+            requests_batch = ip_requests[client_ip].copy()
+            # Clear the batch after copying
+            ip_requests[client_ip] = []
+        
         total_requests = len(requests_batch)    
-        print(f"[BATCH ANALYSIS] Analyzing {total_requests} requests from {client_ip}")
+        logging.warning(f"[BATCH ANALYSIS] Analyzing {total_requests} requests from {client_ip}")
+        
         # Using existing is_suspicious function
         suspicious_count = 0
         for req in requests_batch:
@@ -255,52 +330,52 @@ def analyze_ip_batch(client_ip):
                 'Accept-Language': req.get('accept_language', ''),
                 'Accept-Encoding': req.get('accept_encoding', '')
             }   
-            # Use your existing function
             if is_suspicious(req.get('user_agent', ''), mock_headers):
                 suspicious_count += 1
-        # Simple decision: if more than 50% of requests are suspicious
+                
         suspicious_ratio = suspicious_count / total_requests
         is_batch_suspicious = suspicious_ratio > 0.5
         
         print(f"[ANALYSIS] {client_ip} - Suspicious: {suspicious_count}/{total_requests} ({suspicious_ratio:.1%})")
         
         # Additional check: Request frequency (too fast)
-        if total_requests >= BATCH_SIZE:
+        if total_requests >= 5:  # Lower threshold for time-based analysis
             timestamps = [req['timestamp'] for req in requests_batch]
             time_span = max(timestamps) - min(timestamps)
-            if time_span < 3:  # All requests in less than 3 seconds
+            if time_span < 2:  # Very rapid requests
                 is_batch_suspicious = True
-                print(f"[ANALYSIS] {client_ip} - Rapid fire: {total_requests} in {time_span:.2f}s")
+                logging.critical(f"[ANALYSIS] {client_ip} - Rapid fire: {total_requests} in {time_span:.2f}s")
         
-        # Update analysis results
-        if client_ip not in analysis_results:
-            analysis_results[client_ip] = {'suspicious_count': 0, 'total_batches': 0}
-        
-        analysis_results[client_ip]['total_batches'] += 1
-        if is_batch_suspicious:
-            analysis_results[client_ip]['suspicious_count'] += 1
+        # Update analysis results (thread-safe)
+        with data_lock:
+            if client_ip not in analysis_results:
+                analysis_results[client_ip] = {'suspicious_count': 0, 'total_batches': 0}
+            
+            analysis_results[client_ip]['total_batches'] += 1
+            if is_batch_suspicious:
+                analysis_results[client_ip]['suspicious_count'] += 1
         
         # Block logic
         if is_batch_suspicious:
-            block_ip_simple(client_ip, f"Batch analysis: {suspicious_count}/{total_requests} suspicious requests")
+            block_ip_simple(client_ip, f"Time-based batch analysis: {suspicious_count}/{total_requests} suspicious requests")
             
-            # Add to blockchain using your existing format
+            # Add to blockchain
             try:
                 transaction_data = {
                     "ip": client_ip,
                     "batch_size": total_requests,
                     "suspicious_requests": suspicious_count,
                     "suspicious_ratio": suspicious_ratio,
-                    "analysis_type": "batch_analysis",
-                    "headers_present": suspicious_count < total_requests,  # Some headers were present
+                    "analysis_type": "time_based_batch_analysis",
+                    "headers_present": suspicious_count < total_requests,
                     "ttl_obfuscation": False,
-                    "legitimacy_score": 1.0 - suspicious_ratio,  # Higher score = more legitimate
+                    "legitimacy_score": 1.0 - suspicious_ratio,
                     "is_trustworthy": False
                 }
                 blockchain.add_transaction(transaction_data)
-                print(f"[BLOCKCHAIN] Added suspicious batch transaction for {client_ip}")
+                logging.info(f"[BLOCKCHAIN] Added suspicious time-based batch transaction for {client_ip}")
             except Exception as e:
-                print(f"[ERROR] Failed to add blockchain transaction: {e}")
+                logging.critical(f"[ERROR] Failed to add blockchain transaction: {e}")
         else:
             # Add positive transaction for clean batch
             try:
@@ -309,31 +384,23 @@ def analyze_ip_batch(client_ip):
                     "batch_size": total_requests,
                     "suspicious_requests": suspicious_count,
                     "suspicious_ratio": suspicious_ratio,
-                    "analysis_type": "batch_analysis",
+                    "analysis_type": "time_based_batch_analysis",
                     "headers_present": True,
                     "ttl_obfuscation": False,
                     "legitimacy_score": 1.0 - suspicious_ratio,
                     "is_trustworthy": True
                 }
                 blockchain.add_transaction(transaction_data)
-                print(f"[BLOCKCHAIN] Added clean batch transaction for {client_ip}")
+                logging.info(f"[BLOCKCHAIN] Added clean time-based batch transaction for {client_ip}")
             except Exception as e:
-                print(f"[ERROR] Failed to add blockchain transaction: {e}")
+                logging.critical(f"[ERROR] Failed to add blockchain transaction: {e}")
         
-        # Clear the batch after analysis
-        ip_requests[client_ip] = []
         save_ip_data()
-        
         return is_batch_suspicious
         
     except Exception as e:
-        print(f"[ERROR] Batch analysis failed: {e}")
-        return True 
-    
-    
-    
-
-# incode
+        logging.critical(f"[ERROR] Batch analysis failed for {client_ip}: {e}")
+        return True
 
 
 # Add console handler if you still want console output
@@ -441,16 +508,15 @@ def unified_before_request():
 
 @app.before_request
 def batch_rate_limiter():
-    
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
     user_agent = request.headers.get('User-Agent', '')
-    print(f"Received request from {client_ip} with User-Agent: {user_agent}")
+    print(f"[TIME-BASED] Received request from {client_ip}")
+    
     # Check if IP is blocked
     is_blocked, remaining_time = is_ip_blocked(client_ip)
     if is_blocked:
         print(f"[BLOCKED REQUEST] {client_ip} - {remaining_time}s remaining")
         logging.critical(f"[BLOCKED REQUEST] {client_ip} - {remaining_time}s remaining")
-
         return jsonify({
             "error": "IP temporarily blocked",
             "ip": client_ip,
@@ -458,15 +524,16 @@ def batch_rate_limiter():
             "message": "Please wait before making more requests"
         }), 429
     
-    # Add request to batch and check if suspicious
-    is_suspicious_batch = add_request_to_batch(client_ip, user_agent, request.headers)
-    if is_suspicious_batch:
-        print(f"[SUSPICIOUS BATCH] {client_ip} - Blocking immediately")
+    # Add request to time-based batch (non-blocking)
+    # This will return True only if immediate blocking is needed
+    immediate_block = add_request_to_batch(client_ip, user_agent, request.headers)
+    if immediate_block:
+        print(f"[IMMEDIATE BLOCK] {client_ip} - Blocking due to rapid requests")
         return jsonify({
-            "error": "Suspicious activity detected",
+            "error": "Too many rapid requests",
             "ip": client_ip,
-            "message": "Your requests have been flagged for suspicious behavior"
-        }), 403
+            "message": "Please slow down your requests"
+        }), 429
 
 @app.after_request
 def after_request(response):
@@ -532,6 +599,17 @@ def api_mine():
     else:
         return jsonify({"message": "No transactions to mineee"}), 200
 
+@app.route('/api/blockchain/usermine', methods=['GET'])
+def api_usermine():
+    """Mine pending transactions into a block"""
+    result = blockchain.usermine()
+    if result:
+        return jsonify({
+            "message": f"Preminined ip block success",
+            "details": result
+        }), 201
+    else:
+        return jsonify({"message": "No transactions to mineee"}), 200
 
 @app.route('/api/blockchain/chain', methods=['GET'])
 def api_get_chain():
@@ -564,7 +642,6 @@ def api_search_by_ip():
 
 @app.route('/api/blockchain/search-ip', methods=['POST'])
 def api_search_ip():
-    """Search for transactions using an IP"""
     data = request.get_json()
     ip = data.get("ip")
     if not ip:
@@ -660,8 +737,18 @@ def bot_details():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 def periodic_analyzer(client_ip, stop_event):
+    INACTIVITY_TIMEOUT = 200
     while not stop_event.is_set():
         try:
+            now = time.time()
+            with data_lock:
+                last_seen = ip_stats.get(client_ip, {}).get("last_seen", 0)
+
+            # Stop analyzer if client inactive too long
+            if last_seen and (now - last_seen > INACTIVITY_TIMEOUT):
+                logger.info(f"Stopping analyzer for {client_ip} due to inactivity ({INACTIVITY_TIMEOUT}s)")
+                running_analyzers.pop(client_ip, None)  # allow restart later
+                break
             if client_ip:
                 logger.info(f"Running periodic analyzer for IP: {client_ip}")
                 results = analyze_traffic(client_ip)
@@ -873,8 +960,8 @@ def api_deep_analyze():
         return jsonify({"error": str(e)}), 500
     
 @app.route('/protected')
-@pow_required
-@traffic_protected
+# @pow_required
+# @traffic_protected
 def protected():
     return "This is a protected route!"
 
@@ -902,8 +989,16 @@ def index():
     </html>
     """
 
+def cleanup_resources():
+    """Clean up resources on shutdown"""
+    executor.shutdown(wait=True)
+    for timer in ip_batch_timers.values():
+        if timer.is_alive():
+            timer.cancel()
+            
 if __name__ == "__main__":
     schedule_extraction()
+    atexit.register(cleanup_resources)
     app.run(host="0.0.0.0", port=8081, debug=False)
     
     
