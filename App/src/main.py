@@ -339,10 +339,10 @@ def analyze_ip_batch(client_ip):
         print(f"[ANALYSIS] {client_ip} - Suspicious: {suspicious_count}/{total_requests} ({suspicious_ratio:.1%})")
         
         # Additional check: Request frequency (too fast)
-        if total_requests >= 5:  # Lower threshold for time-based analysis
+        if total_requests >= 50:  # Lower threshold for time-based analysis
             timestamps = [req['timestamp'] for req in requests_batch]
             time_span = max(timestamps) - min(timestamps)
-            if time_span < 2:  # Very rapid requests
+            if time_span < 20:  # Very rapid requests
                 is_batch_suspicious = True
                 logging.critical(f"[ANALYSIS] {client_ip} - Rapid fire: {total_requests} in {time_span:.2f}s")
         
