@@ -1,11 +1,52 @@
 from hashlib import sha256
+import hashlib
 import json
 import os
 import random
 import time
-
+import hmac
+import secrets
 
 from server.helpers.helpers import hash_ip
+
+class VerifiableRandomFunction:
+    """Simple VRF implementation for fair mining selection"""
+    
+    def __init__(self, secret_key=None):
+        if secret_key is None:
+            self.secret_key = secrets.token_bytes(32)
+        elif isinstance(secret_key, str):
+            self.secret_key = secret_key.encode('utf-8')
+        else:
+            self.secret_key = secret_key
+    
+    def compute(self, input_data, round_number):
+        """Compute VRF output and proof"""
+        message = f"{input_data}:{round_number}".encode()
+        
+        # Generate deterministic random value
+        vrf_output = hmac.new(self.secret_key, message, hashlib.sha256).digest()
+        
+        # Generate proof (simplified - in production use proper VRF)
+        proof = hmac.new(vrf_output, message, hashlib.sha256).hexdigest()
+        
+        return vrf_output.hex(), proof
+    
+    def verify(self, input_data, round_number, output, proof):
+        """Verify VRF output"""
+        try:
+            message = f"{input_data}:{round_number}".encode()
+            expected_output = hmac.new(self.secret_key, message, hashlib.sha256).digest()
+            expected_proof = hmac.new(expected_output, message, hashlib.sha256).hexdigest()
+            
+            return (output == expected_output.hex() and proof == expected_proof)
+        except:
+            return False
+
+
+
+
+
 class Block:
     def __init__(self, index, transactions, timestamp, previous_hash, nonce=0):
         self.index = index
@@ -77,6 +118,8 @@ class Blockchain:
         self.difficulty = difficulty
         self.unconfirmed_transactions = []
         self.chain = []
+        self.vrf = VerifiableRandomFunction()  
+        self.current_round = 0  
         self.load_blockchain()
 
     def create_genesis_block(self):
@@ -353,19 +396,36 @@ class Blockchain:
             if ip:
                 ip_count[ip] = ip_count.get(ip, 0) + 1
 
-        # Find any IP with > 3 occurrences
-        target_ip = None
-        for ip, count in ip_count.items():
-            if count > 3:
-                target_ip = ip
-                break
 
-        if not target_ip:
+        # Find any IP with > 3 occurrences
+        eligible_ips = [ip for ip, count in ip_count.items() if count > 3]
+
+        if not eligible_ips:
             print("No IP occurs more than 3 times. Mining aborted.")
             return False
 
-        print(f"Selected IP for mining: {target_ip} (occurs {ip_count[target_ip]} times)")
+        print(f"Selected IP for mining: {eligible_ips}")
+        
+        
+        # VRF VERIFICATION CHECKK
+        
+        selection_input = ":".join(sorted(eligible_ips))
+        vrf_output, vrf_proof = self.vrf.compute(selection_input, self.current_round)
+        
+        # Use VRF output to select IP deterministically
+        vrf_int = int(vrf_output[:8], 16)  # Use first 8 hex chars
+        selected_index = vrf_int % len(eligible_ips)
+        target_ip = eligible_ips[selected_index]
 
+        print(f"VRF selected IP: {target_ip} (round {self.current_round}, proof: {vrf_proof[:16]}...)")
+
+        # Verify our own VRF (for demonstration)
+        is_valid = self.vrf.verify(selection_input, self.current_round, vrf_output, vrf_proof)
+        if not is_valid:
+            print("VRF verification failed!")
+            return False
+        
+        
         # Get all matching blocks
         matching_blocks = [block for block in mined_blocks if block.get("ip_address")]
         if not matching_blocks:
@@ -386,12 +446,31 @@ class Blockchain:
         proof = self.proof_of_work(new_block)
 
         if self.add_block(new_block, proof):
-            # Remove all occurrences of the selected IP
             original_count = len(mined_blocks)
             mined_blocks = [block for block in mined_blocks if block.get("ip_address") != target_ip]
             removed_count = original_count - len(mined_blocks)
             
+            vrf_log = {
+            'round': self.current_round,
+            'selection_input': selection_input,
+            'vrf_output': vrf_output,
+            'vrf_proof': vrf_proof,
+            'selected_ip': target_ip,
+            'block_index': new_block.index,
+            'timestamp': time.time()
+        }
+           
+            
             try:
+                vrf_logs = []
+                if os.path.exists('vrf_logs.json'):
+                    with open('vrf_logs.json', 'r') as f:
+                        vrf_logs = json.load(f)
+                
+                vrf_logs.append(vrf_log)
+                
+                with open('vrf_logs.json', 'w') as f:
+                    json.dump(vrf_logs, f, indent=2)
                 with open(file_path, "w") as f:
                     json.dump(mined_blocks, f, indent=2)
                     print(f"updated usermined.json")
@@ -416,11 +495,13 @@ class Blockchain:
             print(f"Remaining blocks: {len(mined_blocks)}")
 
             return {
-                "index": new_block.index,
-                "hex_key": random_block.get("mined_hex_key"),
-                "ip_address": hash_ip(target_ip),
-                "blocks_removed": removed_count
-            }
+            "index": new_block.index,
+            "hex_key": random_block.get("mined_hex_key"),
+            "ip_address": target_ip,
+            "blocks_removed": removed_count,
+            "vrf_round": self.current_round,
+            "vrf_proof": vrf_proof[:16] + "..."  # Truncated for display
+        }
 
         else:
             print("Failed to add block to blockchain.")
