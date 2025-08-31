@@ -121,3 +121,2204 @@
 2025-08-29 22:19:24,859 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 192.168.0.192 - 639s remaining
 2025-08-29 22:19:40,783 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 661s remaining
 2025-08-29 22:19:40,856 - root - CRITICAL - [main.py:519] - [BLOCKED REQUEST] 127.0.0.1 - 661s remaining
+2025-08-31 22:26:09,332 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 6 requests from 192.168.0.119
+2025-08-31 22:26:10,080 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:26:18,429 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:18,539 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:18,638 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:18,644 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:18,737 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:18,846 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:18,922 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:19,007 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:19,098 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:19,112 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:19,202 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:19,297 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:19,391 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:19,623 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:19,742 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:19,751 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:19,833 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:19,924 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,019 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,105 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,209 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:20,215 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,308 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,414 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,508 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,595 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,703 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:20,711 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,815 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:20,919 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:21,012 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:21,111 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:21,350 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:21,384 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:21,531 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:21,626 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:21,715 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:21,819 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:21,913 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:21,918 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,021 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,113 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,209 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,300 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,388 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:22,403 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,510 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,612 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,724 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,823 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:22,926 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:22,935 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:23,039 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:23,128 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:23,225 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:23,442 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:23,606 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:23,613 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:23,714 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:23,817 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:23,911 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:24,021 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:24,120 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:24,134 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:24,235 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:24,325 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:24,423 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:24,529 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:24,633 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:24,639 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:24,800 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:25,003 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:25,154 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:25,256 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:25,359 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:25,368 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:25,474 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:25,574 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:25,684 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:25,785 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:25,884 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:25,892 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:26,016 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:26,136 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:26,236 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:26,352 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:26,458 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:26,464 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:26,588 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:26,698 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:26,818 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:26,916 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:27,017 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:27,029 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:27,151 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:27,267 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:27,382 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:27,495 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:27,603 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:27,610 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:27,715 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:27,829 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:27,951 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:28,056 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:28,174 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:28,228 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:28,478 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:28,586 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:28,697 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:28,802 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:28,903 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:28,915 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:29,044 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:29,145 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:29,249 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:29,365 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:29,516 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:29,523 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:29,648 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:29,755 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:29,866 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:29,977 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:30,083 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:30,093 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:30,199 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:30,346 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:30,464 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:30,596 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:30,714 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:30,722 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:30,831 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:30,972 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:31,091 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:31,191 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:31,281 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:31,297 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:31,429 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:31,554 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:31,670 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:31,784 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:31,915 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:31,928 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:32,058 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:32,173 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:32,277 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:32,399 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:32,528 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:32,533 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:32,662 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:32,787 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:32,905 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:33,042 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:33,155 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:26:33,160 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:33,298 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:33,410 - main - ERROR - [app.py:875] - Exception on /api/auth/generate [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 974, in generate_auth_pair
+    session['auth_pair'] = data
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\sessions.py", line 104, in _fail
+    raise RuntimeError(
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+2025-08-31 22:26:43,203 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 8 requests from 192.168.0.119
+2025-08-31 22:29:31,573 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 192.168.0.119
+2025-08-31 22:30:13,348 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 4 requests from 192.168.0.119
+2025-08-31 22:30:13,881 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:30:44,497 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 127.0.0.1
+2025-08-31 22:31:14,473 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:31:44,829 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:31:59,087 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 14 requests from 192.168.0.119
+2025-08-31 22:32:14,499 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:32:44,818 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:33:14,475 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:33:44,799 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:34:14,474 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:34:44,780 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:35:14,486 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:35:24,294 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 192.168.1.100
+2025-08-31 22:35:24,294 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 192.168.1.100: 'module' object is not callable
+2025-08-31 22:35:24,362 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 10.0.0.15
+2025-08-31 22:35:24,362 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 10.0.0.15: 'module' object is not callable
+2025-08-31 22:35:24,425 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 172.16.0.45
+2025-08-31 22:35:24,426 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 172.16.0.45: 'module' object is not callable
+2025-08-31 22:35:24,506 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 203.0.113.12
+2025-08-31 22:35:24,506 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 203.0.113.12: 'module' object is not callable
+2025-08-31 22:35:24,571 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 198.51.100.8
+2025-08-31 22:35:24,575 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 198.51.100.8: 'module' object is not callable
+2025-08-31 22:35:24,652 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 192.0.2.150
+2025-08-31 22:35:24,652 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 192.0.2.150: 'module' object is not callable
+2025-08-31 22:35:24,698 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 10.10.10.25
+2025-08-31 22:35:24,698 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 10.10.10.25: 'module' object is not callable
+2025-08-31 22:35:24,775 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 172.31.255.1
+2025-08-31 22:35:24,775 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 172.31.255.1: 'module' object is not callable
+2025-08-31 22:35:26,840 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 192.168.100.50
+2025-08-31 22:35:26,841 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 192.168.100.50: 'module' object is not callable
+2025-08-31 22:35:26,904 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 203.0.113.200
+2025-08-31 22:35:26,905 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 203.0.113.200: 'module' object is not callable
+2025-08-31 22:35:26,984 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 198.51.100.99
+2025-08-31 22:35:26,984 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 198.51.100.99: 'module' object is not callable
+2025-08-31 22:35:27,048 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 192.0.2.75
+2025-08-31 22:35:27,049 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 192.0.2.75: 'module' object is not callable
+2025-08-31 22:35:27,121 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 10.255.255.100
+2025-08-31 22:35:27,123 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 10.255.255.100: 'module' object is not callable
+2025-08-31 22:35:27,204 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 172.20.0.33
+2025-08-31 22:35:27,206 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 172.20.0.33: 'module' object is not callable
+2025-08-31 22:35:27,273 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 192.168.50.200
+2025-08-31 22:35:27,274 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 192.168.50.200: 'module' object is not callable
+2025-08-31 22:35:33,982 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 4 requests from 192.168.0.119
+2025-08-31 22:35:34,382 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:36:05,619 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 127.0.0.1
+2025-08-31 22:36:35,630 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:37:05,942 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 127.0.0.1
+2025-08-31 22:37:31,074 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 14 requests from 192.168.0.119
+2025-08-31 22:38:01,371 - main - ERROR - [app.py:875] - Exception on /api/blockchain/mine [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 647, in api_mine
+    result = blockchain.mine()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\blockchain\blockchain_module.py", line 400, in mine
+    print(f"Selected IP for mining: {eligible_ips} (occurs {ip_count[target_ip]} times)")
+UnboundLocalError: local variable 'target_ip' referenced before assignment
+2025-08-31 22:38:01,431 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 192.168.0.119
+2025-08-31 22:38:31,627 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:39:15,388 - main - ERROR - [app.py:875] - Exception on /api/blockchain/mine [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 647, in api_mine
+    result = blockchain.mine()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\blockchain\blockchain_module.py", line 406, in mine
+    vrf_output, vrf_proof = self.vrf.compute(selection_input, self.current_round)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\blockchain\blockchain_module.py", line 21, in compute
+    vrf_output = hmac.new(self.secret_key, message, SHA256).digest()
+NameError: name 'SHA256' is not defined
+2025-08-31 22:39:16,393 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 16 requests from 192.168.0.119
+2025-08-31 22:39:47,646 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:40:06,626 - main - ERROR - [app.py:875] - Exception on /api/blockchain/mine [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 647, in api_mine
+    result = blockchain.mine()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\blockchain\blockchain_module.py", line 406, in mine
+    vrf_output, vrf_proof = self.vrf.compute(selection_input, self.current_round)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\blockchain\blockchain_module.py", line 21, in compute
+    vrf_output = hmac.new(self.secret_key, message, SHA256).digest()
+NameError: name 'SHA256' is not defined
+2025-08-31 22:40:16,621 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 192.168.0.119
+2025-08-31 22:40:47,639 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:41:15,144 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 24 requests from 192.168.0.119
+2025-08-31 22:41:24,617 - main - ERROR - [app.py:875] - Exception on /api/blockchain/mine [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 647, in api_mine
+    result = blockchain.mine()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\blockchain\blockchain_module.py", line 407, in mine
+    vrf_output, vrf_proof = self.vrf.compute(selection_input, self.current_round)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\blockchain\blockchain_module.py", line 22, in compute
+    vrf_output = hmac.new(self.secret_key, message, hashlib.sha256).digest()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\hmac.py", line 184, in new
+    return HMAC(key, msg, digestmod)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\hmac.py", line 53, in __init__
+    raise TypeError("key: expected bytes or bytearray, but got %r" % type(key).__name__)
+TypeError: key: expected bytes or bytearray, but got 'str'
+2025-08-31 22:41:34,613 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 192.168.0.119
+2025-08-31 22:41:55,636 - main - ERROR - [app.py:875] - Exception on /api/blockchain/mine [GET]
+Traceback (most recent call last):
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\venv\lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\main.py", line 647, in api_mine
+    result = blockchain.mine()
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\blockchain\blockchain_module.py", line 407, in mine
+    vrf_output, vrf_proof = self.vrf.compute(selection_input, self.current_round)
+  File "C:\Users\zacha\OneDrive\Desktop\research\Dapp\App\src\blockchain\blockchain_module.py", line 22, in compute
+    vrf_output = hmac.new(self.secret_key, message, hashlib.sha256).digest()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\hmac.py", line 184, in new
+    return HMAC(key, msg, digestmod)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\hmac.py", line 53, in __init__
+    raise TypeError("key: expected bytes or bytearray, but got %r" % type(key).__name__)
+TypeError: key: expected bytes or bytearray, but got 'str'
+2025-08-31 22:41:55,648 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 192.168.0.119
+2025-08-31 22:42:25,637 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:42:55,633 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:44:25,673 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:44:38,466 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 21 requests from 192.168.0.119
+2025-08-31 22:44:48,480 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 5 requests from 192.168.0.119
+2025-08-31 22:45:12,311 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:45:23,275 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 192.168.0.119
+2025-08-31 22:45:32,303 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 22 requests from 192.168.0.119
+2025-08-31 22:45:54,405 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 14 requests from 192.168.0.119
+2025-08-31 22:46:06,778 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 192.168.0.119
+2025-08-31 22:46:18,948 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 14 requests from 192.168.0.119
+2025-08-31 22:46:42,298 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 192.168.0.119
+2025-08-31 22:47:12,634 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 192.168.0.119
+2025-08-31 22:47:33,377 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 14 requests from 192.168.0.119
+2025-08-31 22:48:03,640 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 14 requests from 192.168.0.119
+2025-08-31 22:48:30,456 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:48:33,637 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 8 requests from 192.168.0.119
+2025-08-31 22:48:54,382 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 23 requests from 192.168.0.119
+2025-08-31 22:48:54,389 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 1 requests from 192.168.0.119
+2025-08-31 22:49:34,514 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:49:44,639 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 16 requests from 192.168.0.119
+2025-08-31 22:50:04,519 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:50:22,735 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:50:32,892 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 12 requests from 192.168.0.119
+2025-08-31 22:50:52,824 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:51:04,513 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:51:22,896 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:51:34,518 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:51:52,886 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:51:57,821 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 20 requests from 192.168.0.119
+2025-08-31 22:52:07,838 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 2 requests from 192.168.0.119
+2025-08-31 22:52:22,907 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:52:34,649 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119
+2025-08-31 22:52:45,721 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 4 requests from 192.168.0.119
+2025-08-31 22:52:45,722 - root - CRITICAL - [main.py:454] - [ERROR] Batch analysis failed for 192.168.0.119: 'module' object is not callable
+2025-08-31 22:52:54,620 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 291s remaining
+2025-08-31 22:52:54,671 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 291s remaining
+2025-08-31 22:52:54,682 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 291s remaining
+2025-08-31 22:52:54,683 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 291s remaining
+2025-08-31 22:52:54,690 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 291s remaining
+2025-08-31 22:53:03,260 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 282s remaining
+2025-08-31 22:53:24,627 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 261s remaining
+2025-08-31 22:53:24,627 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 261s remaining
+2025-08-31 22:53:24,627 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 261s remaining
+2025-08-31 22:53:24,627 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 261s remaining
+2025-08-31 22:53:24,627 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 261s remaining
+2025-08-31 22:53:54,640 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 231s remaining
+2025-08-31 22:53:54,642 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 231s remaining
+2025-08-31 22:53:54,642 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 231s remaining
+2025-08-31 22:53:54,642 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 231s remaining
+2025-08-31 22:53:54,642 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 231s remaining
+2025-08-31 22:54:24,624 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 201s remaining
+2025-08-31 22:54:24,624 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 201s remaining
+2025-08-31 22:54:24,624 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 201s remaining
+2025-08-31 22:54:24,626 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 201s remaining
+2025-08-31 22:54:24,629 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 201s remaining
+2025-08-31 22:54:54,628 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 171s remaining
+2025-08-31 22:54:54,630 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 171s remaining
+2025-08-31 22:54:54,630 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 171s remaining
+2025-08-31 22:54:54,632 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 171s remaining
+2025-08-31 22:54:54,633 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 171s remaining
+2025-08-31 22:55:57,637 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 108s remaining
+2025-08-31 22:55:57,637 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 108s remaining
+2025-08-31 22:55:57,637 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 108s remaining
+2025-08-31 22:55:57,637 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 108s remaining
+2025-08-31 22:55:57,637 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 108s remaining
+2025-08-31 22:56:57,639 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 48s remaining
+2025-08-31 22:56:57,639 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 48s remaining
+2025-08-31 22:56:57,639 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 48s remaining
+2025-08-31 22:56:57,639 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 48s remaining
+2025-08-31 22:56:57,639 - root - CRITICAL - [main.py:573] - [BLOCKED REQUEST] 192.168.0.119 - 48s remaining
+2025-08-31 22:58:07,653 - root - WARNING - [main.py:373] - [BATCH ANALYSIS] Analyzing 10 requests from 192.168.0.119

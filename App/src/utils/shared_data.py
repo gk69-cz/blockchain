@@ -94,3 +94,5 @@ data_lock = threading.Lock()
 # Global stores
 challenge_store = {}
 dc_ranges = []
+request_rate_tracker = {}
+difficulty_cache = {'value': 4, 'last_update': 0}

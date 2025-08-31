@@ -1,6 +1,7 @@
 import datetime
 import os
 import re
+import secrets
 import hashlib, random, string
 import time
 from flask import jsonify, request
@@ -14,22 +15,62 @@ from collections import defaultdict, deque
 import psutil
 from utils.shared_data import SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
 from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SYN_FLOOD_THRESHOLD
-from utils.shared_data import SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
+from utils.shared_data import SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES, request_rate_tracker, difficulty_cache
 
 
 def generate_challenge():
-    challenge = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
+    """Generate fresh challenge tied to session/IP/timestamp"""
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    timestamp = int(time.time())
+    session_id = request.cookies.get('session_id', secrets.token_hex(8))
+    
+    # Create unique challenge components
+    random_component = secrets.token_hex(16)
+    challenge_data = f"{client_ip}:{timestamp}:{session_id}:{random_component}"
+    challenge = hashlib.sha256(challenge_data.encode()).hexdigest()[:16]
+    
+    # Store challenge with expiration (5 minutes)
+    challenge_expiry = timestamp + 300
+    challenge_store[challenge] = {
+        'ip': client_ip,
+        'timestamp': timestamp,
+        'session_id': session_id,
+        'expires': challenge_expiry
+    }
+    
     difficulty = get_dynamic_difficulty()
-    challenge_store[challenge] = difficulty
     return challenge, difficulty
 
-def get_dynamic_difficulty():
-    load_score, cpu, mem = get_server_load()
-    attack = is_under_attack()
 
-    if attack:
-        return min(6, int(load_score * 2) + 1) 
-    return max(1, int(load_score)) 
+def get_dynamic_difficulty():
+    """Dynamically adjust difficulty based on request load"""
+    current_time = int(time.time())
+    
+    # Update cache every 30 seconds
+    if current_time - difficulty_cache['last_update'] < 30:
+        return difficulty_cache['value']
+    
+    # Count requests in last minute
+    cutoff_time = current_time - 60
+    recent_requests = sum(1 for times in request_rate_tracker.values() 
+                         for t in times if t > cutoff_time)
+    
+    # Adjust difficulty based on load
+    base_difficulty = 4
+    if recent_requests > 1000:      # Very high load
+        difficulty = 6
+    elif recent_requests > 500:     # High load
+        difficulty = 5
+    elif recent_requests > 100:     # Medium load
+        difficulty = 4
+    else:                          # Low load
+        difficulty = 3
+    
+    difficulty_cache['value'] = difficulty
+    difficulty_cache['last_update'] = current_time
+    
+    logger.info(f"Dynamic difficulty adjusted to {difficulty} (recent requests: {recent_requests})")
+    return difficulty 
 
 def get_server_load():
     load = psutil.getloadavg()[0]  # 1 minute load average
@@ -55,19 +96,40 @@ def is_under_attack():
 
 
 def verify_pow_challenge(challenge, nonce):
-    if not challenge or not nonce:
+    """Verify PoW with freshness checks"""
+    current_time = int(time.time())
+    
+    # Check if challenge exists and is not expired
+    if challenge not in challenge_store:
+        logger.warning(f"Invalid challenge: {challenge}")
         return False
     
-    difficulty = challenge_store.get(challenge)
-    if not difficulty:
-        return False
+    challenge_data = challenge_store[challenge]
     
-    # Actually verify the hash meets difficulty
-    test_hash = hashlib.sha256((challenge + str(nonce)).encode()).hexdigest()
-    if test_hash.startswith('0' * difficulty):
+    # Check expiration (5 minutes)
+    if current_time > challenge_data['expires']:
+        logger.warning(f"Expired challenge: {challenge}")
         del challenge_store[challenge]
-        return True
-    return False
+        return False
+    
+    # Verify client IP matches
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    if client_ip != challenge_data['ip']:
+        logger.warning(f"IP mismatch for challenge: {challenge}")
+        return False
+    
+    # Verify PoW solution
+    hash_input = f"{challenge}{nonce}"
+    hash_result = hashlib.sha256(hash_input.encode()).hexdigest()
+    difficulty = get_dynamic_difficulty()
+    
+    is_valid = hash_result.startswith('0' * difficulty)
+    
+    # Clean up used challenge
+    if is_valid:
+        del challenge_store[challenge]
+    
+    return is_valid
 
 def get_ttl_value(ip):
     try:

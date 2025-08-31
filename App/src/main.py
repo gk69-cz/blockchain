@@ -13,15 +13,13 @@ from logging_fix import setup_logging
 from functools import wraps
 import atexit
 
-
-
 from blockchain.blockchain_module import Blockchain
 from bots.botprofile import generate_bot_profile, save_bot_profiles, score_save_bot
 from server.ipblocker import schedule_extraction
 from pow.js_threshhold_logic import analyze_traffic, generate_challenge, get_dynamic_difficulty, get_ttl_value, save_results, verify_pow_challenge
 
 from utils.shared_data import SUSPICIOUS_HEADERS, SUSPICIOUS_USER_AGENTS, ip_stats, data_lock, challenge_store, dc_ranges
-from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES
+from utils.shared_data import logger, ANALYSIS_WINDOW, HIGH_RPM_THRESHOLD, SUSPICIOUS_UA_PATTERNS, TTL_SUSPICIOUS_VALUES, SYN_FLOOD_THRESHOLD, request_rate_tracker, difficulty_cache
 
 # blockchain 
 
@@ -62,6 +60,39 @@ async function solvePow(challenge, difficulty) {
 
 window.onload = async function () {
     try {
+        // Check if we already have a valid auth pair
+if (sessionStorage.getItem('authPair')) {
+    const pair = JSON.parse(sessionStorage.getItem('authPair'));
+    console.log("Found auth pair in sessionStorage:", pair);
+
+    try {
+        const validResp = await fetch('/api/auth/validate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(pair)
+        });
+        const validData = await validResp.json();
+
+        if (validData.valid) {
+            console.log("Auth pair is still valid (age:", validData.age_seconds, "s). Skipping PoW and blockchain search.");
+        
+            // go directly to protected route
+            setTimeout(() => {
+                window.location.href = '/protected';
+            }, 1000);
+            return; // stop execution here
+        } else {
+            console.log("Auth pair expired (age:", validData.age_seconds, "s). Proceeding with PoW and blockchain search...");
+            updateStatus("Auth expired. Running PoW + blockchain checks...");
+        }
+    } catch (err) {
+        console.error("Error validating auth pair:", err);
+        updateStatus("Error validating auth pair, running PoW...");
+    }
+} else {
+    console.log("No auth pair found. Proceeding with PoW and blockchain search...");
+}
+
         updateStatus('Checking for pending transactions...');
      
         const challengeResp = await fetch('/api/pow-challenge');
@@ -92,14 +123,17 @@ window.onload = async function () {
             updateStatus('No pending transactions. Nothing to mine. proceeding to next step...');
         }
 
-        if (localStorage.getItem('minedKey')) {
+        if (sessionStorage.getItem('authPair')) {
+    updateStatus('You already have an auth pair. Checking IP records...');
             updateStatus('You have already mined a block. Checking IP records...');
-
+            const clientIpResp = await fetch('https://api.ipify.org?format=json');
+            const clientIpData = await clientIpResp.json();
+            const realIp = clientIpData.ip;
             try {
                 const resp = await fetch('/api/blockchain/search', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ ip: '127.0.0.1' }) // replace with actual client IP
+                    body: JSON.stringify({ ip: realIp })
                 });
 
                 const result = await resp.json();
@@ -138,11 +172,14 @@ window.onload = async function () {
                 lastMineResult = mineText;
 
                 if (mineText.toLowerCase().includes("mined")) {
+                    
                     const hexKey = [...crypto.getRandomValues(new Uint8Array(8))]
                         .map(b => b.toString(16).padStart(2, '0')).join('');
-                    localStorage.setItem('minedKey', hexKey);
-                    updateStatus(`${mineText} Key stored: ${hexKey} (attempt ${miningAttempts})`);
-                    break; // Exit if successfully mined
+                    const authResp = await fetch('/api/auth/generate');
+                    const authData = await authResp.json();
+                    sessionStorage.setItem('authPair', JSON.stringify(authData));
+                    updateStatus(`Auth pair generated & stored: ${JSON.stringify(authData)}`);
+                    break; 
                 }
 
                 // Small delay between requests to prevent overwhelming the server
@@ -189,6 +226,21 @@ def load_ip_data():
     except:
         pass
     return {}, {}, {}
+
+def track_request_rate():
+    """Track request rates for difficulty adjustment"""
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    current_time = int(time.time())
+    
+    if client_ip not in request_rate_tracker:
+        request_rate_tracker[client_ip] = []
+    
+    # Add current request
+    request_rate_tracker[client_ip].append(current_time)
+    
+    # Clean old requests (keep only last 5 minutes)
+    cutoff_time = current_time - 300
+    request_rate_tracker[client_ip] = [t for t in request_rate_tracker[client_ip] if t > cutoff_time]
 
 def save_ip_data():
     try:
@@ -442,7 +494,9 @@ def unified_before_request():
         return batch_response
     # Get client IP
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
-    print(f"Received request from {client_ip}")
+    
+    logger.info(f"Received request from {client_ip}")
+    track_request_rate()
     request_time = time.time()
     user_agent = request.headers.get('User-Agent', '')
     referrer = request.headers.get('Referer', '')
@@ -897,6 +951,60 @@ def traffic_protected(f):
             return f(*args, **kwargs)
     return decorated_function
  
+# after line ~950 (before cleanup_resources or near other routes)
+
+@app.route('/api/auth/generate', methods=['GET'])
+def generate_auth_pair():
+    import secrets
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    presigned_key = secrets.token_hex(8)
+    authtoken = secrets.token_hex(8)
+    timestamp = datetime.datetime.utcnow().isoformat()
+
+    data = {"presigned_key": presigned_key, "authtoken": authtoken, "timestamp": timestamp, "ip": client_ip}
+
+    # Save in server JSON file
+    try:
+        with open("auth_pairs.json", "a") as f:
+            f.write(json.dumps(data) + "\n")
+    except Exception as e:
+        logger.error(f"Failed to save auth pair: {e}")
+
+    # Save also in session
+    session['auth_pair'] = data
+    return jsonify(data), 200
+
+
+@app.route('/api/auth/validate', methods=['POST'])
+def validate_auth_pair():
+    req = request.get_json()
+    presigned_key = req.get("presigned_key")
+    authtoken = req.get("authtoken")
+
+    stored = session.get("auth_pair")
+    if not stored:
+        return jsonify({"valid": False, "reason": "No auth pair in session"}), 400
+
+    # Expiry window (e.g., 5 minutes)
+    expiry_seconds = 300
+    ts = datetime.datetime.fromisoformat(stored["timestamp"])
+    age = (datetime.datetime.utcnow() - ts).total_seconds()
+
+    if stored["presigned_key"] == presigned_key and stored["authtoken"] == authtoken and age <= expiry_seconds:
+        return jsonify({"valid": True, "age_seconds": age}), 200
+    else:
+        return jsonify({"valid": False, "age_seconds": age}), 200
+
+
+@app.route('/api/blockchain/backtrace', methods=['POST'])
+def backtrace_blockchain():
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    data = request.get_json() or {}
+    ip = data.get("ip", client_ip)
+
+    # Perform blockchain lookup for IP
+    result = blockchain.search_by_ip(ip)
+    return jsonify({"queried_ip": ip, "results": result}), 200
 
 @app.route('/api/analyze-now', methods=['GET'])
 def api_deep_analyze():
@@ -995,9 +1103,37 @@ def cleanup_resources():
     for timer in ip_batch_timers.values():
         if timer.is_alive():
             timer.cancel()
-            
+def start_cleanup_thread():
+    """Start background cleanup thread"""
+    def cleanup_worker():
+        while True:
+            try:
+                cleanup_expired_challenges()
+                time.sleep(60)  # Run every minute
+            except Exception as e:
+                logger.error(f"Cleanup thread error: {e}")
+    
+    cleanup_thread = threading.Thread(target=cleanup_worker, daemon=True)
+    cleanup_thread.start()
+    logger.info("Started cleanup thread")
+def cleanup_expired_challenges():
+    """Remove expired challenges periodically"""
+    current_time = int(time.time())
+    expired_challenges = [
+        challenge for challenge, data in challenge_store.items()
+        if current_time > data['expires']
+    ]
+    
+    for challenge in expired_challenges:
+        del challenge_store[challenge]
+    
+    if expired_challenges:
+        logger.info(f"Cleaned up {len(expired_challenges)} expired challenges")    
+                
 if __name__ == "__main__":
+    app.secret_key = os.environ.get("FLASK_SECRET_KEY", os.urandom(24))
     schedule_extraction()
+    start_cleanup_thread() 
     atexit.register(cleanup_resources)
     app.run(host="0.0.0.0", port=8081, debug=False)
     
