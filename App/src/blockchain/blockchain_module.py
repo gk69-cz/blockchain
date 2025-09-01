@@ -6,6 +6,7 @@ import random
 import time
 import hmac
 import secrets
+from utils.shared_data import logger
 
 from server.helpers.helpers import hash_ip
 
@@ -38,7 +39,8 @@ class VerifiableRandomFunction:
             message = f"{input_data}:{round_number}".encode()
             expected_output = hmac.new(self.secret_key, message, hashlib.sha256).digest()
             expected_proof = hmac.new(expected_output, message, hashlib.sha256).hexdigest()
-            
+            print(f"Verifying VRF: expected_output={expected_output.hex()}, provided_output={output}")
+            logger.info(f"Verifying VRF: expected_output={expected_output.hex()}, provided_output={output}")
             return (output == expected_output.hex() and proof == expected_proof)
         except:
             return False
@@ -378,10 +380,8 @@ class Blockchain:
             return False
     
     def mine(self):
-    
         file_path = "usermined.json"
         mined_blocks = []
-
         if os.path.exists(file_path):
             try:
                 with open(file_path, 'r') as f:
@@ -395,8 +395,6 @@ class Blockchain:
             ip = block.get("ip_address")
             if ip:
                 ip_count[ip] = ip_count.get(ip, 0) + 1
-
-
         # Find any IP with > 3 occurrences
         eligible_ips = [ip for ip, count in ip_count.items() if count > 3]
 
@@ -423,9 +421,12 @@ class Blockchain:
         is_valid = self.vrf.verify(selection_input, self.current_round, vrf_output, vrf_proof)
         if not is_valid:
             print("VRF verification failed!")
+            logger.critical(f"[VRF] VRF verification failed for input {selection_input} in round {self.current_round}")
             return False
-        
-        
+        if is_valid:
+            print("VRF verification success!")
+            logger.info(f"[VRF] VRF verification Success for input {selection_input} in round {self.current_round}")
+            
         # Get all matching blocks
         matching_blocks = [block for block in mined_blocks if block.get("ip_address")]
         if not matching_blocks:
@@ -444,7 +445,7 @@ class Blockchain:
         )
 
         proof = self.proof_of_work(new_block)
-
+        print("Block mined with proof:", proof)
         if self.add_block(new_block, proof):
             original_count = len(mined_blocks)
             mined_blocks = [block for block in mined_blocks if block.get("ip_address") != target_ip]
@@ -459,33 +460,31 @@ class Blockchain:
             'block_index': new_block.index,
             'timestamp': time.time()
         }
-           
+            print(f"VRF Log: {vrf_log}")
             
+            
+            
+           
             try:
+                # --- Handle VRF logs ---
                 vrf_logs = []
                 if os.path.exists('vrf_logs.json'):
-                    with open('vrf_logs.json', 'r') as f:
-                        vrf_logs = json.load(f)
-                
+                    try:
+                        with open('vrf_logs.json', 'r') as f:
+                            vrf_logs = json.load(f) or []
+                    except (json.JSONDecodeError, FileNotFoundError):
+                        vrf_logs = []
+
                 vrf_logs.append(vrf_log)
-                
+
                 with open('vrf_logs.json', 'w') as f:
                     json.dump(vrf_logs, f, indent=2)
+
+                # --- Update pruned usermined.json ---
                 with open(file_path, "w") as f:
                     json.dump(mined_blocks, f, indent=2)
-                    print(f"updated usermined.json")
-            except Exception as e:
-                print(f"Error updating usermined.json: {e}")
-            
-            try:
 
-                # Prepare IP score list from ip_count
-                ip_score_list = [[ip, count] for ip, count in ip_count.items()]
-
-                # Save to to_block.json
-                with open("to_block.json", "w") as f:
-                    json.dump(ip_score_list, f, indent=2)
-                    print("updated to_block.json")
+                print("updated vrf_logs.json and usermined.json")
 
             except Exception as e:
                 print(f"Error updating JSON files: {e}")
@@ -558,12 +557,15 @@ class Blockchain:
     def search_by_ip(self, ip_address):
         matches = []
 
-        # for tx in self.unconfirmed_transactions:
-        #     if tx.get('ip') == ip_address:
-        #         matches.append({
-        #             'type': 'pending',
-        #             'transaction': tx
-        #         })
+        for tx in self.unconfirmed_transactions:
+            if tx.get('ip') == ip_address:
+                matches.append({
+                    'type': 'pending',
+                    'transaction': tx
+                })
+                
+        
+        
 
         for block in self.chain:
             for tx in block.transactions:
