@@ -263,14 +263,12 @@ def is_ip_blocked(client_ip):
         if time.time() < block_until:
             return True, int(block_until - time.time())
         else:
-            # Block expired, remove it
             del blocked_ips[client_ip]
             save_ip_data()
     return False, 0
 
 def add_request_to_batch(client_ip, user_agent, headers):
     current_time = time.time()
-    print(client_ip, user_agent, headers)
     # Initialize IP if not exists
     if client_ip not in ip_requests:
         ip_requests[client_ip] = []
@@ -353,7 +351,7 @@ def block_ip_simple(client_ip, reason):
             blocked_ips[client_ip] = time.time() + (BLOCK_DURATION * 3)  # Triple block time
             print(f"[EXTENDED BLOCK] {client_ip} - Repeat offender")
     
-    logging.critical(f"[BLOCKED] {client_ip} - {reason} - Until: {datetime(blocked_ips[client_ip])}")
+    logging.critical(f"[BLOCKED] {client_ip} - {reason} - Until: {datetime.datetime.fromtimestamp(blocked_ips[client_ip])}")
     save_ip_data()
     
 def analyze_ip_batch(client_ip):
@@ -470,7 +468,6 @@ def start_global_analyzer():
     stop_event = threading.Event()
     client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
     user_agent = request.headers.get('User-Agent', '').lower()
-    print(f"Starting global analyzer for IP: {client_ip} with User-Agent: {user_agent}")
     if blockchain.check_ip_exists(client_ip):
             logger.info(f"Analyzer already running for IP: {client_ip}")
             return 
@@ -727,9 +724,6 @@ def detect_syn_flood(threshold=100):
 # Start SYN flood detection in a background thread
 threading.Thread(target=detect_syn_flood, daemon=True).start()
 
-# for deep analysis
-
-
 @app.route('/api/start-analyzer', methods=['GET'])
 def start_analyzer_endpoint():
     # Check if PoW has been verified from session
@@ -746,7 +740,6 @@ def start_analyzer_endpoint():
         # Start analyzer thread if not already started
         if not app.config.get('ANALYZER_STARTED', False):
             stop_event = threading.Event()
-            print(f"Starting analyzer for client IP777777777777777777: {client_ip}")
             analyzer_thread = threading.Thread(target=periodic_analyzer, args=(client_ip, stop_event), daemon=True)
             analyzer_thread.start()
             # logger.info("Traffic analyzer started after PoW v")
@@ -1071,6 +1064,21 @@ def api_deep_analyze():
 # @pow_required
 # @traffic_protected
 def protected():
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    logger.info(f"[BLOCKCHAIN] -> Access attempt from {client_ip}")
+
+    result = blockchain.search_by_ip(client_ip)
+    print(f"Blockchain search result for {client_ip}: {result}")
+    if result["found"]:
+        # Get last transaction recorded for this IP
+        last_tx = result["results"][-1]["transaction"]
+
+        if last_tx.get("is_trustworthy", False):
+            logger.info(f"[BLOCKCHAIN] -> {client_ip} found as TRUSTED in blockchain. Access granted.")
+            return f"Access granted: trusted IP {client_ip}"
+        else:
+            logger.warning(f"[BLOCKCHAIN] -> {client_ip} found as UNTRUSTWORTHY in blockchain. Access denied.")
+            return f"Access denied: untrustworthy IP {client_ip}", 403
     return "This is a protected route!"
 
 @app.route("/home")

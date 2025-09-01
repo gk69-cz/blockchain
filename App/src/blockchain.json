@@ -1,0 +1,14 @@
+{
+  "chain": [
+    {
+      "index": 0,
+      "transactions": [],
+      "timestamp": 1756730504.7004685,
+      "previous_hash": "000",
+      "nonce": 40248,
+      "hash": "000021368cdb23387ae7fdc215988fcd82b7ac7a1fe44ae2bdefde7c79d92f0a"
+    }
+  ],
+  "pending_transactions": [],
+  "last_updated": 1756730505.087379
+}
